@@ -46,8 +46,8 @@ export default async function Students({ searchParams }: { searchParams: Promise
           <p className="mt-2 text-xs text-muted">Students sign in the first time with enrolment number + registered mobile number, then set their own password.</p>
         </Card>
         <Card id="upload" className="p-4 sm:p-5">
-          <p className="font-bold">Upload admission roster</p>
-          <p className="mt-1 mb-3 text-sm text-muted">The IGNOU admission export (.xlsx). Only enrolment no., name, programme, year, mobile, email and address are stored. Everything else in the file is ignored. Re-uploading updates existing students.</p>
+          <p className="font-bold">Upload student list</p>
+          <p className="mt-1 mb-3 text-sm text-muted">IGNOU admission, re-registration or transfer list (.xlsx, all sheets are read). Only enrolment no., name, programme, year, mobile, email and address are stored. Everything else in the file is ignored. Re-uploading updates existing students.</p>
           <RosterUpload />
         </Card>
       </div>

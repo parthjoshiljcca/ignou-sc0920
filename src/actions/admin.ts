@@ -130,9 +130,11 @@ export async function uploadRosterAction(_: FormState, fd: FormData): Promise<Fo
     const { parseRosterXlsx, upsertRoster } = await import("@/lib/roster");
     const { rows, skipped } = await parseRosterXlsx(await file.arrayBuffer());
     if (!rows.length) return { error: "No valid student rows found in this file." };
-    const n = await upsertRoster(db, rows);
+    const mode = fd.get("updateExisting") ? "update" : "fillBlanks";
+    const r = await upsertRoster(db, rows, mode);
     revalidatePath("/admin/students");
-    return { ok: `Imported ${n} students.${skipped.length ? ` Skipped ${skipped.length}: ${skipped.slice(0, 5).join("; ")}${skipped.length > 5 ? "…" : ""}` : ""}` };
+    const extra = skipped.length ? ` Skipped ${skipped.length}: ${skipped.slice(0, 5).join("; ")}${skipped.length > 5 ? "…" : ""}` : "";
+    return { ok: `Imported ${r.total} students: ${r.added} new, ${r.existing} already in the app (${mode === "update" ? "details updated" : "kept as they were, only empty details filled"}).${extra}` };
   } catch (e) {
     return { error: e instanceof Error ? e.message : "Couldn't read this file" };
   }

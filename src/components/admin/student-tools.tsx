@@ -10,8 +10,12 @@ export function RosterUpload() {
     <form action={action} className="space-y-3">
       <input type="file" name="file" accept=".xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" required
         className="block w-full text-sm file:mr-3 file:rounded-[10px] file:border-0 file:bg-primary-soft file:px-4 file:py-2 file:font-semibold file:text-primary" />
+      <label className="flex items-start gap-2 text-sm">
+        <input type="checkbox" name="updateExisting" className="mt-0.5 size-4 accent-[var(--primary)]" />
+        <span>Also update details of students already in the app <span className="text-muted">(otherwise only new students are added and empty details filled)</span></span>
+      </label>
       <FormMessage state={state} />
-      <SubmitButton pendingText="Importing…">Import roster</SubmitButton>
+      <SubmitButton pendingText="Importing…">Import list</SubmitButton>
     </form>
   );
 }
