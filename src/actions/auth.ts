@@ -6,7 +6,7 @@ import { eq, or } from "drizzle-orm";
 import { redirect } from "next/navigation";
 import { db, schema } from "@/db";
 import { createSession, destroySession, requireUser } from "@/lib/auth";
-import { missingProfileFields } from "@/lib/profile";
+import { anyMissing, missingProfileFields } from "@/lib/profile";
 
 export type FormState = { error?: string; ok?: string } | undefined;
 
@@ -95,15 +95,25 @@ export async function setFirstPasswordAction(_: FormState, fd: FormData): Promis
     return { error: "Choose a password that is different from your mobile number" };
   }
 
-  // Students imported from a re-registration list must give their name and address once.
-  const need = u.role === "student" ? await missingProfileFields(u.enrollmentNo) : { name: false, address: false };
+  // Details missing from the imported file are compulsory now, once.
+  const need = u.role === "student" ? await missingProfileFields(u.enrollmentNo) : { name: false, address: false, email: false };
   const fullName = String(fd.get("fullName") ?? "").trim().replace(/\s+/g, " ");
   const address = String(fd.get("address") ?? "").trim().replace(/\s+/g, " ");
+  const email = String(fd.get("email") ?? "").trim().toLowerCase();
   if (need.name && (fullName.length < 3 || fullName.length > 120 || !/^[\p{L} .'-]+$/u.test(fullName))) {
     return { error: "Enter your full name as on your IGNOU identity card (letters only)" };
   }
+  if (need.email && !z.email().safeParse(email).success) {
+    return { error: "Enter a valid email address" };
+  }
   if (need.address && (address.length < 10 || address.length > 500)) {
     return { error: "Enter your full postal address with city and PIN code" };
+  }
+  // Use the new email for login too, if nobody else already uses it.
+  let loginEmail: string | undefined;
+  if (need.email) {
+    const [taken] = await db.select({ id: schema.users.id }).from(schema.users).where(eq(schema.users.email, email)).limit(1);
+    if (!taken || taken.id === u.id) loginEmail = email;
   }
 
   await db
@@ -112,12 +122,17 @@ export async function setFirstPasswordAction(_: FormState, fd: FormData): Promis
       passwordHash: await bcrypt.hash(password, 10),
       mustChangePassword: false,
       ...(need.name ? { name: fullName.toUpperCase() } : {}),
+      ...(loginEmail ? { email: loginEmail } : {}),
     })
     .where(eq(schema.users.id, u.id));
-  if (u.enrollmentNo && (need.name || need.address)) {
+  if (u.enrollmentNo && anyMissing(need)) {
     await db
       .update(schema.roster)
-      .set({ ...(need.name ? { name: fullName.toUpperCase() } : {}), ...(need.address ? { address } : {}) })
+      .set({
+        ...(need.name ? { name: fullName.toUpperCase() } : {}),
+        ...(need.address ? { address } : {}),
+        ...(need.email ? { email } : {}),
+      })
       .where(eq(schema.roster.enrollmentNo, u.enrollmentNo));
   }
   await createSession({ uid: u.id, role: u.role, mcp: false });
