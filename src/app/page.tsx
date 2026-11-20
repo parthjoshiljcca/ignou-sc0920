@@ -1,5 +1,5 @@
 import { CalendarDays, LifeBuoy, Megaphone, Smartphone } from "lucide-react";
-import { Logo } from "@/components/logo";
+import { Credit, FullLogo } from "@/components/logo";
 import { LinkButton } from "@/components/ui";
 import { CENTRE } from "@/lib/constants";
 
@@ -14,8 +14,9 @@ export default function Landing() {
   return (
     <div className="min-h-dvh">
       <header className="mx-auto flex max-w-5xl items-center gap-3 px-4 py-4 sm:px-6">
-        <Logo className="size-10" />
-        <span className="flex-1 font-bold">{CENTRE.name}</span>
+        <FullLogo className="h-14 px-3 py-2" />
+        <span className="hidden flex-1 font-bold sm:block">Study Centre {CENTRE.code}</span>
+        <span className="flex-1 sm:hidden" />
         <LinkButton href="/login" variant="ghost">Sign in</LinkButton>
       </header>
       <main className="mx-auto max-w-5xl px-4 pb-16 sm:px-6">
@@ -47,6 +48,10 @@ export default function Landing() {
           ))}
         </section>
       </main>
+      <footer className="border-t border-border py-6 text-center">
+        <p className="text-sm text-muted">{CENTRE.name}</p>
+        <Credit className="mt-1" />
+      </footer>
     </div>
   );
 }

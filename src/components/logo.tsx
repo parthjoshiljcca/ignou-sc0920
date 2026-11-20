@@ -1,10 +1,26 @@
+/* eslint-disable @next/next/no-img-element */
+import clsx from "clsx";
+
+/** IGNOU emblem on a white tile, so it stays legible in dark mode too. */
 export function Logo({ className = "size-9" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 64 64" className={className} aria-hidden>
-      <rect width="64" height="64" rx="16" fill="var(--primary)" />
-      <path d="M14 22 32 14l18 8-18 8z" fill="var(--accent)" />
-      <path d="M20 27v10c0 4 5.4 7 12 7s12-3 12-7V27l-12 5.3z" fill="var(--on-primary)" />
-      <rect x="47" y="23" width="2.6" height="13" rx="1.3" fill="var(--accent)" />
-    </svg>
+    <span className={clsx("grid shrink-0 place-items-center rounded-xl bg-white p-1 ring-1 ring-black/5", className)}>
+      <img src="/brand/ignou-emblem.png" alt="IGNOU" className="size-full object-contain" />
+    </span>
   );
+}
+
+/** Full "ignou — The People's University" lock-up. */
+export function FullLogo({ className }: { className?: string }) {
+  return (
+    <span className={clsx("inline-flex rounded-2xl bg-white px-4 py-3 ring-1 ring-black/5", className)}>
+      <img src="/brand/ignou-logo.png" alt="IGNOU – The People's University" className="h-full w-auto" />
+    </span>
+  );
+}
+
+export const CREDIT = "Design & Developed by: Parth D. Joshi";
+
+export function Credit({ className }: { className?: string }) {
+  return <p className={clsx("text-xs text-muted", className)}>{CREDIT}</p>;
 }

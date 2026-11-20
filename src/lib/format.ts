@@ -45,3 +45,8 @@ export function istStartOfToday() {
   const ymd = now.toISOString().slice(0, 10);
   return new Date(`${ymd}T00:00:00+05:30`);
 }
+
+/** "PATEL VRUSHTI NATVARBHAI" → "Patel Vrushti Natvarbhai" */
+export function properName(name: string) {
+  return name.toLowerCase().replace(/(^|[\s.'-])([a-z])/g, (_, p, c) => p + c.toUpperCase());
+}

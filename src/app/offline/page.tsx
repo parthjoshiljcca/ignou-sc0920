@@ -15,6 +15,7 @@ export default function Offline() {
         <a href="/dashboard" className="mt-5 inline-flex min-h-10 items-center rounded-[10px] bg-primary px-4 text-sm font-semibold text-on-primary">
           Try again
         </a>
+        <p className="mt-10 text-xs text-muted">Design &amp; Developed by: Parth D. Joshi</p>
       </div>
     </main>
   );

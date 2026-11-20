@@ -4,7 +4,7 @@ import { and, count, eq, ne } from "drizzle-orm";
 import { ArrowLeft, Mail, Phone } from "lucide-react";
 import { db, schema } from "@/db";
 import { requireAdmin } from "@/lib/auth";
-import { fmtDateTime } from "@/lib/format";
+import { fmtDateTime, properName } from "@/lib/format";
 import { updateTicketMetaAction } from "@/actions/tickets";
 import { Card, PriorityBadge, StatusBadge, Pill } from "@/components/ui";
 import { TicketThread } from "@/components/ticket-thread";
@@ -44,13 +44,13 @@ export default async function AdminTicket({ params }: { params: Promise<{ id: st
           </div>
           <TicketThread ticketId={t.id} viewerId={admin.id} />
           <Card className="mt-6 p-4">
-            <ReplyForm ticketId={t.id} isAdmin currentStatus={t.status} placeholder={`Reply to ${s.name.split(" ")[0]}…`} />
+            <ReplyForm key={t.status} ticketId={t.id} isAdmin currentStatus={t.status} placeholder={`Reply to ${properName(s.name)}…`} />
           </Card>
         </div>
         <aside className="space-y-4 lg:sticky lg:top-8 lg:self-start">
           <Card className="p-4">
             <p className="text-xs font-semibold tracking-wide text-muted uppercase">Student</p>
-            <p className="mt-1 font-bold">{s.name}</p>
+            <p className="mt-1 font-bold">{properName(s.name)}</p>
             <div className="mt-2 flex flex-wrap gap-1.5"><Pill tone="primary">{s.programme}</Pill><Pill>{s.enrollmentNo}</Pill></div>
             <div className="mt-3 space-y-1.5 text-sm">
               {s.phone && <a href={`tel:${s.phone}`} className="flex items-center gap-2 text-primary hover:underline"><Phone className="size-4" aria-hidden /> {s.phone}</a>}
@@ -65,7 +65,7 @@ export default async function AdminTicket({ params }: { params: Promise<{ id: st
             )}
           </Card>
           <Card className="p-4">
-            <form action={updateTicketMetaAction} className="space-y-3">
+            <form key={`${t.status}-${t.priority}`} action={updateTicketMetaAction} className="space-y-3">
               <input type="hidden" name="ticketId" value={t.id} />
               <label className="block text-sm font-medium">Status
                 <select name="status" defaultValue={t.status} className="input mt-1.5">

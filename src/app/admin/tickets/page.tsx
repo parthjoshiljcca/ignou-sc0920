@@ -5,6 +5,7 @@ import { Inbox, Search } from "lucide-react";
 import { db, schema } from "@/db";
 import { requireAdmin } from "@/lib/auth";
 import { STATUS_LABEL, TICKET_CATEGORIES } from "@/lib/constants";
+import { properName } from "@/lib/format";
 import { Card, EmptyState, PageHeader } from "@/components/ui";
 import { TicketRow } from "@/components/ticket-row";
 
@@ -66,7 +67,7 @@ export default async function AdminTickets({ searchParams }: { searchParams: Pro
       ) : (
         <Card className="divide-y divide-border overflow-hidden">
           {rows.map(({ t, name, enrol, programme }) => (
-            <TicketRow key={t.id} href={`/admin/tickets/${t.id}`} {...t} who={`${name} · ${enrol} · ${programme}`} />
+            <TicketRow key={t.id} href={`/admin/tickets/${t.id}`} {...t} who={`${properName(name)} · ${enrol} · ${programme}`} />
           ))}
         </Card>
       )}

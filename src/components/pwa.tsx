@@ -152,6 +152,7 @@ export function PushToggle({ compact = false }: { compact?: boolean }) {
     );
   }
   if (state === "denied") {
+    if (compact) return null;
     return <p className="text-sm text-muted">Notifications are blocked. Allow them for this site in your browser settings.</p>;
   }
   if (compact && state === "on") return null;

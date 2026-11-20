@@ -4,7 +4,7 @@ import { sessionsForStudent } from "@/lib/queries";
 import { CalendarDays, LifeBuoy, Megaphone, Plus, ChevronRight } from "lucide-react";
 import { db, schema } from "@/db";
 import { requireStudent } from "@/lib/auth";
-import { fmtDay, timeAgo } from "@/lib/format";
+import { fmtDay, properName, timeAgo } from "@/lib/format";
 import { Card, LinkButton, Pill } from "@/components/ui";
 import { InstallBanner, PushToggle } from "@/components/pwa";
 import { SessionCard } from "@/components/session-card";
@@ -26,15 +26,14 @@ export default async function Dashboard() {
       .orderBy(desc(schema.tickets.updatedAt)).limit(3),
   ]);
 
-  const first = u.name.split(" ")[0];
   return (
     <>
       <InstallBanner />
       <PushToggle compact />
 
       <div className="mb-6">
-        <p className="text-sm text-muted">Namaste,</p>
-        <h1 className="text-2xl font-bold tracking-tight">{first}</h1>
+        <p className="text-sm text-muted">Namaste 🙏</p>
+        <h1 className="text-2xl font-bold tracking-tight">{properName(u.name)}</h1>
         <div className="mt-2 flex flex-wrap gap-2">
           <Pill tone="primary">{u.programme}</Pill>
           <Pill>Enrol. {u.enrollmentNo}</Pill>

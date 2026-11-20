@@ -4,7 +4,7 @@ import { and, asc, count, eq, ilike, isNull, or, sql, type SQL } from "drizzle-o
 import { Search } from "lucide-react";
 import { db, schema } from "@/db";
 import { requireAdmin } from "@/lib/auth";
-import { fmtDate } from "@/lib/format";
+import { fmtDate, properName } from "@/lib/format";
 import { getProgrammes } from "@/lib/programmes";
 import { setStudentActiveAction } from "@/actions/admin";
 import { Card, PageHeader, Pill } from "@/components/ui";
@@ -72,7 +72,7 @@ export default async function Students({ searchParams }: { searchParams: Promise
         {rows.map(({ r: s, user }) => (
           <div key={s.enrollmentNo} className="flex flex-wrap items-center gap-x-4 gap-y-2 px-4 py-3">
             <div className="min-w-0 flex-1 basis-60">
-              <p className="truncate font-semibold">{s.name}</p>
+              <p className="truncate font-semibold">{properName(s.name)}</p>
               <p className="text-xs text-muted">{s.enrollmentNo} · {s.admissionYear ?? "—"} · {s.mobile ?? "—"}{s.email ? ` · ${s.email}` : ""}</p>
               {s.address && <p className="truncate text-xs text-muted" title={s.address}>{s.address}</p>}
             </div>

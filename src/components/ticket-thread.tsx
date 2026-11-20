@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { asc, eq } from "drizzle-orm";
 import { db, schema } from "@/db";
-import { fmtDateTime } from "@/lib/format";
+import { fmtDateTime, properName } from "@/lib/format";
 
 export async function TicketThread({ ticketId, viewerId }: { ticketId: number; viewerId: number }) {
   const msgs = await db
@@ -27,7 +27,7 @@ export async function TicketThread({ ticketId, viewerId }: { ticketId: number; v
           <li key={m.id} className={clsx("flex", mine ? "justify-end" : "justify-start")}>
             <div className={clsx("max-w-[88%] sm:max-w-[75%]")}>
               <p className={clsx("mb-1 text-xs text-muted", mine && "text-right")}>
-                <b className="font-semibold text-text">{mine ? "You" : m.authorName}</b>
+                <b className="font-semibold text-text">{mine ? "You" : properName(m.authorName)}</b>
                 {staff && !mine && " · Study Centre"} · {fmtDateTime(m.createdAt)}
               </p>
               <div

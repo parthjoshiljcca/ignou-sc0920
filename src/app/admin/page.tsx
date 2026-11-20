@@ -3,7 +3,7 @@ import { and, asc, count, desc, eq, gte, inArray, sql } from "drizzle-orm";
 import { CalendarPlus, Inbox, Megaphone, Upload } from "lucide-react";
 import { db, schema } from "@/db";
 import { requireAdmin } from "@/lib/auth";
-import { fmtDay } from "@/lib/format";
+import { fmtDay, properName } from "@/lib/format";
 import { Card, LinkButton, PageHeader } from "@/components/ui";
 import { InstallBanner, PushToggle } from "@/components/pwa";
 import { TicketRow } from "@/components/ticket-row";
@@ -40,7 +40,7 @@ export default async function AdminHome() {
     <>
       <InstallBanner />
       <PushToggle compact />
-      <PageHeader title={`Hello, ${u.name.split(" ")[0]}`} subtitle="Here's what needs your attention at SC 0920." />
+      <PageHeader title={`Hello, ${properName(u.name)}`} subtitle="Here's what needs your attention at SC 0920." />
       <div className="mb-6 grid grid-cols-2 gap-3 lg:grid-cols-4">
         {stats.map((s) => (
           <Link key={s.label} href={s.href} className="rounded-2xl border border-border bg-surface p-4 hover:bg-surface-2">
@@ -62,7 +62,7 @@ export default async function AdminHome() {
           </div>
           {waiting.length ? (
             <Card className="divide-y divide-border overflow-hidden">
-              {waiting.map(({ t, name }) => <TicketRow key={t.id} href={`/admin/tickets/${t.id}`} {...t} who={name} />)}
+              {waiting.map(({ t, name }) => <TicketRow key={t.id} href={`/admin/tickets/${t.id}`} {...t} who={properName(name)} />)}
             </Card>
           ) : <Card className="p-5 text-sm text-muted">Inbox zero. Nothing waiting. 🎉</Card>}
         </section>

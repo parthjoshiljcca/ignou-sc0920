@@ -1,5 +1,7 @@
 # IGNOU Study Centre 0920 — Student App
 
+**Design & Developed by: Parth D. Joshi**
+
 Web app + installable mobile app (PWA) for onboarding students of IGNOU Study Centre 0920.
 
 **Students** sign in the first time with their **enrolment number** and their **registered mobile number**

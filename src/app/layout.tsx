@@ -10,9 +10,11 @@ export const metadata: Metadata = {
   title: { default: CENTRE.name, template: `%s · ${CENTRE.shortName}` },
   description: "Help desk, counselling schedule and notices for students of IGNOU Study Centre 0920.",
   applicationName: CENTRE.shortName,
+  authors: [{ name: "Parth D. Joshi" }],
+  creator: "Parth D. Joshi",
   appleWebApp: { capable: true, title: CENTRE.shortName, statusBarStyle: "default" },
   icons: {
-    icon: [{ url: "/icons/icon.svg", type: "image/svg+xml" }, { url: "/icons/icon-192.png", sizes: "192x192" }],
+    icon: [{ url: "/icons/favicon-32.png", sizes: "32x32" }, { url: "/icons/icon-192.png", sizes: "192x192" }],
     apple: "/icons/apple-touch-icon.png",
   },
   formatDetection: { telephone: false },
@@ -20,7 +22,7 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#1f3c88" },
+    { media: "(prefers-color-scheme: light)", color: "#0066b2" },
     { media: "(prefers-color-scheme: dark)", color: "#0c111c" },
   ],
   width: "device-width",

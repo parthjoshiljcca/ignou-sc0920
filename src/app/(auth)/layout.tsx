@@ -1,14 +1,14 @@
 import Link from "next/link";
-import { Logo } from "@/components/logo";
+import { Credit, FullLogo } from "@/components/logo";
 import { CENTRE } from "@/lib/constants";
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-dvh lg:grid lg:grid-cols-[1fr_1.1fr]">
-      <section className="relative hidden overflow-hidden bg-primary p-12 text-white lg:flex lg:flex-col" style={{ background: "#1f3c88" }}>
-        <Link href="/" className="flex items-center gap-3">
-          <Logo className="size-11" />
-          <span className="text-lg font-bold">{CENTRE.name}</span>
+      <section className="relative hidden overflow-hidden p-12 text-white lg:flex lg:flex-col" style={{ background: "#0066b2" }}>
+        <Link href="/" className="relative z-10 flex flex-col items-start gap-4">
+          <FullLogo className="h-20" />
+          <span className="text-lg font-bold">Study Centre {CENTRE.code}</span>
         </Link>
         <div className="mt-auto max-w-md">
           <p className="text-4xl leading-tight font-bold tracking-tight">Your study centre, in your pocket.</p>
@@ -18,14 +18,16 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
             <li>• Notices and deadline alerts on your phone</li>
           </ul>
         </div>
-        <div aria-hidden className="absolute -top-24 -right-24 size-80 rounded-full" style={{ background: "#e8890c", opacity: 0.18 }} />
+        <p className="mt-10 text-xs text-white/70">Design &amp; Developed by: Parth D. Joshi</p>
+        <div aria-hidden className="absolute -top-24 -right-24 size-80 rounded-full" style={{ background: "#ffffff", opacity: 0.08 }} />
       </section>
       <main className="flex min-h-dvh flex-col px-4 py-8 sm:px-8 lg:justify-center">
-        <Link href="/" className="mb-8 flex items-center gap-3 lg:hidden">
-          <Logo className="size-10" />
-          <span className="font-bold">{CENTRE.name}</span>
+        <Link href="/" className="mb-8 flex flex-col items-start gap-2 lg:hidden">
+          <FullLogo className="h-16 px-3 py-2" />
+          <span className="text-sm font-semibold text-muted">Study Centre {CENTRE.code}</span>
         </Link>
         <div className="mx-auto w-full max-w-md">{children}</div>
+        <Credit className="mx-auto mt-10 text-center lg:hidden" />
       </main>
     </div>
   );
