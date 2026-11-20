@@ -11,7 +11,6 @@ export type ParsedRosterRow = {
   mobile: string | null;
   admissionYear: number | null;
   address: string | null;
-  courses: string[];
 };
 
 const norm = (s: unknown) => String(s ?? "").trim().toLowerCase().replace(/[^a-z0-9]/g, "");
@@ -35,8 +34,8 @@ function yearOf(v: ExcelJS.CellValue): number | null {
 
 /**
  * Parse an IGNOU admission export (.xlsx). Reads only the columns needed for onboarding:
- * Enrolment Number, Name, Programme, year of admission, Email, Mobile, Address, CRS1..CRSn (course codes).
- * Every other column (Aadhaar, bank, DOB, category, religion, income, …) is ignored.
+ * Enrolment Number, Name, Programme, year of admission, Mobile, Email, Address.
+ * Every other column (Aadhaar, bank, DOB, category, religion, income, course codes, …) is ignored.
  */
 export async function parseRosterXlsx(buf: ArrayBuffer | Buffer) {
   const wb = new ExcelJS.Workbook();
@@ -46,11 +45,9 @@ export async function parseRosterXlsx(buf: ArrayBuffer | Buffer) {
 
   const header = ws.getRow(1);
   const cols: Record<string, number> = {};
-  const courseCols: number[] = [];
   header.eachCell((cell, col) => {
     const h = norm(cellText(cell.value));
-    if (/^crs\d+$/.test(h)) courseCols.push(col);
-    else if (!(h in cols)) cols[h] = col;
+    if (!(h in cols)) cols[h] = col;
   });
   const pick = (...names: string[]) => names.map(norm).map((n) => cols[n]).find(Boolean);
   const c = {
@@ -94,15 +91,12 @@ export async function parseRosterXlsx(buf: ArrayBuffer | Buffer) {
     const address = parts.join(", ") || null;
     const mobile = cellText(get(c.mobile)).replace(/\D/g, "").slice(-10) || null;
     const email = cellText(get(c.email)).trim().toLowerCase() || null;
-    const courses = [
-      ...new Set(courseCols.map((col) => cellText(row.getCell(col).value).trim().toUpperCase()).filter(Boolean)),
-    ];
-    rows.push({ enrollmentNo, name, programme, admissionYear, email, mobile, address, courses });
+    rows.push({ enrollmentNo, name, programme, admissionYear, email, mobile, address });
   });
   return { rows, skipped };
 }
 
-/** Upsert parsed rows into the roster and refresh programme/courses of already-activated students. */
+/** Upsert parsed rows into the roster and refresh the details of already signed-in students. */
 export async function upsertRoster(db: NeonHttpDatabase<typeof schema>, rows: ParsedRosterRow[]) {
   for (let i = 0; i < rows.length; i += 200) {
     const batch = rows.slice(i, i + 200);
@@ -118,13 +112,12 @@ export async function upsertRoster(db: NeonHttpDatabase<typeof schema>, rows: Pa
           mobile: sql`excluded.mobile`,
           admissionYear: sql`excluded.admission_year`,
           address: sql`excluded.address`,
-          courses: sql`excluded.courses`,
           importedAt: sql`excluded.imported_at`,
         },
       });
   }
   await db.execute(sql`
-    update users u set programme = r.programme, courses = r.courses
+    update users u set programme = r.programme, name = r.name
     from roster r where u.enrollment_no = r.enrollment_no and u.role = 'student'
   `);
   return rows.length;

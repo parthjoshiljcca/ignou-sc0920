@@ -65,7 +65,7 @@ export default async function Dashboard() {
               ))}
             </div>
           ) : (
-            <Card className="p-5 text-sm text-muted">No classes scheduled for your courses yet. We&apos;ll notify you when they&apos;re announced.</Card>
+            <Card className="p-5 text-sm text-muted">No classes scheduled for your programme yet. We&apos;ll notify you when they&apos;re announced.</Card>
           )}
         </section>
 

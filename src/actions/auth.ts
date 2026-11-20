@@ -28,7 +28,6 @@ async function firstLoginFromRoster(enrollmentNo: string, password: string) {
       name: r.name,
       enrollmentNo: r.enrollmentNo,
       programme: r.programme,
-      courses: r.courses,
       email,
       phone: r.mobile,
       passwordHash: await bcrypt.hash(digits(r.mobile!).slice(-10), 10),

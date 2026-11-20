@@ -17,13 +17,13 @@ export function SessionForm({ d, programmes, courses }: { d: SessionDefaults; pr
     <form action={action} className="space-y-4">
       {d.id && <input type="hidden" name="id" value={d.id} />}
       <div className="grid gap-4 sm:grid-cols-2">
-        <Field label="Course code" htmlFor="courseCode" hint="Students enrolled in this course see the class">
+        <Field label="Course code" htmlFor="courseCode" >
           <input id="courseCode" name="courseCode" list="course-codes" defaultValue={d.courseCode} className="input uppercase" placeholder="e.g. MCS211" required />
           <datalist id="course-codes">{courses.map((c) => <option key={c} value={c} />)}</datalist>
         </Field>
-        <Field label="Programme" htmlFor="programme" hint="Also shown to every student of this programme">
+        <Field label="Programme" htmlFor="programme" hint="Students of this programme see the class">
           <select id="programme" name="programme" defaultValue={d.programme ?? "ALL"} className="input">
-            <option value="ALL">All programmes / course only</option>
+            <option value="ALL">All programmes</option>
             {programmes.map((p) => <option key={p}>{p}</option>)}
           </select>
         </Field>

@@ -12,7 +12,8 @@ export async function getProgrammes(): Promise<string[]> {
   return res.rows.map((r) => r.p);
 }
 
+/** Course codes already used in the schedule, for quick re-entry. */
 export async function getCourseCodes(): Promise<string[]> {
-  const res = await db.execute<{ c: string }>(sql`select distinct unnest(courses) as c from roster order by 1`);
+  const res = await db.execute<{ c: string }>(sql`select distinct course_code as c from counselling_sessions order by 1`);
   return res.rows.map((r) => r.c);
 }

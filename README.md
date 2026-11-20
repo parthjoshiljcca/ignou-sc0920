@@ -6,7 +6,7 @@ Web app + installable mobile app (PWA) for onboarding students of IGNOU Study Ce
 as the password (both taken from the centre's admission roster). They must then set their own password
 before using the app. After that they can:
 - raise queries as tickets and chat with the coordinator until resolved
-- see the counselling schedule for their programme **and their enrolled course codes**
+- see the counselling schedule for their programme
 - read notices, get in-app + push notifications
 - install the app to their phone's home screen
 
@@ -35,8 +35,8 @@ npm run dev
 
 ### Roster privacy
 The admission export contains Aadhaar, bank, DOB, category and other personal data. The importer reads
-**only** enrolment no., name, programme, year of admission, mobile, email, address and CRS1…CRSn course
-codes (used to show each student their own counselling classes); everything else is discarded. `.xlsx/.csv` files are git-ignored — never commit them.
+**only** enrolment no., name, programme, year of admission, mobile, email and address; everything else
+(including course codes) is discarded. `.xlsx/.csv` files are git-ignored — never commit them.
 
 ## Deploy (Vercel)
 1. Import this repo in Vercel.

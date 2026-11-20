@@ -47,7 +47,7 @@ export default async function Students({ searchParams }: { searchParams: Promise
         </Card>
         <Card id="upload" className="p-4 sm:p-5">
           <p className="font-bold">Upload admission roster</p>
-          <p className="mt-1 mb-3 text-sm text-muted">The IGNOU admission export (.xlsx). Only enrolment no., name, programme, year, mobile, email, address and course codes are stored. Everything else in the file is ignored. Re-uploading updates existing students.</p>
+          <p className="mt-1 mb-3 text-sm text-muted">The IGNOU admission export (.xlsx). Only enrolment no., name, programme, year, mobile, email and address are stored. Everything else in the file is ignored. Re-uploading updates existing students.</p>
           <RosterUpload />
         </Card>
       </div>

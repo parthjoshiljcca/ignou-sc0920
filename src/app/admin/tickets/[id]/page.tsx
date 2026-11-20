@@ -58,7 +58,6 @@ export default async function AdminTicket({ params }: { params: Promise<{ id: st
             </div>
             {info?.year && <p className="mt-3 text-xs text-muted">Admitted {info.year}</p>}
             {info?.address && <p className="mt-1 text-xs text-muted">{info.address}</p>}
-            {s.courses.length > 0 && <p className="mt-1 text-xs text-muted">Courses: {s.courses.join(", ")}</p>}
             {others > 0 && (
               <Link href={`/admin/tickets?status=all&q=${s.enrollmentNo}`} className="mt-3 block text-sm font-semibold text-primary hover:underline">
                 {others} other quer{others === 1 ? "y" : "ies"} →

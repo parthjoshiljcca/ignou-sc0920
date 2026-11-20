@@ -25,7 +25,7 @@ export default async function AdminSchedule({ searchParams }: { searchParams: Pr
 
   return (
     <>
-      <PageHeader title="Counselling schedule" subtitle="Students see classes for their programme and enrolled courses."
+      <PageHeader title="Counselling schedule" subtitle="Students see the classes for their programme."
         action={<LinkButton href="/admin/schedule/new"><Plus className="size-4" aria-hidden /> Add class</LinkButton>} />
       {sp.saved && <div className="mb-4"><Alert tone="success">Schedule saved.</Alert></div>}
       <div className="mb-5 inline-flex rounded-xl border border-border bg-surface p-1 text-sm font-semibold">
