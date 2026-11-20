@@ -21,6 +21,9 @@ export default async function AdminTicket({ params }: { params: Promise<{ id: st
     .innerJoin(schema.users, eq(schema.users.id, schema.tickets.studentId)).where(eq(schema.tickets.id, id));
   if (!row) notFound();
   const { t, s } = row;
+  const [info] = s.enrollmentNo
+    ? await db.select({ year: schema.roster.admissionYear, address: schema.roster.address }).from(schema.roster).where(eq(schema.roster.enrollmentNo, s.enrollmentNo))
+    : [];
   const [{ others }] = await db.select({ others: count() }).from(schema.tickets)
     .where(and(eq(schema.tickets.studentId, s.id), ne(schema.tickets.id, id)));
 
@@ -53,7 +56,9 @@ export default async function AdminTicket({ params }: { params: Promise<{ id: st
               {s.phone && <a href={`tel:${s.phone}`} className="flex items-center gap-2 text-primary hover:underline"><Phone className="size-4" aria-hidden /> {s.phone}</a>}
               {!s.email.endsWith(".local") && <a href={`mailto:${s.email}`} className="flex items-center gap-2 break-all text-primary hover:underline"><Mail className="size-4 shrink-0" aria-hidden /> {s.email}</a>}
             </div>
-            {s.courses.length > 0 && <p className="mt-3 text-xs text-muted">Courses: {s.courses.join(", ")}</p>}
+            {info?.year && <p className="mt-3 text-xs text-muted">Admitted {info.year}</p>}
+            {info?.address && <p className="mt-1 text-xs text-muted">{info.address}</p>}
+            {s.courses.length > 0 && <p className="mt-1 text-xs text-muted">Courses: {s.courses.join(", ")}</p>}
             {others > 0 && (
               <Link href={`/admin/tickets?status=all&q=${s.enrollmentNo}`} className="mt-3 block text-sm font-semibold text-primary hover:underline">
                 {others} other quer{others === 1 ? "y" : "ies"} →

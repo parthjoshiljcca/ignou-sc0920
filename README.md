@@ -34,9 +34,9 @@ npm run dev
 ```
 
 ### Roster privacy
-The admission export contains Aadhaar, bank, category and address data. The importer reads **only**
-enrolment no., name, programme, email, mobile, DOB and CRS1…CRSn course codes; everything else is
-discarded. `.xlsx/.csv` files are git-ignored — never commit them.
+The admission export contains Aadhaar, bank, DOB, category and other personal data. The importer reads
+**only** enrolment no., name, programme, year of admission, mobile, email, address and CRS1…CRSn course
+codes (used to show each student their own counselling classes); everything else is discarded. `.xlsx/.csv` files are git-ignored — never commit them.
 
 ## Deploy (Vercel)
 1. Import this repo in Vercel.

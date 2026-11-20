@@ -9,7 +9,8 @@ export type ParsedRosterRow = {
   programme: string;
   email: string | null;
   mobile: string | null;
-  dob: string; // YYYY-MM-DD
+  admissionYear: number | null;
+  address: string | null;
   courses: string[];
 };
 
@@ -26,21 +27,16 @@ function cellText(v: ExcelJS.CellValue): string {
   return String(v);
 }
 
-function toIsoDate(v: ExcelJS.CellValue): string | null {
-  if (v instanceof Date) return v.toISOString().slice(0, 10);
-  if (typeof v === "number") return new Date(Math.round((v - 25569) * 86400 * 1000)).toISOString().slice(0, 10);
-  const s = cellText(v).trim();
-  let m = s.match(/^(\d{4})-?(\d{2})-?(\d{2})(?:$|T|\s)/); // YYYY-MM-DD or YYYYMMDD
-  if (m) return `${m[1]}-${m[2]}-${m[3]}`;
-  m = s.match(/^(\d{1,2})[/.-](\d{1,2})[/.-](\d{4})$/); // DD/MM/YYYY
-  if (m) return `${m[3]}-${m[2].padStart(2, "0")}-${m[1].padStart(2, "0")}`;
-  return null;
+function yearOf(v: ExcelJS.CellValue): number | null {
+  if (v instanceof Date) return v.getUTCFullYear();
+  const m = cellText(v).match(/\b(20\d{2})/);
+  return m ? Number(m[1]) : null;
 }
 
 /**
  * Parse an IGNOU admission export (.xlsx). Reads only the columns needed for onboarding:
- * Enrolment Number, Name, Programme, Email, Mobile, Date of Birth, CRS1..CRSn.
- * Every other column (Aadhaar, bank, category, income, address, …) is ignored.
+ * Enrolment Number, Name, Programme, year of admission, Email, Mobile, Address, CRS1..CRSn (course codes).
+ * Every other column (Aadhaar, bank, DOB, category, religion, income, …) is ignored.
  */
 export async function parseRosterXlsx(buf: ArrayBuffer | Buffer) {
   const wb = new ExcelJS.Workbook();
@@ -63,9 +59,12 @@ export async function parseRosterXlsx(buf: ArrayBuffer | Buffer) {
     programme: pick("Programme", "Program"),
     email: pick("Email", "Email ID"),
     mobile: pick("Mobile", "Mobile Number"),
-    dob: pick("Date of Birth", "DOB"),
     status: pick("Admission Status"),
   };
+  const yearCols = ["Adm Date", "Start Session", "Admission Year", "Year of Enrolment", "Payment Date", "Declaration Acceptance Date"]
+    .map((n) => cols[norm(n)]).filter(Boolean);
+  const addrCols = ["Address", "Address Line 1", "Address Line 2", "Address Line 3", "Address Line 4", "Address City", "Address District", "Address State", "Address Pincode"]
+    .map((n) => cols[norm(n)]).filter(Boolean);
   const missing = Object.entries(c).filter(([k, v]) => !v && k !== "status").map(([k]) => k);
   if (missing.length) throw new Error(`Missing columns: ${missing.join(", ")}. Upload the standard admission export.`);
 
@@ -81,16 +80,24 @@ export async function parseRosterXlsx(buf: ArrayBuffer | Buffer) {
       const st = cellText(get(c.status)).toLowerCase();
       if (st && !st.includes("confirm")) return skipped.push(`Row ${i}: admission not confirmed`);
     }
-    const dob = toIsoDate(get(c.dob));
     const programme = cellText(get(c.programme)).trim().toUpperCase();
     if (!/^\d{9,10}$/.test(enrollmentNo)) return skipped.push(`Row ${i}: invalid enrolment number`);
-    if (!name || !programme || !dob) return skipped.push(`Row ${i}: missing name, programme or date of birth`);
+    if (!name || !programme) return skipped.push(`Row ${i}: missing name or programme`);
+    const admissionYear =
+      yearCols.map((col) => yearOf(get(col))).find((y) => y !== null) ??
+      (/^\d{2}/.test(enrollmentNo) ? 2000 + Number(enrollmentNo.slice(0, 2)) : null);
+    const parts: string[] = [];
+    for (const col of addrCols) {
+      const t = cellText(get(col)).trim().replace(/\s+/g, " ").replace(/^,+|,+$/g, "").trim();
+      if (t && !parts.some((p) => p.toLowerCase() === t.toLowerCase())) parts.push(t);
+    }
+    const address = parts.join(", ") || null;
     const mobile = cellText(get(c.mobile)).replace(/\D/g, "").slice(-10) || null;
     const email = cellText(get(c.email)).trim().toLowerCase() || null;
     const courses = [
       ...new Set(courseCols.map((col) => cellText(row.getCell(col).value).trim().toUpperCase()).filter(Boolean)),
     ];
-    rows.push({ enrollmentNo, name, programme, email, mobile, dob, courses });
+    rows.push({ enrollmentNo, name, programme, admissionYear, email, mobile, address, courses });
   });
   return { rows, skipped };
 }
@@ -109,7 +116,8 @@ export async function upsertRoster(db: NeonHttpDatabase<typeof schema>, rows: Pa
           programme: sql`excluded.programme`,
           email: sql`excluded.email`,
           mobile: sql`excluded.mobile`,
-          dob: sql`excluded.dob`,
+          admissionYear: sql`excluded.admission_year`,
+          address: sql`excluded.address`,
           courses: sql`excluded.courses`,
           importedAt: sql`excluded.imported_at`,
         },

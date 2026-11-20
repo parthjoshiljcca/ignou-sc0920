@@ -9,7 +9,6 @@ import {
   boolean,
   index,
   uniqueIndex,
-  date,
 } from "drizzle-orm/pg-core";
 
 export const roleEnum = pgEnum("role", ["student", "admin"]);
@@ -48,7 +47,8 @@ export const roster = pgTable(
     programme: varchar("programme", { length: 40 }).notNull(),
     email: varchar("email", { length: 200 }),
     mobile: varchar("mobile", { length: 20 }),
-    dob: date("dob").notNull(),
+    admissionYear: integer("admission_year"),
+    address: text("address"),
     courses: text("courses").array().notNull().default([]),
     importedAt: timestamp("imported_at", { withTimezone: true }).notNull().defaultNow(),
   },

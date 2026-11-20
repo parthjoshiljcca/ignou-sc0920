@@ -47,7 +47,7 @@ export default async function Students({ searchParams }: { searchParams: Promise
         </Card>
         <Card id="upload" className="p-4 sm:p-5">
           <p className="font-bold">Upload admission roster</p>
-          <p className="mt-1 mb-3 text-sm text-muted">The IGNOU admission export (.xlsx). Only enrolment no., name, programme, email, mobile, DOB and course codes are stored — everything else in the file is ignored. Re-uploading updates existing students.</p>
+          <p className="mt-1 mb-3 text-sm text-muted">The IGNOU admission export (.xlsx). Only enrolment no., name, programme, year, mobile, email, address and course codes are stored. Everything else in the file is ignored. Re-uploading updates existing students.</p>
           <RosterUpload />
         </Card>
       </div>
@@ -73,7 +73,8 @@ export default async function Students({ searchParams }: { searchParams: Promise
           <div key={s.enrollmentNo} className="flex flex-wrap items-center gap-x-4 gap-y-2 px-4 py-3">
             <div className="min-w-0 flex-1 basis-60">
               <p className="truncate font-semibold">{s.name}</p>
-              <p className="text-xs text-muted">{s.enrollmentNo} · {s.mobile ?? "—"}</p>
+              <p className="text-xs text-muted">{s.enrollmentNo} · {s.admissionYear ?? "—"} · {s.mobile ?? "—"}{s.email ? ` · ${s.email}` : ""}</p>
+              {s.address && <p className="truncate text-xs text-muted" title={s.address}>{s.address}</p>}
             </div>
             <Pill tone="primary">{s.programme}</Pill>
             {user?.id ? (
