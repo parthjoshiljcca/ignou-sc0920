@@ -10,12 +10,15 @@ before using the app. After that they can:
 - raise queries as tickets and chat with the coordinator until resolved
 - see the counselling schedule for their programme
 - read notices, get in-app + push notifications
+- browse searchable FAQs (based on IGNOU's official FAQ document) — matching FAQs are also suggested
+  while they write a new query
 - install the app to their phone's home screen
 
 **Coordinator (admin)** can:
 - answer queries, set status / priority (students are notified)
 - add / edit / delete counselling classes (optionally notify affected students)
 - publish notices to everyone or one programme, pin them, push-notify
+- add / edit / hide FAQs (39 defaults from IGNOU's official FAQs; "Restore missing IGNOU FAQs" re-adds any deleted)
 - upload the IGNOU admission export (.xlsx) to refresh the roster, track who has activated,
   reset a student's password (back to their mobile number), deactivate accounts
 
@@ -30,7 +33,7 @@ npm install
 cp .env.example .env.local          # then fill in the values
 npm run vapid                       # paste the two keys into .env.local
 npm run db:push                     # create tables in Neon
-npm run db:seed                     # create the coordinator account from ADMIN_* vars
+npm run db:seed                     # coordinator account from ADMIN_* vars + default FAQs
 npm run roster:import -- path/to/admission-export.xlsx   # or upload from Admin → Students
 npm run dev
 ```

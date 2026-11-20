@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { SESSION_COOKIE, verifySession } from "@/lib/session";
 
-const STUDENT = ["/dashboard", "/tickets", "/schedule", "/notices", "/notifications", "/profile"];
+const STUDENT = ["/dashboard", "/tickets", "/schedule", "/notices", "/notifications", "/profile", "/faqs"];
 const SET_PASSWORD = "/set-password";
 
 export async function middleware(req: NextRequest) {

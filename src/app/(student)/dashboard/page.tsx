@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { and, desc, eq, inArray, or } from "drizzle-orm";
 import { sessionsForStudent } from "@/lib/queries";
-import { CalendarDays, LifeBuoy, Megaphone, Plus, ChevronRight } from "lucide-react";
+import { CalendarDays, CircleHelp, LifeBuoy, Megaphone, Plus, ChevronRight } from "lucide-react";
 import { db, schema } from "@/db";
 import { requireStudent } from "@/lib/auth";
 import { fmtDay, properName, timeAgo } from "@/lib/format";
@@ -40,7 +40,7 @@ export default async function Dashboard() {
         </div>
       </div>
 
-      <Link href="/tickets/new" className="mb-6 flex items-center gap-4 rounded-2xl bg-primary p-5 text-on-primary">
+      <Link href="/tickets/new" className="mb-3 flex items-center gap-4 rounded-2xl bg-primary p-5 text-on-primary">
         <div className="grid size-11 shrink-0 place-items-center rounded-xl bg-white/15">
           <Plus className="size-6" aria-hidden />
         </div>
@@ -49,6 +49,11 @@ export default async function Dashboard() {
           <p className="text-sm opacity-85">Raise a query and the coordinator will reply here.</p>
         </div>
         <ChevronRight className="size-5 opacity-80" aria-hidden />
+      </Link>
+      <Link href="/faqs" className="mb-6 flex items-center gap-3 rounded-2xl border border-border bg-surface px-4 py-3 text-sm hover:bg-surface-2">
+        <CircleHelp className="size-5 shrink-0 text-accent" aria-hidden />
+        <span className="flex-1"><b>FAQs</b> <span className="text-muted">— hall ticket, re-registration, results, refunds…</span></span>
+        <ChevronRight className="size-4 text-muted" aria-hidden />
       </Link>
 
       <div className="grid gap-6 lg:grid-cols-2">

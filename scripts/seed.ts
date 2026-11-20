@@ -25,6 +25,13 @@ async function main() {
     await db.insert(schema.users).values({ role: "admin", name, email, passwordHash, mustChangePassword: true });
     console.log(`Created coordinator account: ${email}`);
   }
+
+  // Default FAQs (from IGNOU's official FAQ document); only missing ones are added.
+  const { DEFAULT_FAQS } = await import("../src/lib/default-faqs");
+  const existingQ = new Set((await db.select({ q: schema.faqs.question }).from(schema.faqs)).map((r) => r.q.trim().toLowerCase()));
+  const missing = DEFAULT_FAQS.map((f, i) => ({ ...f, link: f.link ?? null, sortOrder: i * 10 })).filter((f) => !existingQ.has(f.question.toLowerCase()));
+  if (missing.length) await db.insert(schema.faqs).values(missing);
+  console.log(`FAQs: added ${missing.length}, already present ${DEFAULT_FAQS.length - missing.length}`);
 }
 
 main().then(() => process.exit(0)).catch((e) => { console.error(e); process.exit(1); });

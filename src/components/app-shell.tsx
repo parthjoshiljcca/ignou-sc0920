@@ -31,6 +31,7 @@ export async function AppShell({ user, children }: { user: User; children: React
         { href: "/admin/schedule", label: "Schedule", icon: "CalendarDays" },
         { href: "/admin/notices", label: "Notices", icon: "Megaphone" },
         { href: "/admin/students", label: "Students", icon: "Users" },
+        { href: "/admin/faqs", label: "FAQs", icon: "CircleHelp" },
       ]
     : [
         { href: "/dashboard", label: "Home", icon: "Home" },
@@ -41,7 +42,7 @@ export async function AppShell({ user, children }: { user: User; children: React
       ];
   const sideItems: NavItem[] = isAdmin
     ? [...items, { href: notifHref, label: "Notifications", icon: "Bell", badge: unread }, { href: "/profile", label: "My account", icon: "User" }]
-    : [...items.slice(0, 4), { href: notifHref, label: "Notifications", icon: "Bell", badge: unread }, items[4]];
+    : [...items.slice(0, 2), { href: "/faqs", label: "FAQs", icon: "CircleHelp" }, ...items.slice(2, 4), { href: notifHref, label: "Notifications", icon: "Bell", badge: unread }, items[4]];
 
   return (
     <div className="min-h-dvh lg:grid lg:grid-cols-[256px_1fr]">

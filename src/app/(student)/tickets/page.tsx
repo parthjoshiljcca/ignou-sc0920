@@ -1,5 +1,6 @@
 import { desc, eq } from "drizzle-orm";
-import { LifeBuoy, Plus } from "lucide-react";
+import Link from "next/link";
+import { ChevronRight, CircleHelp, LifeBuoy, Plus } from "lucide-react";
 import { db, schema } from "@/db";
 import { requireStudent } from "@/lib/auth";
 import { Card, EmptyState, LinkButton, PageHeader } from "@/components/ui";
@@ -20,6 +21,14 @@ export default async function Tickets() {
         subtitle="Your questions to the study centre and their replies."
         action={<LinkButton href="/tickets/new"><Plus className="size-4" aria-hidden /> New query</LinkButton>}
       />
+      <Link href="/faqs" className="mb-5 flex items-center gap-3 rounded-2xl border border-border bg-surface p-4 hover:bg-surface-2">
+        <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-accent-soft text-accent"><CircleHelp className="size-5" aria-hidden /></span>
+        <span className="min-w-0 flex-1">
+          <span className="block font-semibold">Frequently asked questions</span>
+          <span className="block text-sm text-muted">Hall ticket, re-registration, study material, refunds and more — instant answers.</span>
+        </span>
+        <ChevronRight className="size-5 shrink-0 text-muted" aria-hidden />
+      </Link>
       {rows.length === 0 ? (
         <EmptyState
           icon={<LifeBuoy className="size-6" />}

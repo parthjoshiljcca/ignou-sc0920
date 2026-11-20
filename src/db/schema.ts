@@ -132,6 +132,21 @@ export const notifications = pgTable(
   (t) => [index("notifications_user_idx").on(t.userId, t.isRead)],
 );
 
+export const faqs = pgTable(
+  "faqs",
+  {
+    id: serial("id").primaryKey(),
+    category: varchar("category", { length: 60 }).notNull(),
+    question: text("question").notNull(),
+    answer: text("answer").notNull(),
+    link: text("link"),
+    sortOrder: integer("sort_order").notNull().default(0),
+    isPublished: boolean("is_published").notNull().default(true),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => [index("faqs_category_idx").on(t.category, t.sortOrder)],
+);
+
 export const pushSubscriptions = pgTable(
   "push_subscriptions",
   {
@@ -147,6 +162,7 @@ export const pushSubscriptions = pgTable(
   (t) => [uniqueIndex("push_endpoint_uq").on(t.endpoint)],
 );
 
+export type Faq = typeof faqs.$inferSelect;
 export type RosterEntry = typeof roster.$inferSelect;
 export type User = typeof users.$inferSelect;
 export type Ticket = typeof tickets.$inferSelect;
