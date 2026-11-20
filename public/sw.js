@@ -1,5 +1,5 @@
 /* SC 0920 service worker: offline shell + web push */
-const CACHE = "sc0920-v3";
+const CACHE = "sc0920-v4";
 const OFFLINE_URL = "/offline";
 const PRECACHE = [OFFLINE_URL, "/icons/icon-192.png", "/brand/ignou-emblem.png"];
 

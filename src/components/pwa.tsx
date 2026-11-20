@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { Bell, BellOff, BellRing, Check, Download, Share, SquarePlus, X } from "lucide-react";
 import clsx from "clsx";
 import { btnClass } from "./ui";
+import { isStaleVersionError, reloadOnce, reportClientError } from "@/lib/client-errors";
 
 /* ------------------------------------------------------------------ */
 /* Install prompt store: Chrome fires `beforeinstallprompt` once, often */
@@ -132,6 +133,21 @@ export function ServiceWorkerRegister() {
     if ("serviceWorker" in navigator && process.env.NODE_ENV === "production") {
       navigator.serviceWorker.register("/sw.js").catch(() => {});
     }
+    // Report crashes that happen outside React, and recover when this tab runs an outdated version.
+    const onError = (e: ErrorEvent) => {
+      reportClientError(e.error ?? e.message, "window");
+      if (isStaleVersionError(e.error ?? e.message)) reloadOnce();
+    };
+    const onRejection = (e: PromiseRejectionEvent) => {
+      reportClientError(e.reason, "promise");
+      if (isStaleVersionError(e.reason)) reloadOnce();
+    };
+    window.addEventListener("error", onError);
+    window.addEventListener("unhandledrejection", onRejection);
+    return () => {
+      window.removeEventListener("error", onError);
+      window.removeEventListener("unhandledrejection", onRejection);
+    };
   }, []);
   return null;
 }

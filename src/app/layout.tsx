@@ -33,6 +33,15 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={jakarta.variable}>
+      <head>
+        {/* Browser page-translation (e.g. Chrome → Hindi/Gujarati) rewrites text nodes behind React's back,
+            which makes React crash with removeChild/insertBefore errors. Make those two DOM calls tolerant. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){if(typeof Node!=="function"||!Node.prototype)return;var r=Node.prototype.removeChild;Node.prototype.removeChild=function(c){if(c&&c.parentNode!==this){return c}return r.apply(this,arguments)};var i=Node.prototype.insertBefore;Node.prototype.insertBefore=function(n,ref){if(ref&&ref.parentNode!==this){return n}return i.apply(this,arguments)}})();`,
+          }}
+        />
+      </head>
       <body>
         {children}
         <ServiceWorkerRegister />
