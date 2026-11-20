@@ -15,12 +15,16 @@ async function main() {
 
   const passwordHash = await bcrypt.hash(password, 10);
   const [existing] = await db.select().from(schema.users).where(eq(schema.users.email, email));
-  if (existing) {
+  const reset = process.argv.includes("--reset-admin");
+  if (existing && !reset) {
+    // Never touch a live coordinator's password unless explicitly asked.
+    console.log(`Coordinator account exists: ${email} (password unchanged; use --reset-admin to reset it)`);
+  } else if (existing) {
     await db
       .update(schema.users)
       .set({ role: "admin", name, passwordHash, isActive: true, mustChangePassword: true })
       .where(eq(schema.users.id, existing.id));
-    console.log(`Updated coordinator account: ${email}`);
+    console.log(`Reset coordinator password to ADMIN_PASSWORD: ${email}`);
   } else {
     await db.insert(schema.users).values({ role: "admin", name, email, passwordHash, mustChangePassword: true });
     console.log(`Created coordinator account: ${email}`);

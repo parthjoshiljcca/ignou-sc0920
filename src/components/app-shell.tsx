@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { and, count, eq } from "drizzle-orm";
+import { sql } from "drizzle-orm";
 import { Bell, LogOut } from "lucide-react";
 import type { ReactNode } from "react";
 import { db, schema } from "@/db";
@@ -13,16 +13,16 @@ import { properName } from "@/lib/format";
 
 export async function AppShell({ user, children }: { user: User; children: ReactNode }) {
   const isAdmin = user.role === "admin";
-  const [{ n: unread }] = await db
-    .select({ n: count() })
-    .from(schema.notifications)
-    .where(and(eq(schema.notifications.userId, user.id), eq(schema.notifications.isRead, false)));
-
-  let openTickets = 0;
-  if (isAdmin) {
-    const [{ n }] = await db.select({ n: count() }).from(schema.tickets).where(eq(schema.tickets.status, "open"));
-    openTickets = n;
-  }
+  // One round trip for both badges.
+  const [counts] = await db
+    .select({
+      unread: sql<number>`(select count(*) from ${schema.notifications} where ${schema.notifications.userId} = ${user.id} and ${schema.notifications.isRead} = false)`.mapWith(Number),
+      openTickets: isAdmin
+        ? sql<number>`(select count(*) from ${schema.tickets} where ${schema.tickets.status} = 'open')`.mapWith(Number)
+        : sql<number>`0`.mapWith(Number),
+    })
+    .from(sql`(select 1) as one`);
+  const { unread, openTickets } = counts;
 
   const notifHref = isAdmin ? "/admin/notifications" : "/notifications";
   const items: NavItem[] = isAdmin
