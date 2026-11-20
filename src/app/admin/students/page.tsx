@@ -24,7 +24,7 @@ export default async function Students({ searchParams }: { searchParams: Promise
   if (q) conds.push(or(ilike(r.name, `%${q}%`), ilike(r.enrollmentNo, `%${q}%`), ilike(r.mobile, `%${q}%`))!);
 
   const [rows, [{ total }], [{ activated }], programmes] = await Promise.all([
-    db.select({ r, user: { id: u.id, isActive: u.isActive, createdAt: u.createdAt } }).from(r)
+    db.select({ r, user: { id: u.id, isActive: u.isActive, createdAt: u.createdAt, mustChange: u.mustChangePassword } }).from(r)
       .leftJoin(u, eq(u.enrollmentNo, r.enrollmentNo))
       .where(conds.length ? and(...conds) : undefined).orderBy(asc(r.programme), asc(r.name)).limit(500),
     db.select({ total: count() }).from(r),
@@ -38,12 +38,12 @@ export default async function Students({ searchParams }: { searchParams: Promise
       <PageHeader title="Students" subtitle="Admission roster for SC 0920 and who has activated the app." />
       <div className="mb-6 grid gap-4 lg:grid-cols-[1fr_1.2fr]">
         <Card className="p-4 sm:p-5">
-          <p className="text-sm text-muted">Activated</p>
+          <p className="text-sm text-muted">Students signed in</p>
           <p className="mt-1 text-3xl font-bold tabular-nums">{activated}<span className="text-lg text-muted"> / {total}</span></p>
           <div className="mt-3 h-2 overflow-hidden rounded-full bg-surface-2" role="progressbar" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100}>
             <div className="h-full rounded-full bg-primary" style={{ width: `${pct}%` }} />
           </div>
-          <p className="mt-2 text-xs text-muted">Share the app link and ask students to tap “Activate” with their enrolment number and date of birth.</p>
+          <p className="mt-2 text-xs text-muted">Students sign in the first time with enrolment number + registered mobile number, then set their own password.</p>
         </Card>
         <Card id="upload" className="p-4 sm:p-5">
           <p className="font-bold">Upload admission roster</p>
@@ -62,7 +62,7 @@ export default async function Students({ searchParams }: { searchParams: Promise
           {programmes.map((p) => <option key={p}>{p}</option>)}
         </select>
         <select name="show" defaultValue={sp.show ?? ""} className="input w-auto" aria-label="Status">
-          <option value="">Everyone</option><option value="active">Activated</option><option value="pending">Not yet activated</option>
+          <option value="">Everyone</option><option value="active">Signed in</option><option value="pending">Not signed in yet</option>
         </select>
         <button className="rounded-[10px] border border-border bg-surface px-4 text-sm font-semibold hover:bg-surface-2">Filter</button>
       </form>
@@ -78,7 +78,7 @@ export default async function Students({ searchParams }: { searchParams: Promise
             <Pill tone="primary">{s.programme}</Pill>
             {user?.id ? (
               <div className="flex flex-wrap items-center gap-3">
-                <Pill tone={user.isActive ? "accent" : "neutral"}>{user.isActive ? `Joined ${fmtDate(user.createdAt!)}` : "Deactivated"}</Pill>
+                <Pill tone={user.isActive ? "accent" : "neutral"}>{!user.isActive ? "Deactivated" : user.mustChange ? "Must set password" : `Joined ${fmtDate(user.createdAt!)}`}</Pill>
                 <ResetPassword id={user.id} />
                 <form action={setStudentActiveAction}>
                   <input type="hidden" name="id" value={user.id} />
@@ -86,7 +86,7 @@ export default async function Students({ searchParams }: { searchParams: Promise
                   <button className={clsx("text-xs font-semibold hover:underline", user.isActive ? "text-danger" : "text-success")}>{user.isActive ? "Deactivate" : "Reactivate"}</button>
                 </form>
               </div>
-            ) : <Pill>Not activated</Pill>}
+            ) : <Pill>Not signed in yet</Pill>}
           </div>
         ))}
         {rows.length === 0 && <p className="p-5 text-sm text-muted">No students match. {total === 0 && <>Upload the roster above to get started.</>}</p>}

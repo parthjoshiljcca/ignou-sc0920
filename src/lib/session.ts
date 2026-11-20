@@ -3,7 +3,7 @@ import { SignJWT, jwtVerify } from "jose";
 export const SESSION_COOKIE = "sc0920_session";
 export const SESSION_DAYS = 30;
 
-export type SessionPayload = { uid: number; role: "student" | "admin" };
+export type SessionPayload = { uid: number; role: "student" | "admin"; mcp?: boolean };
 
 function key() {
   const secret = process.env.AUTH_SECRET;
@@ -24,7 +24,7 @@ export async function verifySession(token: string | undefined): Promise<SessionP
   try {
     const { payload } = await jwtVerify(token, key());
     if (typeof payload.uid !== "number" || (payload.role !== "student" && payload.role !== "admin")) return null;
-    return { uid: payload.uid, role: payload.role };
+    return { uid: payload.uid, role: payload.role, mcp: payload.mcp === true };
   } catch {
     return null;
   }

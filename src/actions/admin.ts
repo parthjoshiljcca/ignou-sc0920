@@ -141,8 +141,18 @@ export async function uploadRosterAction(_: FormState, fd: FormData): Promise<Fo
 export async function resetStudentPasswordAction(_: FormState, fd: FormData): Promise<FormState> {
   await requireAdmin();
   const id = Number(fd.get("id"));
+  const [u] = await db.select().from(schema.users).where(eq(schema.users.id, id));
+  if (!u) return { error: "Student not found" };
   const bcrypt = (await import("bcryptjs")).default;
-  const temp = `SC${Math.random().toString().slice(2, 8)}`;
-  await db.update(schema.users).set({ passwordHash: await bcrypt.hash(temp, 10) }).where(eq(schema.users.id, id));
-  return { ok: `Temporary password: ${temp} — share it with the student and ask them to change it from Profile.` };
+  const mobile = u.phone?.replace(/\D/g, "").slice(-10);
+  const temp = mobile && mobile.length === 10 ? mobile : `SC${Math.random().toString().slice(2, 8)}`;
+  await db
+    .update(schema.users)
+    .set({ passwordHash: await bcrypt.hash(temp, 10), mustChangePassword: true })
+    .where(eq(schema.users.id, id));
+  return {
+    ok: temp === mobile
+      ? "Password reset to the registered mobile number. They'll set a new one on next sign-in."
+      : `Temporary password: ${temp}. They'll set a new one on next sign-in.`,
+  };
 }

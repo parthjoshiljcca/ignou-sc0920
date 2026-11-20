@@ -2,8 +2,9 @@
 
 Web app + installable mobile app (PWA) for onboarding students of IGNOU Study Centre 0920.
 
-**Students** activate their account with **enrolment number + date of birth** (checked against the
-centre's admission roster), then can:
+**Students** sign in the first time with their **enrolment number** and their **registered mobile number**
+as the password (both taken from the centre's admission roster). They must then set their own password
+before using the app. After that they can:
 - raise queries as tickets and chat with the coordinator until resolved
 - see the counselling schedule for their programme **and their enrolled course codes**
 - read notices, get in-app + push notifications
@@ -14,7 +15,7 @@ centre's admission roster), then can:
 - add / edit / delete counselling classes (optionally notify affected students)
 - publish notices to everyone or one programme, pin them, push-notify
 - upload the IGNOU admission export (.xlsx) to refresh the roster, track who has activated,
-  reset a student's password, deactivate accounts
+  reset a student's password (back to their mobile number), deactivate accounts
 
 ## Stack
 Next.js 15 (App Router, server actions) · Tailwind CSS v4 · Neon Postgres + Drizzle ORM ·

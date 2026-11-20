@@ -27,9 +27,12 @@ export default function Landing() {
           <p className="mt-4 max-w-xl text-lg text-muted">
             Ask questions, track replies, check your counselling timetable and never miss a notice.
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <LinkButton href="/register" className="min-h-12 px-6 text-base">Activate student account</LinkButton>
-            <LinkButton href="/login" variant="secondary" className="min-h-12 px-6 text-base">I already have one</LinkButton>
+          <p className="mt-6 max-w-xl rounded-xl bg-surface p-3.5 text-sm text-muted ring-1 ring-border">
+            <b className="text-text">First time?</b> Sign in with your enrolment number, and your registered mobile number as the password.
+          </p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <LinkButton href="/login" className="min-h-12 px-6 text-base">Student sign in</LinkButton>
+            
           </div>
         </section>
         <section className="grid gap-4 sm:grid-cols-2">

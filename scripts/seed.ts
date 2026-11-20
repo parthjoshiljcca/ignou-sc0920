@@ -18,11 +18,11 @@ async function main() {
   if (existing) {
     await db
       .update(schema.users)
-      .set({ role: "admin", name, passwordHash, isActive: true })
+      .set({ role: "admin", name, passwordHash, isActive: true, mustChangePassword: true })
       .where(eq(schema.users.id, existing.id));
     console.log(`Updated coordinator account: ${email}`);
   } else {
-    await db.insert(schema.users).values({ role: "admin", name, email, passwordHash });
+    await db.insert(schema.users).values({ role: "admin", name, email, passwordHash, mustChangePassword: true });
     console.log(`Created coordinator account: ${email}`);
   }
 }

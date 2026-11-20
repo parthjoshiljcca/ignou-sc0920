@@ -33,7 +33,7 @@ export default async function AdminHome() {
     { label: "New queries", value: byStatus.open, href: "/admin/tickets?status=open", tone: "text-info" },
     { label: "In progress", value: byStatus.progress, href: "/admin/tickets?status=in_progress", tone: "text-warning" },
     { label: "Resolved (7 days)", value: byStatus.resolvedWeek, href: "/admin/tickets?status=resolved", tone: "text-success" },
-    { label: "Students activated", value: `${students}/${roster}`, href: "/admin/students", tone: "text-primary" },
+    { label: "Students signed in", value: `${students}/${roster}`, href: "/admin/students", tone: "text-primary" },
   ];
 
   return (

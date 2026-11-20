@@ -30,6 +30,7 @@ export const users = pgTable(
     courses: text("courses").array().notNull().default([]),
     passwordHash: text("password_hash").notNull(),
     isActive: boolean("is_active").notNull().default(true),
+    mustChangePassword: boolean("must_change_password").notNull().default(false),
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
   },
   (t) => [
