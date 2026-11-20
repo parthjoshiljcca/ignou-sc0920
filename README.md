@@ -1,5 +1,7 @@
 # IGNOU Study Centre 0920 — Student App
 
+Live: **https://sc0920.edumark.app**
+
 **Design & Developed by: Parth D. Joshi**
 
 Web app + installable mobile app (PWA) for onboarding students of IGNOU Study Centre 0920.
