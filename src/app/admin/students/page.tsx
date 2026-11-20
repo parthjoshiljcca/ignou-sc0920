@@ -26,7 +26,7 @@ export default async function Students({ searchParams }: { searchParams: Promise
   const [rows, [{ total }], [{ activated }], programmes] = await Promise.all([
     db.select({ r, user: { id: u.id, isActive: u.isActive, createdAt: u.createdAt, mustChange: u.mustChangePassword } }).from(r)
       .leftJoin(u, eq(u.enrollmentNo, r.enrollmentNo))
-      .where(conds.length ? and(...conds) : undefined).orderBy(asc(r.programme), asc(r.name)).limit(500),
+      .where(conds.length ? and(...conds) : undefined).orderBy(asc(r.programme), asc(r.name)).limit(2000),
     db.select({ total: count() }).from(r),
     db.select({ activated: count() }).from(u).where(eq(u.role, "student")),
     getProgrammes(),
@@ -67,12 +67,12 @@ export default async function Students({ searchParams }: { searchParams: Promise
         <button className="rounded-[10px] border border-border bg-surface px-4 text-sm font-semibold hover:bg-surface-2">Filter</button>
       </form>
 
-      <p className="mb-2 text-sm text-muted">{rows.length} student{rows.length === 1 ? "" : "s"}{rows.length === 500 ? " (first 500)" : ""}</p>
+      <p className="mb-2 text-sm text-muted">{rows.length} student{rows.length === 1 ? "" : "s"}{rows.length === 2000 ? " (first 2000)" : ""}</p>
       <Card className="divide-y divide-border overflow-hidden">
         {rows.map(({ r: s, user }) => (
           <div key={s.enrollmentNo} className="flex flex-wrap items-center gap-x-4 gap-y-2 px-4 py-3">
             <div className="min-w-0 flex-1 basis-60">
-              <p className="truncate font-semibold">{properName(s.name)}</p>
+              <p className="truncate font-semibold">{s.name ? properName(s.name) : <span className="font-medium text-muted italic">Name not given yet</span>}</p>
               <p className="text-xs text-muted">{s.enrollmentNo} · {s.admissionYear ?? "—"} · {s.mobile ?? "—"}{s.email ? ` · ${s.email}` : ""}</p>
               {s.address && <p className="truncate text-xs text-muted" title={s.address}>{s.address}</p>}
             </div>

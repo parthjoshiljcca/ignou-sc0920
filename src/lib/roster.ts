@@ -5,7 +5,7 @@ import * as schema from "@/db/schema";
 
 export type ParsedRosterRow = {
   enrollmentNo: string;
-  name: string;
+  name: string | null;
   programme: string;
   email: string | null;
   mobile: string | null;
@@ -35,6 +35,8 @@ function yearOf(v: ExcelJS.CellValue): number | null {
 /**
  * Parse an IGNOU admission export (.xlsx). Reads only the columns needed for onboarding:
  * Enrolment Number, Name, Programme, year of admission, Mobile, Email, Address.
+ * Works with both the fresh-admission export and the re-registration export (which has no Name/Address;
+ * those students enter them on first sign-in). Rows for other study centres are skipped.
  * Every other column (Aadhaar, bank, DOB, category, religion, income, course codes, …) is ignored.
  */
 export async function parseRosterXlsx(buf: ArrayBuffer | Buffer) {
@@ -52,18 +54,21 @@ export async function parseRosterXlsx(buf: ArrayBuffer | Buffer) {
   const pick = (...names: string[]) => names.map(norm).map((n) => cols[n]).find(Boolean);
   const c = {
     enrol: pick("Enrolment Number", "Enrollment Number", "Enrolment No", "Enrollment No"),
-    name: pick("Name", "Student Name"),
-    programme: pick("Programme", "Program"),
-    email: pick("Email", "Email ID"),
+    programme: pick("Programme", "Programme Code", "Program"),
     mobile: pick("Mobile", "Mobile Number"),
-    status: pick("Admission Status"),
   };
-  const yearCols = ["Adm Date", "Start Session", "Admission Year", "Year of Enrolment", "Payment Date", "Declaration Acceptance Date"]
+  const opt = {
+    name: pick("Name", "Student Name"),
+    email: pick("Email", "Email ID"),
+    status: pick("Admission Status"),
+    centre: pick("Study Center", "Study Centre", "Ou ID"),
+  };
+  const yearCols = ["Year Of Enrolment", "Admission Year", "Adm Date", "Start Session", "Payment Date", "Declaration Acceptance Date"]
     .map((n) => cols[norm(n)]).filter(Boolean);
   const addrCols = ["Address", "Address Line 1", "Address Line 2", "Address Line 3", "Address Line 4", "Address City", "Address District", "Address State", "Address Pincode"]
     .map((n) => cols[norm(n)]).filter(Boolean);
-  const missing = Object.entries(c).filter(([k, v]) => !v && k !== "status").map(([k]) => k);
-  if (missing.length) throw new Error(`Missing columns: ${missing.join(", ")}. Upload the standard admission export.`);
+  const missing = Object.entries(c).filter(([, v]) => !v).map(([k]) => k);
+  if (missing.length) throw new Error(`Missing columns: ${missing.join(", ")}. Upload the IGNOU admission or re-registration export.`);
 
   const rows: ParsedRosterRow[] = [];
   const skipped: string[] = [];
@@ -71,15 +76,19 @@ export async function parseRosterXlsx(buf: ArrayBuffer | Buffer) {
     if (i === 1) return;
     const get = (col?: number) => (col ? row.getCell(col).value : null);
     const enrollmentNo = cellText(get(c.enrol)).replace(/\D/g, "");
-    const name = cellText(get(c.name)).trim().replace(/\s+/g, " ");
+    const name = cellText(get(opt.name)).trim().replace(/\s+/g, " ") || null;
     if (!enrollmentNo && !name) return;
-    if (c.status) {
-      const st = cellText(get(c.status)).toLowerCase();
+    if (opt.status) {
+      const st = cellText(get(opt.status)).toLowerCase();
       if (st && !st.includes("confirm")) return skipped.push(`Row ${i}: admission not confirmed`);
+    }
+    if (opt.centre) {
+      const centre = cellText(get(opt.centre)).replace(/\D/g, "");
+      if (centre && centre !== "0920") return skipped.push(`Row ${i}: belongs to study centre ${centre}`);
     }
     const programme = cellText(get(c.programme)).trim().toUpperCase();
     if (!/^\d{9,10}$/.test(enrollmentNo)) return skipped.push(`Row ${i}: invalid enrolment number`);
-    if (!name || !programme) return skipped.push(`Row ${i}: missing name or programme`);
+    if (!programme) return skipped.push(`Row ${i}: missing programme`);
     const admissionYear =
       yearCols.map((col) => yearOf(get(col))).find((y) => y !== null) ??
       (/^\d{2}/.test(enrollmentNo) ? 2000 + Number(enrollmentNo.slice(0, 2)) : null);
@@ -90,7 +99,8 @@ export async function parseRosterXlsx(buf: ArrayBuffer | Buffer) {
     }
     const address = parts.join(", ") || null;
     const mobile = cellText(get(c.mobile)).replace(/\D/g, "").slice(-10) || null;
-    const email = cellText(get(c.email)).trim().toLowerCase() || null;
+    if (!mobile) return skipped.push(`Row ${i}: missing mobile number (needed for first login)`);
+    const email = cellText(get(opt.email)).trim().toLowerCase() || null;
     rows.push({ enrollmentNo, name, programme, admissionYear, email, mobile, address });
   });
   return { rows, skipped };
@@ -106,18 +116,19 @@ export async function upsertRoster(db: NeonHttpDatabase<typeof schema>, rows: Pa
       .onConflictDoUpdate({
         target: schema.roster.enrollmentNo,
         set: {
-          name: sql`excluded.name`,
+          // A blank in the new file never wipes out a value we already have.
+          name: sql`coalesce(excluded.name, ${schema.roster.name})`,
           programme: sql`excluded.programme`,
-          email: sql`excluded.email`,
-          mobile: sql`excluded.mobile`,
-          admissionYear: sql`excluded.admission_year`,
-          address: sql`excluded.address`,
+          email: sql`coalesce(excluded.email, ${schema.roster.email})`,
+          mobile: sql`coalesce(excluded.mobile, ${schema.roster.mobile})`,
+          admissionYear: sql`coalesce(excluded.admission_year, ${schema.roster.admissionYear})`,
+          address: sql`coalesce(excluded.address, ${schema.roster.address})`,
           importedAt: sql`excluded.imported_at`,
         },
       });
   }
   await db.execute(sql`
-    update users u set programme = r.programme, name = r.name
+    update users u set programme = r.programme, name = coalesce(r.name, u.name)
     from roster r where u.enrollment_no = r.enrollment_no and u.role = 'student'
   `);
   return rows.length;

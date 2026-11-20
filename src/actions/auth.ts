@@ -6,6 +6,7 @@ import { eq, or } from "drizzle-orm";
 import { redirect } from "next/navigation";
 import { db, schema } from "@/db";
 import { createSession, destroySession, requireUser } from "@/lib/auth";
+import { missingProfileFields } from "@/lib/profile";
 
 export type FormState = { error?: string; ok?: string } | undefined;
 
@@ -25,7 +26,7 @@ async function firstLoginFromRoster(enrollmentNo: string, password: string) {
   const [u] = await db
     .insert(schema.users)
     .values({
-      name: r.name,
+      name: r.name ?? `Student ${r.enrollmentNo}`,
       enrollmentNo: r.enrollmentNo,
       programme: r.programme,
       email,
@@ -93,10 +94,32 @@ export async function setFirstPasswordAction(_: FormState, fd: FormData): Promis
   if (u.phone && digits(password).slice(-10) === digits(u.phone).slice(-10) && /^\+?\d+$/.test(password)) {
     return { error: "Choose a password that is different from your mobile number" };
   }
+
+  // Students imported from a re-registration list must give their name and address once.
+  const need = u.role === "student" ? await missingProfileFields(u.enrollmentNo) : { name: false, address: false };
+  const fullName = String(fd.get("fullName") ?? "").trim().replace(/\s+/g, " ");
+  const address = String(fd.get("address") ?? "").trim().replace(/\s+/g, " ");
+  if (need.name && (fullName.length < 3 || fullName.length > 120 || !/^[\p{L} .'-]+$/u.test(fullName))) {
+    return { error: "Enter your full name as on your IGNOU identity card (letters only)" };
+  }
+  if (need.address && (address.length < 10 || address.length > 500)) {
+    return { error: "Enter your full postal address with city and PIN code" };
+  }
+
   await db
     .update(schema.users)
-    .set({ passwordHash: await bcrypt.hash(password, 10), mustChangePassword: false })
+    .set({
+      passwordHash: await bcrypt.hash(password, 10),
+      mustChangePassword: false,
+      ...(need.name ? { name: fullName.toUpperCase() } : {}),
+    })
     .where(eq(schema.users.id, u.id));
+  if (u.enrollmentNo && (need.name || need.address)) {
+    await db
+      .update(schema.roster)
+      .set({ ...(need.name ? { name: fullName.toUpperCase() } : {}), ...(need.address ? { address } : {}) })
+      .where(eq(schema.roster.enrollmentNo, u.enrollmentNo));
+  }
   await createSession({ uid: u.id, role: u.role, mcp: false });
   redirect(u.role === "admin" ? "/admin" : "/dashboard?welcome=1");
 }

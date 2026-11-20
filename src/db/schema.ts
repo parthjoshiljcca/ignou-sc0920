@@ -42,7 +42,7 @@ export const roster = pgTable(
   "roster",
   {
     enrollmentNo: varchar("enrollment_no", { length: 20 }).primaryKey(),
-    name: varchar("name", { length: 120 }).notNull(),
+    name: varchar("name", { length: 120 }), // re-registration exports carry no name; student fills it on first login
     programme: varchar("programme", { length: 40 }).notNull(),
     email: varchar("email", { length: 200 }),
     mobile: varchar("mobile", { length: 20 }),
