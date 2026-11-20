@@ -49,7 +49,7 @@ export default function Landing() {
         </section>
       </main>
       <footer className="border-t border-border py-6 text-center">
-        <p className="text-sm text-muted">{CENTRE.name}</p>
+        <p className="text-sm text-muted">{CENTRE.name} · <a href="/about" className="font-medium text-primary hover:underline">About this app</a></p>
         <Credit className="mt-1" />
       </footer>
     </div>

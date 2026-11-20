@@ -6,7 +6,7 @@ import { db, schema } from "@/db";
 import { requireStudent } from "@/lib/auth";
 import { fmtDay, properName, timeAgo } from "@/lib/format";
 import { Card, LinkButton, Pill } from "@/components/ui";
-import { InstallBanner, PushToggle } from "@/components/pwa";
+import { SetupReminder } from "@/components/pwa";
 import { SessionCard } from "@/components/session-card";
 import { TicketRow } from "@/components/ticket-row";
 
@@ -28,8 +28,7 @@ export default async function Dashboard() {
 
   return (
     <>
-      <InstallBanner />
-      <PushToggle compact />
+      <SetupReminder />
 
       <div className="mb-6">
         <p className="text-sm text-muted">Namaste 🙏</p>

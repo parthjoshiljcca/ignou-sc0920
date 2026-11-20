@@ -1,5 +1,5 @@
 /* SC 0920 service worker: offline shell + web push */
-const CACHE = "sc0920-v2";
+const CACHE = "sc0920-v3";
 const OFFLINE_URL = "/offline";
 const PRECACHE = [OFFLINE_URL, "/icons/icon-192.png", "/brand/ignou-emblem.png"];
 
@@ -49,14 +49,19 @@ self.addEventListener("push", (event) => {
   try { data = event.data ? event.data.json() : {}; } catch { data = { body: event.data && event.data.text() }; }
   const title = data.title || "IGNOU SC 0920";
   event.waitUntil(
-    self.registration.showNotification(title, {
+    Promise.all([
+      // Tell open app windows so they refresh their data immediately.
+      self.clients.matchAll({ type: "window", includeUncontrolled: true }).then((wins) => wins.forEach((w) => w.postMessage({ type: "push", url: data.url }))),
+      self.registration.showNotification(title, {
       body: data.body || "",
       icon: "/icons/icon-192.png",
       badge: "/icons/badge-96.png",
       data: { url: data.url || "/" },
       tag: data.url || undefined,
       renotify: !!data.url,
+      vibrate: [80, 40, 80],
     }),
+    ]),
   );
 });
 

@@ -1,8 +1,131 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Bell, BellOff, Download, Share, X } from "lucide-react";
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { useRouter } from "next/navigation";
+import { Bell, BellOff, BellRing, Check, Download, Share, SquarePlus, X } from "lucide-react";
+import clsx from "clsx";
 import { btnClass } from "./ui";
+
+/* ------------------------------------------------------------------ */
+/* Install prompt store: Chrome fires `beforeinstallprompt` once, often */
+/* before React mounts, so we capture it globally as early as possible. */
+/* ------------------------------------------------------------------ */
+
+type BIPEvent = Event & { prompt: () => Promise<void>; userChoice: Promise<{ outcome: string }> };
+let deferredPrompt: BIPEvent | null = null;
+let installed = false;
+const listeners = new Set<() => void>();
+const emit = () => listeners.forEach((l) => l());
+
+if (typeof window !== "undefined") {
+  window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    deferredPrompt = e as BIPEvent;
+    emit();
+  });
+  window.addEventListener("appinstalled", () => {
+    installed = true;
+    deferredPrompt = null;
+    emit();
+  });
+}
+
+function subscribe(l: () => void) {
+  listeners.add(l);
+  return () => listeners.delete(l);
+}
+
+function isStandalone() {
+  return (
+    window.matchMedia("(display-mode: standalone)").matches ||
+    (navigator as Navigator & { standalone?: boolean }).standalone === true
+  );
+}
+const isIos = () => /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+
+type InstallState = "installed" | "prompt" | "ios" | "manual";
+function useInstallState(): InstallState | null {
+  return useSyncExternalStore(
+    subscribe,
+    () => (installed || isStandalone() ? "installed" : deferredPrompt ? "prompt" : isIos() ? "ios" : "manual"),
+    () => null,
+  );
+}
+
+async function promptInstall() {
+  if (!deferredPrompt) return false;
+  await deferredPrompt.prompt();
+  const { outcome } = await deferredPrompt.userChoice;
+  deferredPrompt = null;
+  if (outcome === "accepted") installed = true;
+  emit();
+  return outcome === "accepted";
+}
+
+/* --------------------------- Web push --------------------------- */
+
+type PushState = "unsupported" | "needs-install" | "denied" | "off" | "on";
+const VAPID = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY;
+
+function urlB64ToUint8Array(base64: string) {
+  const padding = "=".repeat((4 - (base64.length % 4)) % 4);
+  const raw = atob((base64 + padding).replace(/-/g, "+").replace(/_/g, "/"));
+  return Uint8Array.from([...raw].map((c) => c.charCodeAt(0)));
+}
+
+async function readPushState(): Promise<PushState> {
+  const hasApi = "serviceWorker" in navigator && "PushManager" in window && "Notification" in window;
+  if (!VAPID) return "unsupported";
+  if (!hasApi) return isIos() && !isStandalone() ? "needs-install" : "unsupported";
+  if (Notification.permission === "denied") return "denied";
+  const reg = await navigator.serviceWorker.getRegistration();
+  const sub = await reg?.pushManager.getSubscription();
+  if (sub && Notification.permission === "granted") {
+    // Re-send so the server always has this device (cheap, idempotent).
+    fetch("/api/push", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(sub) }).catch(() => {});
+    return "on";
+  }
+  return "off";
+}
+
+async function enablePush(): Promise<PushState> {
+  const perm = await Notification.requestPermission();
+  if (perm !== "granted") return perm === "denied" ? "denied" : "off";
+  const reg = (await navigator.serviceWorker.getRegistration()) ?? (await navigator.serviceWorker.register("/sw.js"));
+  await navigator.serviceWorker.ready;
+  const sub =
+    (await reg.pushManager.getSubscription()) ??
+    (await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: urlB64ToUint8Array(VAPID!) }));
+  const res = await fetch("/api/push", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(sub) });
+  if (res.ok) {
+    reg.showNotification("Notifications are on ✅", {
+      body: "You'll get replies, class schedules and notices from SC 0920 instantly.",
+      icon: "/icons/icon-192.png",
+      badge: "/icons/badge-96.png",
+    }).catch(() => {});
+  }
+  return res.ok ? "on" : "off";
+}
+
+async function disablePush(): Promise<PushState> {
+  const reg = await navigator.serviceWorker.getRegistration();
+  const sub = await reg?.pushManager.getSubscription();
+  if (sub) {
+    await fetch("/api/push", { method: "DELETE", headers: { "content-type": "application/json" }, body: JSON.stringify({ endpoint: sub.endpoint }) });
+    await sub.unsubscribe();
+  }
+  return "off";
+}
+
+function usePushState() {
+  const [state, setState] = useState<PushState | null>(null);
+  useEffect(() => {
+    readPushState().then(setState).catch(() => setState("unsupported"));
+  }, []);
+  return [state, setState] as const;
+}
+
+/* ------------------------ Service worker ------------------------ */
 
 export function ServiceWorkerRegister() {
   useEffect(() => {
@@ -13,171 +136,219 @@ export function ServiceWorkerRegister() {
   return null;
 }
 
-type BIPEvent = Event & { prompt: () => Promise<void>; userChoice: Promise<{ outcome: string }> };
-
-function isStandalone() {
-  return (
-    window.matchMedia("(display-mode: standalone)").matches ||
-    (navigator as Navigator & { standalone?: boolean }).standalone === true
-  );
-}
-
-export function InstallBanner() {
-  const [evt, setEvt] = useState<BIPEvent | null>(null);
-  const [ios, setIos] = useState(false);
-  const [hidden, setHidden] = useState(true);
+/**
+ * Keeps the open app up to date in real time: refreshes the page when a push arrives
+ * (message from the service worker) and polls the unread count while the tab is visible.
+ */
+export function LiveUpdates({ unread }: { unread: number }) {
+  const router = useRouter();
+  const last = useRef(unread);
+  useEffect(() => {
+    last.current = unread;
+  }, [unread]);
 
   useEffect(() => {
-    if (isStandalone()) return;
-    try {
-      if (localStorage.getItem("install-dismissed") === "1") return;
-    } catch {}
-    const isIos = /iphone|ipad|ipod/i.test(navigator.userAgent);
-    if (isIos) {
-      setIos(true);
-      setHidden(false);
-    }
-    const h = (e: Event) => {
-      e.preventDefault();
-      setEvt(e as BIPEvent);
-      setHidden(false);
+    const onMsg = (e: MessageEvent) => {
+      if (e.data?.type === "push") router.refresh();
     };
-    window.addEventListener("beforeinstallprompt", h);
-    return () => window.removeEventListener("beforeinstallprompt", h);
+    navigator.serviceWorker?.addEventListener("message", onMsg);
+
+    const check = async () => {
+      if (document.visibilityState !== "visible") return;
+      try {
+        const r = await fetch("/api/notifications/unread", { cache: "no-store" });
+        if (!r.ok) return;
+        const { count } = (await r.json()) as { count: number };
+        if (count !== last.current) {
+          last.current = count;
+          router.refresh();
+        }
+      } catch {}
+    };
+    const id = setInterval(check, 20000);
+    document.addEventListener("visibilitychange", check);
+    return () => {
+      navigator.serviceWorker?.removeEventListener("message", onMsg);
+      clearInterval(id);
+      document.removeEventListener("visibilitychange", check);
+    };
+  }, [router]);
+  return null;
+}
+
+/* ----------------------- App setup sheet ----------------------- */
+
+const SNOOZE_KEY = "sc0920-setup-snoozed-until";
+
+/**
+ * Bottom sheet shown after sign-in until the app is installed and notifications are on.
+ * Browsers only allow the permission prompt after a tap, so "Allow" is a button.
+ */
+export function AppSetupSheet({ force = false }: { force?: boolean }) {
+  const install = useInstallState();
+  const [push, setPush] = usePushState();
+  const [open, setOpen] = useState(false);
+  const [busy, setBusy] = useState(false);
+
+  const installDone = install === "installed";
+  const pushDone = push === "on" || push === "unsupported";
+  const allDone = installDone && pushDone;
+
+  useEffect(() => {
+    if (install === null || push === null || allDone) return;
+    let snoozed = false;
+    try {
+      snoozed = !force && Number(localStorage.getItem(SNOOZE_KEY) || 0) > Date.now();
+    } catch {}
+    if (!snoozed) {
+      const t = setTimeout(() => setOpen(true), 600);
+      return () => clearTimeout(t);
+    }
+  }, [install, push, allDone, force]);
+
+  useEffect(() => {
+    if (open && allDone) {
+      const t = setTimeout(() => setOpen(false), 1600);
+      return () => clearTimeout(t);
+    }
+  }, [open, allDone]);
+
+  const later = useCallback(() => {
+    setOpen(false);
+    try {
+      localStorage.setItem(SNOOZE_KEY, String(Date.now() + 2 * 24 * 3600 * 1000));
+    } catch {}
   }, []);
 
-  if (hidden) return null;
-  const dismiss = () => {
-    setHidden(true);
-    try {
-      localStorage.setItem("install-dismissed", "1");
-    } catch {}
-  };
+  if (!open) return null;
 
   return (
-    <div className="mb-4 flex items-start gap-3 rounded-2xl border border-border bg-primary-soft p-4">
-      <div className="grid size-10 shrink-0 place-items-center rounded-xl bg-primary text-on-primary">
-        <Download className="size-5" aria-hidden />
+    <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/45 p-0 sm:items-center sm:p-4" role="dialog" aria-modal="true" aria-labelledby="setup-title">
+      <div className="pb-safe w-full max-w-md rounded-t-3xl bg-surface p-5 shadow-2xl sm:rounded-3xl sm:p-6">
+        <div className="mb-4 flex items-start gap-3">
+          <div className="grid size-12 shrink-0 place-items-center rounded-2xl bg-primary-soft text-primary">
+            <BellRing className="size-6" aria-hidden />
+          </div>
+          <div className="min-w-0 flex-1">
+            <h2 id="setup-title" className="text-lg font-bold">{allDone ? "You're all set! 🎉" : "Set up the SC 0920 app"}</h2>
+            <p className="text-sm text-muted">Get replies, class schedules and notices instantly — like any other app on your phone.</p>
+          </div>
+          <button onClick={later} aria-label="Close" className="rounded-lg p-1 text-muted hover:text-text"><X className="size-5" /></button>
+        </div>
+
+        <ol className="space-y-3">
+          <Step n={1} done={installDone} title="Install the app" body={
+            install === "installed" ? "Installed on this device." :
+            install === "prompt" ? "Adds SC 0920 to your home screen. Opens full-screen, no browser bar." :
+            install === "ios" ? <>Tap <Share className="inline size-4 align-text-bottom" aria-label="Share" /> at the bottom of Safari, then <b>Add to Home Screen</b> <SquarePlus className="inline size-4 align-text-bottom" aria-hidden />. Open the app from your home screen.</> :
+            <>In your browser menu (⋮), choose <b>Install app</b> or <b>Add to Home screen</b>.</>
+          }>
+            {install === "prompt" && (
+              <button className={btnClass("primary", "min-h-9")} onClick={() => promptInstall()}>
+                <Download className="size-4" aria-hidden /> Install
+              </button>
+            )}
+          </Step>
+
+          <Step n={2} done={push === "on"} skipped={push === "unsupported"} title="Allow notifications" body={
+            push === "on" ? "Notifications are on for this device." :
+            push === "denied" ? <>Notifications are blocked. Open your browser&apos;s <b>Site settings → Notifications</b> for this site and choose <b>Allow</b>.</> :
+            push === "needs-install" ? "On iPhone, install the app first (step 1), open it from the home screen, then allow notifications." :
+            push === "unsupported" ? "This browser can't show notifications. You'll still see every update inside the app." :
+            "Tap Allow, then choose Allow in the pop-up."
+          }>
+            {push === "off" && (
+              <button
+                disabled={busy}
+                className={btnClass("primary", "min-h-9")}
+                onClick={async () => {
+                  setBusy(true);
+                  try { setPush(await enablePush()); } catch { setPush("off"); } finally { setBusy(false); }
+                }}
+              >
+                <Bell className="size-4" aria-hidden /> {busy ? "Allowing…" : "Allow"}
+              </button>
+            )}
+          </Step>
+        </ol>
+
+        <div className="mt-5 flex justify-end gap-2">
+          {allDone ? (
+            <button className={btnClass("primary")} onClick={() => setOpen(false)}>Done</button>
+          ) : (
+            <button className={btnClass("ghost")} onClick={later}>Maybe later</button>
+          )}
+        </div>
       </div>
-      <div className="min-w-0 flex-1">
-        <p className="font-semibold">Install the SC 0920 app</p>
-        {ios ? (
-          <p className="mt-0.5 text-sm text-muted">
-            Tap <Share className="inline size-4 align-text-bottom" aria-label="Share" /> then <b>Add to Home Screen</b>.
-          </p>
-        ) : (
-          <p className="mt-0.5 text-sm text-muted">Get it on your home screen for quick access and alerts.</p>
-        )}
-        {evt && (
-          <button
-            className={btnClass("primary", "mt-3 min-h-9")}
-            onClick={async () => {
-              await evt.prompt();
-              await evt.userChoice;
-              setHidden(true);
-            }}
-          >
-            Install
-          </button>
-        )}
-      </div>
-      <button onClick={dismiss} aria-label="Dismiss" className="rounded-lg p-1 text-muted hover:text-text">
-        <X className="size-5" />
-      </button>
     </div>
   );
 }
 
-function urlB64ToUint8Array(base64: string) {
-  const padding = "=".repeat((4 - (base64.length % 4)) % 4);
-  const raw = atob((base64 + padding).replace(/-/g, "+").replace(/_/g, "/"));
-  return Uint8Array.from([...raw].map((c) => c.charCodeAt(0)));
+function Step({ n, done, skipped, title, body, children }: { n: number; done: boolean; skipped?: boolean; title: string; body: React.ReactNode; children?: React.ReactNode }) {
+  return (
+    <li className={clsx("flex gap-3 rounded-2xl border p-3.5", done ? "border-success/30 bg-success-soft" : "border-border")}>
+      <span className={clsx("grid size-7 shrink-0 place-items-center rounded-full text-sm font-bold", done ? "bg-success text-white" : skipped ? "bg-surface-2 text-muted" : "bg-primary text-on-primary")}>
+        {done ? <Check className="size-4" aria-hidden /> : n}
+      </span>
+      <div className="min-w-0 flex-1">
+        <p className="font-semibold">{title}</p>
+        <p className="mt-0.5 text-sm text-muted">{body}</p>
+        {!done && children && <div className="mt-2.5">{children}</div>}
+      </div>
+    </li>
+  );
 }
 
-export function PushToggle({ compact = false }: { compact?: boolean }) {
-  const key = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY;
-  const [state, setState] = useState<"loading" | "unsupported" | "denied" | "off" | "on">("loading");
+/** Small reminder card for dashboards when setup is incomplete (sheet was snoozed). */
+export function SetupReminder() {
+  const install = useInstallState();
+  const [push] = usePushState();
+  const [show, setShow] = useState(false);
+  if (install === null || push === null) return null;
+  const pending = (install !== "installed" ? 1 : 0) + (push === "off" || push === "needs-install" || push === "denied" ? 1 : 0);
+  if (!pending) return null;
+  return (
+    <>
+      <button onClick={() => setShow(true)} className="mb-4 flex w-full items-center gap-3 rounded-2xl border border-border bg-accent-soft p-4 text-left">
+        <BellRing className="size-5 shrink-0 text-accent" aria-hidden />
+        <span className="min-w-0 flex-1 text-sm">
+          <b>Finish app setup</b> — {install !== "installed" ? "install the app" : ""}{install !== "installed" && pending > 1 ? " and " : ""}{push !== "on" && push !== "unsupported" ? "allow notifications" : ""} so you never miss an update.
+        </span>
+        <span className={btnClass("primary", "min-h-9 shrink-0")}>Set up</span>
+      </button>
+      {show && <AppSetupSheet force key={Date.now()} />}
+    </>
+  );
+}
+
+/* --------------------- Profile / notifications --------------------- */
+
+export function PushToggle() {
+  const [state, setState] = usePushState();
+  const install = useInstallState();
   const [busy, setBusy] = useState(false);
+  if (state === null) return null;
 
-  useEffect(() => {
-    (async () => {
-      if (!key || !("serviceWorker" in navigator) || !("PushManager" in window) || !("Notification" in window)) {
-        return setState("unsupported");
-      }
-      if (Notification.permission === "denied") return setState("denied");
-      const reg = await navigator.serviceWorker.getRegistration();
-      const sub = await reg?.pushManager.getSubscription();
-      setState(sub ? "on" : "off");
-    })().catch(() => setState("unsupported"));
-  }, [key]);
+  if (state === "unsupported") return <p className="text-sm text-muted">This browser can&apos;t show notifications. You&apos;ll still see every update under Notifications.</p>;
+  if (state === "needs-install") return <p className="text-sm text-muted">On iPhone, add the app to your Home Screen first (Share → Add to Home Screen), open it from there, then turn on notifications.</p>;
+  if (state === "denied") return <p className="text-sm text-muted">Notifications are blocked. Allow them for this site in your browser&apos;s site settings.</p>;
 
-  async function enable() {
-    setBusy(true);
-    try {
-      const perm = await Notification.requestPermission();
-      if (perm !== "granted") return setState(perm === "denied" ? "denied" : "off");
-      const reg = (await navigator.serviceWorker.getRegistration()) ?? (await navigator.serviceWorker.register("/sw.js"));
-      await navigator.serviceWorker.ready;
-      const sub = await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: urlB64ToUint8Array(key!) });
-      const res = await fetch("/api/push", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(sub) });
-      setState(res.ok ? "on" : "off");
-    } catch {
-      setState("off");
-    } finally {
-      setBusy(false);
-    }
-  }
-
-  async function disable() {
-    setBusy(true);
-    try {
-      const reg = await navigator.serviceWorker.getRegistration();
-      const sub = await reg?.pushManager.getSubscription();
-      if (sub) {
-        await fetch("/api/push", { method: "DELETE", headers: { "content-type": "application/json" }, body: JSON.stringify({ endpoint: sub.endpoint }) });
-        await sub.unsubscribe();
-      }
-      setState("off");
-    } finally {
-      setBusy(false);
-    }
-  }
-
-  if (state === "loading") return null;
-  if (state === "unsupported") {
-    return compact ? null : (
-      <p className="text-sm text-muted">
-        Push alerts aren&apos;t available in this browser. On iPhone, install the app to the home screen first. You&apos;ll still see every update under Notifications.
-      </p>
-    );
-  }
-  if (state === "denied") {
-    if (compact) return null;
-    return <p className="text-sm text-muted">Notifications are blocked. Allow them for this site in your browser settings.</p>;
-  }
-  if (compact && state === "on") return null;
-
-  if (compact) {
-    return (
-      <div className="mb-4 flex items-center gap-3 rounded-2xl border border-border bg-accent-soft p-4">
-        <Bell className="size-5 shrink-0 text-accent" aria-hidden />
-        <p className="min-w-0 flex-1 text-sm">
-          <b>Turn on alerts</b> for replies, class schedules and notices.
-        </p>
-        <button onClick={enable} disabled={busy} className={btnClass("primary", "min-h-9 shrink-0")}>
-          Turn on
+  return (
+    <div className="flex flex-wrap gap-2">
+      {state === "on" ? (
+        <button disabled={busy} className={btnClass("secondary")} onClick={async () => { setBusy(true); try { setState(await disablePush()); } finally { setBusy(false); } }}>
+          <BellOff className="size-4" aria-hidden /> Turn off notifications on this device
         </button>
-      </div>
-    );
-  }
-
-  return state === "on" ? (
-    <button onClick={disable} disabled={busy} className={btnClass("secondary")}>
-      <BellOff className="size-4" aria-hidden /> Turn off push alerts on this device
-    </button>
-  ) : (
-    <button onClick={enable} disabled={busy} className={btnClass("primary")}>
-      <Bell className="size-4" aria-hidden /> Turn on push alerts on this device
-    </button>
+      ) : (
+        <button disabled={busy} className={btnClass("primary")} onClick={async () => { setBusy(true); try { setState(await enablePush()); } catch { setState("off"); } finally { setBusy(false); } }}>
+          <Bell className="size-4" aria-hidden /> Turn on notifications on this device
+        </button>
+      )}
+      {install === "prompt" && (
+        <button className={btnClass("secondary")} onClick={() => promptInstall()}>
+          <Download className="size-4" aria-hidden /> Install app
+        </button>
+      )}
+    </div>
   );
 }

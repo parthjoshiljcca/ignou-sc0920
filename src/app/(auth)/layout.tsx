@@ -18,7 +18,9 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
             <li>• Notices and deadline alerts on your phone</li>
           </ul>
         </div>
-        <p className="mt-10 text-xs text-white/70">Design &amp; Developed by: Parth D. Joshi</p>
+        <p className="mt-10 text-xs text-white/70">
+          <Link href="/about" className="font-semibold text-white hover:underline">About this app</Link> · Design &amp; Developed by: Parth D. Joshi
+        </p>
         <div aria-hidden className="absolute -top-24 -right-24 size-80 rounded-full" style={{ background: "#ffffff", opacity: 0.08 }} />
       </section>
       <main className="flex min-h-dvh flex-col px-4 py-8 sm:px-8 lg:justify-center">
@@ -27,7 +29,8 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
           <span className="text-sm font-semibold text-muted">Study Centre {CENTRE.code}</span>
         </Link>
         <div className="mx-auto w-full max-w-md">{children}</div>
-        <Credit className="mx-auto mt-10 text-center lg:hidden" />
+        <p className="mx-auto mt-10 text-center text-sm lg:hidden"><Link href="/about" className="font-medium text-primary hover:underline">About this app</Link></p>
+        <Credit className="mx-auto mt-1 text-center lg:hidden" />
       </main>
     </div>
   );

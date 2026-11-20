@@ -12,7 +12,10 @@ before using the app. After that they can:
 - read notices, get in-app + push notifications
 - browse searchable FAQs (based on IGNOU's official FAQ document) — matching FAQs are also suggested
   while they write a new query
-- install the app to their phone's home screen
+- get a guided **app setup sheet** after sign-in: install the app + allow notifications
+  (re-appears every 2 days until done; "Finish app setup" card on Home)
+- get **real-time updates**: web push on the phone, and the open app refreshes itself when a
+  push arrives (plus a 20-second unread check)
 
 **Coordinator (admin)** can:
 - answer queries, set status / priority (students are notified)
@@ -21,6 +24,8 @@ before using the app. After that they can:
 - add / edit / hide FAQs (39 defaults from IGNOU's official FAQs; "Restore missing IGNOU FAQs" re-adds any deleted)
 - upload the IGNOU admission export (.xlsx) to refresh the roster, track who has activated,
   reset a student's password (back to their mobile number), deactivate accounts
+
+A public **About** page (`/about`) states the app is built only for students of Study Centre 0920.
 
 ## Stack
 Next.js 15 (App Router, server actions) · Tailwind CSS v4 · Neon Postgres + Drizzle ORM ·

@@ -5,7 +5,7 @@ import { db, schema } from "@/db";
 import { requireAdmin } from "@/lib/auth";
 import { fmtDay, properName } from "@/lib/format";
 import { Card, LinkButton, PageHeader } from "@/components/ui";
-import { InstallBanner, PushToggle } from "@/components/pwa";
+import { SetupReminder } from "@/components/pwa";
 import { TicketRow } from "@/components/ticket-row";
 import { SessionCard } from "@/components/session-card";
 
@@ -38,8 +38,7 @@ export default async function AdminHome() {
 
   return (
     <>
-      <InstallBanner />
-      <PushToggle compact />
+      <SetupReminder />
       <PageHeader title={`Hello, ${properName(u.name)}`} subtitle="Here's what needs your attention at SC 0920." />
       <div className="mb-6 grid grid-cols-2 gap-3 lg:grid-cols-4">
         {stats.map((s) => (

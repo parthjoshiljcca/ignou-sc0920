@@ -1,5 +1,6 @@
 import { eq } from "drizzle-orm";
 import { db, schema } from "@/db";
+import Link from "next/link";
 import { requireUser } from "@/lib/auth";
 import { Card, PageHeader } from "@/components/ui";
 import { PushToggle } from "@/components/pwa";
@@ -33,13 +34,16 @@ export default async function Profile() {
         <ProfileForm name={u.name} phone={u.phone ?? ""} email={u.email} />
       </Card>
       <Card className="p-4 sm:p-5">
-        <h2 className="mb-3 font-bold">Notifications</h2>
+        <h2 className="mb-3 font-bold">App &amp; notifications</h2>
         <PushToggle />
       </Card>
       <Card className="p-4 sm:p-5">
         <h2 className="mb-4 font-bold">Change password</h2>
         <PasswordForm />
       </Card>
+      <Link href="/about" className="flex items-center justify-between rounded-2xl border border-border bg-surface p-4 text-sm font-semibold hover:bg-surface-2">
+        About this app <span className="text-muted">→</span>
+      </Link>
       <form action={logoutAction} className="lg:hidden">
         <button className="w-full rounded-xl border border-border bg-surface py-3 text-sm font-semibold text-danger">Sign out</button>
       </form>

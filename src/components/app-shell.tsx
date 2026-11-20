@@ -6,6 +6,7 @@ import { db, schema } from "@/db";
 import type { User } from "@/db/schema";
 import { logoutAction } from "@/actions/auth";
 import { BottomNav, SideNav, type NavItem } from "./nav-links";
+import { AppSetupSheet, LiveUpdates } from "./pwa";
 import { Credit, Logo } from "./logo";
 import { CENTRE } from "@/lib/constants";
 import { properName } from "@/lib/format";
@@ -63,7 +64,8 @@ export async function AppShell({ user, children }: { user: User; children: React
               <LogOut className="size-[18px]" aria-hidden /> Sign out
             </button>
           </form>
-          <Credit className="mt-3 px-2 text-[11px]" />
+          <Link href="/about" className="mt-3 block px-2 text-xs font-medium text-muted hover:text-text">About this app</Link>
+          <Credit className="mt-1 px-2 text-[11px]" />
         </div>
       </aside>
 
@@ -89,10 +91,13 @@ export async function AppShell({ user, children }: { user: User; children: React
         </header>
         <main className="mx-auto w-full max-w-5xl px-4 pt-5 pb-28 sm:px-6 lg:px-8 lg:pt-8 lg:pb-12">
           {children}
-          <Credit className="mt-12 text-center lg:hidden" />
+          <p className="mt-12 text-center text-xs lg:hidden"><Link href="/about" className="font-medium text-primary">About this app</Link></p>
+          <Credit className="mt-1 text-center lg:hidden" />
         </main>
       </div>
       <BottomNav items={items} />
+      <LiveUpdates unread={unread} />
+      <AppSetupSheet />
     </div>
   );
 }
