@@ -24,7 +24,7 @@ export default async function Verify({ params }: { params: Promise<{ code: strin
           <p className="flex items-center gap-2 text-lg font-bold text-success"><BadgeCheck className="size-6" aria-hidden /> Genuine receipt</p>
           <dl className="mt-3 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1.5 text-sm">
             <dt className="text-muted">Receipt No.</dt><dd className="font-semibold">{data.receipt.receiptNo}</dd>
-            <dt className="text-muted">Session</dt><dd className="font-semibold">{data.receipt.session}</dd>
+            <dt className="text-muted">Term-End Exam</dt><dd className="font-semibold">{data.receipt.session}</dd>
             <dt className="text-muted">Student</dt><dd className="font-semibold">{initials(data.student.name)} · {mask(data.student.enrollmentNo)}</dd>
             <dt className="text-muted">Courses</dt><dd className="font-semibold">{data.rows.map((r) => r.courseCode).join(", ")}</dd>
             <dt className="text-muted">Submitted</dt><dd className="font-semibold">{data.rows.length ? `${fmtDate(data.rows[0].submittedOn)}${data.rows.length > 1 && data.rows.at(-1)!.submittedOn !== data.rows[0].submittedOn ? ` – ${fmtDate(data.rows.at(-1)!.submittedOn)}` : ""}` : "—"}</dd>

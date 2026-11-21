@@ -51,7 +51,7 @@ export default async function AdminAssignments({ searchParams }: { searchParams:
         {sessions.rows.map((s) => (
           <Card key={s.session} className="p-4 sm:p-6">
             <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
-              <h2 className="text-lg font-bold">{s.session}</h2>
+              <h2 className="text-lg font-bold">TEE {s.session}</h2>
               <p className="text-xs text-muted">{s.students} students · {s.rows} courses · {s.app_students} on the app</p>
             </div>
             <ul className="mt-3 grid grid-cols-3 gap-2 sm:grid-cols-6">
@@ -81,10 +81,10 @@ export default async function AdminAssignments({ searchParams }: { searchParams:
         <Card className="overflow-hidden">
           <details open={sessions.rows.length === 0}>
             <summary className="cursor-pointer list-none p-4 font-bold sm:px-6 [&::-webkit-details-marker]:hidden">
-              Upload an assignment list <span className="font-normal text-sm text-muted">— new session or more submissions</span>
+              Upload an assignment list <span className="font-normal text-sm text-muted">— new term (June / December) or more submissions</span>
             </summary>
             <div className="border-t border-border p-4 sm:p-6">
-              <AssignmentUpload defaultSession={sessions.rows[0]?.session ?? "September 2026-27"} />
+              <AssignmentUpload defaultSession={sessions.rows[0]?.session ?? ""} />
             </div>
           </details>
         </Card>
@@ -106,7 +106,7 @@ export default async function AdminAssignments({ searchParams }: { searchParams:
               <Link key={r.id} href={`/receipt/${r.id}`} className="flex flex-wrap items-center gap-x-4 gap-y-1 px-4 py-3 hover:bg-surface-2">
                 <div className="min-w-0 flex-1 basis-56">
                   <p className="truncate font-semibold">{r.name ? properName(r.name) : <span className="font-medium text-muted italic">Not on the student list yet</span>}</p>
-                  <p className="text-xs text-muted">{r.enrollment_no} · {r.programme ?? "—"} · {r.session} · {r.courses} courses</p>
+                  <p className="text-xs text-muted">{r.enrollment_no} · {r.programme ?? "—"} · TEE {r.session} · {r.courses} courses</p>
                 </div>
                 <Pill tone="primary">{statusLabel(r.status)}</Pill>
                 <span className="inline-flex items-center gap-1 text-sm font-semibold text-primary"><FileText className="size-4" aria-hidden /> {r.receipt_no}</span>

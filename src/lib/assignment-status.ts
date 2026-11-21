@@ -18,3 +18,8 @@ export const statusDetail = (s: string) => ASSIGNMENT_STATUSES.find((x) => x.key
 export function overallStatus(statuses: string[]) {
   return statuses.reduce((min, s) => (statusIndex(s) < statusIndex(min) ? s : min), statuses[0] ?? "received");
 }
+
+/** IGNOU assignments belong to a Term-End Examination: June or December of a year. */
+export const ASSIGNMENT_TERMS = ["June", "December"] as const;
+export const TERM_RE = /^(June|December) (20\d{2})$/;
+export const termName = (term: string, year: string | number) => `${term} ${year}`;

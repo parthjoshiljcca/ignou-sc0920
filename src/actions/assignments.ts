@@ -5,16 +5,16 @@ import { z } from "zod";
 import { db } from "@/db";
 import { requireAdmin } from "@/lib/auth";
 import { importAssignments, parseAssignmentsXlsx, setAssignmentStatus, userIdsForEnrolments } from "@/lib/assignments";
-import { ASSIGNMENT_STATUSES, statusDetail, statusLabel, type AssignmentStatus } from "@/lib/assignment-status";
+import { ASSIGNMENT_STATUSES, TERM_RE, statusDetail, statusLabel, type AssignmentStatus } from "@/lib/assignment-status";
 import { notifyUsers } from "@/lib/notify";
 import type { FormState } from "./auth";
 
 const statusKeys = ASSIGNMENT_STATUSES.map((s) => s.key) as [AssignmentStatus, ...AssignmentStatus[]];
-const Session = z.string().trim().min(3, "Enter the assignment session, e.g. September 2026-27").max(60);
+const Session = z.string().trim().regex(TERM_RE, "Choose the term: June or December, and the year");
 
 export async function uploadAssignmentsAction(_: FormState, fd: FormData): Promise<FormState> {
   await requireAdmin();
-  const session = Session.safeParse(fd.get("session"));
+  const session = Session.safeParse(`${fd.get("term") ?? ""} ${fd.get("year") ?? ""}`.trim());
   if (!session.success) return { error: session.error.issues[0].message };
   const status = z.enum(statusKeys).safeParse(fd.get("status"));
   if (!status.success) return { error: "Choose the current status" };
@@ -30,7 +30,7 @@ export async function uploadAssignmentsAction(_: FormState, fd: FormData): Promi
     if (fd.get("notify")) {
       const ids = await userIdsForEnrolments(db, [...new Set(rows.map((x) => x.enrollmentNo))]);
       await notifyUsers(ids, {
-        title: `Assignments ${session.data}: ${statusLabel(status.data)}`,
+        title: `Assignments (TEE ${session.data}): ${statusLabel(status.data)}`,
         body: `Your assignment submission is recorded. ${statusDetail(status.data)} Download your receipt in the app.`,
         url: "/assignments",
       });
@@ -60,7 +60,7 @@ export async function updateAssignmentStatusAction(_: FormState, fd: FormData): 
     notified = ids.length;
     await notifyUsers(ids, {
       title: `Assignment status: ${statusLabel(status.data)}`,
-      body: `${session.data}${courseCode ? ` · ${courseCode}` : ""} — ${statusDetail(status.data)}`,
+      body: `TEE ${session.data}${courseCode ? ` · ${courseCode}` : ""} — ${statusDetail(status.data)}`,
       url: "/assignments",
     });
   }

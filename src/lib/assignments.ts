@@ -90,7 +90,7 @@ export async function parseAssignmentsXlsx(buf: ArrayBuffer | Buffer) {
   return { rows: [...byKey.values()], skipped };
 }
 
-/** Short code used inside receipt numbers, e.g. "September 2026-27" → "SEP2627". */
+/** Short code used inside receipt numbers, e.g. "December 2026" → "DEC26", "June 2027" → "JUN27". */
 export function sessionCode(session: string) {
   const mon = session.match(/[A-Za-z]{3}/)?.[0]?.toUpperCase() ?? "ASG";
   const years = (session.match(/\d{2,4}/g) ?? []).map((y) => y.slice(-2)).join("");

@@ -61,7 +61,7 @@ export default async function Dashboard() {
           </span>
           <span className="min-w-0 flex-1">
             <span className="block font-semibold">My assignments</span>
-            <span className="block truncate text-xs text-muted">{latestAsg.receipt.session} · {latestAsg.rows.length} courses</span>
+            <span className="block truncate text-xs text-muted">TEE {latestAsg.receipt.session} · {latestAsg.rows.length} courses</span>
             <span className="mt-1 inline-flex rounded-full bg-primary-soft px-2 py-0.5 text-xs font-semibold text-primary">{statusLabel(asgStatus)}</span>
           </span>
           <ChevronRight className="size-5 shrink-0 text-muted" aria-hidden />

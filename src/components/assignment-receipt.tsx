@@ -23,7 +23,7 @@ export function AssignmentReceipt({ data, verifyUrl, qr }: { data: ReceiptData; 
       </header>
 
       <h1 className="mt-5 text-center text-xl font-bold tracking-tight sm:text-2xl">Assignment Submission Receipt</h1>
-      <p className="text-center text-sm text-[#4b5563]">Assignment session: <b className="text-[#111827]">{receipt.session}</b></p>
+      <p className="text-center text-sm text-[#4b5563]">For Term-End Examination: <b className="text-[#111827]">{receipt.session}</b></p>
 
       <div className="mt-5 grid gap-4 sm:grid-cols-[1fr_auto]">
         <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1.5 text-sm">

@@ -31,7 +31,7 @@ export default async function Assignments() {
               <Card key={receipt.id} className="overflow-hidden">
                 <div className="flex items-start gap-3 p-4 sm:p-5">
                   <div className="min-w-0 flex-1">
-                    <p className="text-xs font-semibold tracking-wide text-muted uppercase">Session</p>
+                    <p className="text-xs font-semibold tracking-wide text-muted uppercase">Term-End Exam</p>
                     <h2 className="text-lg leading-tight font-bold">{receipt.session}</h2>
                     <p className="mt-0.5 truncate text-xs text-muted">Receipt {receipt.receiptNo}</p>
                   </div>
