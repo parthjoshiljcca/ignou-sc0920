@@ -3,7 +3,7 @@
 import { useActionState } from "react";
 import { setFirstPasswordAction } from "@/actions/auth";
 import { Field } from "@/components/ui";
-import { FormMessage, SubmitButton } from "@/components/form-bits";
+import { FormMessage, SubmitButton, ActionForm } from "@/components/form-bits";
 
 type Need = { name: boolean; address: boolean; email: boolean };
 
@@ -11,7 +11,7 @@ export function SetPasswordForm({ need = { name: false, address: false, email: f
   const [state, action] = useActionState(setFirstPasswordAction, undefined);
   const anyMissing = need.name || need.address || need.email;
   return (
-    <form action={action} className="mt-6 space-y-4">
+    <ActionForm action={action} className="mt-6 space-y-4">
       {anyMissing && (
         <p className="rounded-xl bg-warning-soft px-3.5 py-2.5 text-sm font-medium text-warning">Fields marked * are required.</p>
       )}
@@ -38,6 +38,6 @@ export function SetPasswordForm({ need = { name: false, address: false, email: f
       </Field>
       <FormMessage state={state} />
       <SubmitButton className="w-full min-h-11" pendingText="Saving…">Save &amp; continue</SubmitButton>
-    </form>
+    </ActionForm>
   );
 }

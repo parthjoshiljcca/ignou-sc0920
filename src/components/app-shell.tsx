@@ -21,9 +21,12 @@ export async function AppShell({ user, children }: { user: User; children: React
       openTickets: isAdmin
         ? sql<number>`(select count(*) from ${schema.tickets} where ${schema.tickets.status} = 'open')`.mapWith(Number)
         : sql<number>`0`.mapWith(Number),
+      pendingAsg: isAdmin
+        ? sql<number>`(select count(*) from assignment_requests where status = 'pending')`.mapWith(Number)
+        : sql<number>`0`.mapWith(Number),
     })
     .from(sql`(select 1) as one`), liveFingerprint(user.id, user.role)]);
-  const { unread, openTickets } = counts;
+  const { unread, openTickets, pendingAsg } = counts;
 
   const notifHref = isAdmin ? "/admin/notifications" : "/notifications";
   const items: NavItem[] = isAdmin
@@ -31,7 +34,7 @@ export async function AppShell({ user, children }: { user: User; children: React
         { href: "/admin", label: "Overview", short: "Home", icon: "LayoutDashboard", exact: true },
         { href: "/admin/tickets", label: "Queries", icon: "Inbox", badge: openTickets },
         { href: "/admin/schedule", label: "Schedule", short: "Classes", icon: "CalendarDays" },
-        { href: "/admin/assignments", label: "Assignments", icon: "ClipboardCheck" },
+        { href: "/admin/assignments", label: "Assignments", icon: "ClipboardCheck", badge: pendingAsg },
         { href: "/admin/notices", label: "Notices", icon: "Megaphone" },
         { href: "/admin/students", label: "Students", icon: "Users" },
       ]

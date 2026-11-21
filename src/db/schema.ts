@@ -190,6 +190,10 @@ export const assignmentReceipts = pgTable(
     enrollmentNo: varchar("enrollment_no", { length: 20 }).notNull(),
     receiptNo: varchar("receipt_no", { length: 40 }).notNull(),
     verifyCode: varchar("verify_code", { length: 24 }).notNull(),
+    /** Name as written on the study centre's assignment sheet — used only when the student isn't on the student list. */
+    studentName: varchar("student_name", { length: 120 }),
+    /** Position of the student in the uploaded sheet, so the Excel export keeps the centre's order. */
+    fileOrder: integer("file_order"),
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
   },
   (t) => [
@@ -197,6 +201,58 @@ export const assignmentReceipts = pgTable(
     uniqueIndex("asg_receipt_no_uq").on(t.receiptNo),
     uniqueIndex("asg_receipt_verify_uq").on(t.verifyCode),
   ],
+);
+
+/** Assignment terms (Term-End Exams). Only "June YYYY" / "December YYYY". */
+export const assignmentTerms = pgTable(
+  "assignment_terms",
+  {
+    id: serial("id").primaryKey(),
+    name: varchar("name", { length: 40 }).notNull(),
+    sortKey: integer("sort_key").notNull(), // year * 100 + month, for ordering
+    accepting: boolean("accepting").notNull().default(true), // open for new submissions
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => [uniqueIndex("assignment_terms_name_uq").on(t.name)],
+);
+
+export const submissionRequestStatusEnum = pgEnum("submission_request_status", ["pending", "approved", "rejected", "cancelled"]);
+
+/** A student's own submission from the app, entered with the coordinator's PIN, awaiting approval. */
+export const assignmentRequests = pgTable(
+  "assignment_requests",
+  {
+    id: serial("id").primaryKey(),
+    term: varchar("term", { length: 40 }).notNull(),
+    enrollmentNo: varchar("enrollment_no", { length: 20 }).notNull(),
+    userId: integer("user_id").references(() => users.id, { onDelete: "set null" }),
+    courses: text("courses").array().notNull(),
+    submittedOn: date("submitted_on").notNull(),
+    status: submissionRequestStatusEnum("status").notNull().default("pending"),
+    note: text("note"),
+    decidedBy: integer("decided_by").references(() => users.id, { onDelete: "set null" }),
+    decidedAt: timestamp("decided_at", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => [index("asg_req_status_idx").on(t.status, t.createdAt), index("asg_req_enrol_idx").on(t.enrollmentNo)],
+);
+
+/** Small key/value settings managed by the coordinator (e.g. submission switch and PIN). */
+export const appSettings = pgTable("app_settings", {
+  key: varchar("key", { length: 60 }).primaryKey(),
+  value: text("value").notNull(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+});
+
+/** Wrong submission-PIN attempts, to slow down guessing. */
+export const pinFailures = pgTable(
+  "pin_failures",
+  {
+    id: serial("id").primaryKey(),
+    userId: integer("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
+    at: timestamp("at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => [index("pin_failures_user_idx").on(t.userId, t.at)],
 );
 
 export const pushSubscriptions = pgTable(
@@ -216,6 +272,8 @@ export const pushSubscriptions = pgTable(
 
 export type AssignmentSubmission = typeof assignmentSubmissions.$inferSelect;
 export type AssignmentReceipt = typeof assignmentReceipts.$inferSelect;
+export type AssignmentTerm = typeof assignmentTerms.$inferSelect;
+export type AssignmentRequest = typeof assignmentRequests.$inferSelect;
 export type Faq = typeof faqs.$inferSelect;
 export type RosterEntry = typeof roster.$inferSelect;
 export type User = typeof users.$inferSelect;

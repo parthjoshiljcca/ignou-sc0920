@@ -34,14 +34,16 @@ function toIsoDate(v: ExcelJS.CellValue): string | null {
 }
 
 /**
- * Read an assignment submission sheet. Uses only Enrolment No, Date, Programme and Course.
- * The Name and Marks columns are never read, so marks can never reach the database.
+ * Read an assignment submission sheet. Uses Enrolment No, Date, Programme, Course and Name
+ * (the name is kept only as a fallback for students not on the student list).
+ * The Marks column is never read, so marks can never reach the database.
  * Dates written once per student (merged/blank cells below) are carried down.
  */
 export async function parseAssignmentsXlsx(buf: ArrayBuffer | Buffer) {
   const wb = new ExcelJS.Workbook();
   await wb.xlsx.load(buf as ArrayBuffer);
   const byKey = new Map<string, ParsedAssignment>();
+  const students = new Map<string, { name: string | null; order: number }>();
   const skipped: string[] = [];
   let usable = 0;
 
@@ -60,6 +62,7 @@ export async function parseAssignmentsXlsx(buf: ArrayBuffer | Buffer) {
     if (!c.enrol || !c.course) continue; // e.g. an evaluator allocation sheet
     usable++;
     const progCol = pick("Programme Title", "Programme", "Programme Code", "Program");
+    const nameCol = pick("Name", "Student Name");
     let lastDate: string | null = null;
     let lastEnrol = "";
 
@@ -80,6 +83,10 @@ export async function parseAssignmentsXlsx(buf: ArrayBuffer | Buffer) {
       if (!courseCode) return skipped.push(`${ws.name} row ${i}: missing course`);
       const submittedOn = d ?? lastDate!;
       const programme = cellText(get(progCol)).trim().toUpperCase() || null;
+      if (!students.has(enrollmentNo)) {
+        const nm = cellText(get(nameCol)).trim().replace(/\s+/g, " ").toUpperCase() || null;
+        students.set(enrollmentNo, { name: nm, order: students.size + 1 });
+      }
       const key = `${enrollmentNo}|${courseCode}`;
       const prev = byKey.get(key);
       // Same course listed twice: keep the earliest submission date.
@@ -87,7 +94,7 @@ export async function parseAssignmentsXlsx(buf: ArrayBuffer | Buffer) {
     });
   }
   if (!usable) throw new Error("No sheet with 'Enrollment No' and 'Course' columns was found.");
-  return { rows: [...byKey.values()], skipped };
+  return { rows: [...byKey.values()], students, skipped };
 }
 
 /** Short code used inside receipt numbers, e.g. "December 2026" → "DEC26", "June 2027" → "JUN27". */
@@ -126,7 +133,10 @@ export async function ensureReceipts(db: DB, session: string) {
  * Save parsed submissions. New rows get `initialStatus`; rows already present keep their status
  * (re-uploading the same file never resets progress). Returns counts.
  */
-export async function importAssignments(db: DB, session: string, rows: ParsedAssignment[], initialStatus: AssignmentStatus) {
+export async function importAssignments(
+  db: DB, session: string, rows: ParsedAssignment[], initialStatus: AssignmentStatus,
+  students?: Map<string, { name: string | null; order: number }>,
+) {
   if (!ASSIGNMENT_STATUSES.some((s) => s.key === initialStatus)) throw new Error("Unknown status");
   const S = schema.assignmentSubmissions;
   const before = (await db.select({ n: sql<number>`count(*)::int` }).from(S).where(eq(S.session, session)))[0].n;
@@ -141,8 +151,22 @@ export async function importAssignments(db: DB, session: string, rows: ParsedAss
   }
   const after = (await db.select({ n: sql<number>`count(*)::int` }).from(S).where(eq(S.session, session)))[0].n;
   const receipts = await ensureReceipts(db, session);
-  const students = new Set(rows.map((r) => r.enrollmentNo)).size;
-  return { rows: rows.length, added: after - before, students, receipts };
+  if (students?.size) {
+    // Order offset keeps earlier uploads first when a second sheet is added to the same term.
+    const base = (await db.execute<{ m: number }>(sql`select coalesce(max(file_order), 0)::int m from assignment_receipts where session = ${session}`)).rows[0].m;
+    const list = [...students.entries()];
+    for (let i = 0; i < list.length; i += 300) {
+      const chunk = list.slice(i, i + 300);
+      const values = sql.join(chunk.map(([e, v]) => sql`(${e}, ${v.name}, ${base + v.order})`), sql`, `);
+      await db.execute(sql`
+        update assignment_receipts rc set
+          student_name = coalesce(rc.student_name, v.name),
+          file_order = coalesce(rc.file_order, v.ord::int)
+        from (values ${values}) as v(enrol, name, ord)
+        where rc.session = ${session} and rc.enrollment_no = v.enrol`);
+    }
+  }
+  return { rows: rows.length, added: after - before, students: new Set(rows.map((r) => r.enrollmentNo)).size, receipts };
 }
 
 /** Move submissions of a session (optionally one programme/course) to a new status. Returns affected enrolments. */

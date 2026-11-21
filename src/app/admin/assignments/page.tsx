@@ -1,11 +1,15 @@
 import Link from "next/link";
 import { sql } from "drizzle-orm";
-import { FileText, Search } from "lucide-react";
+import { Check, Download, FileText, PenLine, Search, Settings2 } from "lucide-react";
 import { db, schema } from "@/db";
 import { requireAdmin } from "@/lib/auth";
 import { ASSIGNMENT_STATUSES, statusLabel } from "@/lib/assignment-status";
 import { properName } from "@/lib/format";
-import { Card, PageHeader, Pill } from "@/components/ui";
+import { Card, LinkButton, PageHeader, Pill, btnClass } from "@/components/ui";
+import { fmtDate, timeAgo } from "@/lib/format";
+import { pendingRequests, submissionSettings } from "@/lib/submissions";
+import { approveRequestAction } from "@/actions/submissions";
+import { RejectRequest } from "@/components/admin/reject-request";
 import { AssignmentStatusForm, AssignmentUpload } from "@/components/admin/assignment-forms";
 
 export const metadata = { title: "Assignments" };
@@ -15,6 +19,7 @@ export default async function AdminAssignments({ searchParams }: { searchParams:
   const q = (await searchParams).q?.trim() ?? "";
   const S = schema.assignmentSubmissions;
 
+  const [pending, settings] = await Promise.all([pendingRequests(), submissionSettings()]);
   const [sessions, byStatus, programmes, courses, found] = await Promise.all([
     db.execute<{ session: string; rows: number; students: number; app_students: number }>(sql`
       select s.session, count(*)::int rows, count(distinct s.enrollment_no)::int students,
@@ -29,13 +34,13 @@ export default async function AdminAssignments({ searchParams }: { searchParams:
     db.execute<{ session: string; course_code: string }>(sql`select distinct session, course_code from ${S} order by 2`),
     q
       ? db.execute<{ id: number; session: string; receipt_no: string; enrollment_no: string; name: string | null; programme: string | null; courses: number; status: string }>(sql`
-          select rc.id, rc.session, rc.receipt_no, rc.enrollment_no, r.name, coalesce(r.programme, max(s.programme)) programme,
+          select rc.id, rc.session, rc.receipt_no, rc.enrollment_no, coalesce(r.name, rc.student_name) as name, coalesce(r.programme, max(s.programme)) programme,
                  count(s.id)::int courses, (array_agg(s.status order by array_position(enum_range(null::assignment_status), s.status)))[1]::text status
           from assignment_receipts rc
           join ${S} s on s.session = rc.session and s.enrollment_no = rc.enrollment_no
           left join roster r on r.enrollment_no = rc.enrollment_no
-          where rc.enrollment_no ilike ${"%" + q + "%"} or rc.receipt_no ilike ${"%" + q + "%"} or r.name ilike ${"%" + q + "%"}
-          group by rc.id, r.name, r.programme order by rc.session, rc.receipt_no limit 50`)
+          where rc.enrollment_no ilike ${"%" + q + "%"} or rc.receipt_no ilike ${"%" + q + "%"} or r.name ilike ${"%" + q + "%"} or rc.student_name ilike ${"%" + q + "%"}
+          group by rc.id, r.name, r.programme, rc.student_name order by rc.session, rc.receipt_no limit 50`)
       : Promise.resolve({ rows: [] }),
   ]);
 
@@ -46,12 +51,50 @@ export default async function AdminAssignments({ searchParams }: { searchParams:
     <>
       <PageHeader title="Assignments" subtitle="Submission status and receipts for students. Marks are never stored or shown." />
 
+      <div className="mb-5 flex flex-wrap gap-2">
+        <LinkButton href="/admin/assignments/new"><PenLine className="size-4" aria-hidden /> Record a submission</LinkButton>
+        <LinkButton href="/admin/assignments/settings" variant="secondary"><Settings2 className="size-4" aria-hidden /> Settings &amp; terms</LinkButton>
+        <span className="inline-flex items-center gap-2 self-center text-sm text-muted">
+          Student submissions: <Pill tone={settings.enabled ? "accent" : "neutral"}>{settings.enabled ? "ON" : "OFF"}</Pill>
+        </span>
+      </div>
+
+      {pending.rows.length > 0 && (
+        <Card className="mb-5 overflow-hidden border-accent/50">
+          <div className="border-b border-border bg-accent-soft px-4 py-3 sm:px-6">
+            <h2 className="font-bold">Waiting for your approval ({pending.rows.length})</h2>
+            <p className="text-sm text-muted">Submitted by students from the app with the PIN. Approve to record them as Received and issue the receipt.</p>
+          </div>
+          <ul className="divide-y divide-border">
+            {pending.rows.map((q) => (
+              <li key={q.id} className="space-y-2.5 px-4 py-3.5 sm:px-6">
+                <div className="flex flex-wrap items-baseline justify-between gap-x-3">
+                  <p className="font-semibold">{q.name ? properName(q.name) : "Name not on record"} <span className="text-sm font-normal text-muted">· {q.enrollment_no} · {q.programme ?? "—"}</span></p>
+                  <p className="text-xs text-muted">TEE {q.term} · {fmtDate(q.submitted_on)} · {timeAgo(q.created_at)}</p>
+                </div>
+                <div className="flex flex-wrap gap-1.5">{q.courses.map((c) => <Pill key={c} tone="primary">{c}</Pill>)}</div>
+                <div className="flex flex-wrap items-start gap-2">
+                  <form action={approveRequestAction}>
+                    <input type="hidden" name="id" value={q.id} />
+                    <button className={btnClass("primary", "min-h-9 px-3")}><Check className="size-4" aria-hidden /> Approve</button>
+                  </form>
+                  <RejectRequest id={q.id} />
+                </div>
+              </li>
+            ))}
+          </ul>
+        </Card>
+      )}
+
       <div className="space-y-4">
         {sessions.rows.length === 0 && <Card className="p-5 text-sm text-muted">No assignment lists uploaded yet. Upload one below.</Card>}
         {sessions.rows.map((s) => (
           <Card key={s.session} className="p-4 sm:p-6">
             <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
               <h2 className="text-lg font-bold">TEE {s.session}</h2>
+              <a href={`/admin/assignments/export?term=${encodeURIComponent(s.session)}`} className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline">
+                <Download className="size-4" aria-hidden /> Download Excel
+              </a>
               <p className="text-xs text-muted">{s.students} students · {s.rows} courses · {s.app_students} on the app</p>
             </div>
             <ul className="mt-3 grid grid-cols-3 gap-2 sm:grid-cols-6">

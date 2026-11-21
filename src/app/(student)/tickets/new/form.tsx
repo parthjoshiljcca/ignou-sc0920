@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Lightbulb } from "lucide-react";
 import { createTicketAction } from "@/actions/tickets";
 import { Field } from "@/components/ui";
-import { FormMessage, SubmitButton } from "@/components/form-bits";
+import { FormMessage, SubmitButton, ActionForm } from "@/components/form-bits";
 import { TICKET_CATEGORIES } from "@/lib/constants";
 import type { FaqItem } from "@/components/faq-browser";
 
@@ -15,7 +15,7 @@ export function NewTicketForm({ faqs, map }: { faqs: FaqItem[]; map: Record<stri
   const related = category ? faqs.filter((f) => map[category]?.includes(f.category)).slice(0, 4) : [];
 
   return (
-    <form action={action} className="space-y-4">
+    <ActionForm action={action} className="space-y-4">
       <Field label="Category" htmlFor="category">
         <select id="category" name="category" className="input" required value={category} onChange={(e) => setCategory(e.target.value)}>
           <option value="" disabled>What is this about?</option>
@@ -52,6 +52,6 @@ export function NewTicketForm({ faqs, map }: { faqs: FaqItem[]; map: Record<stri
       <div className="flex justify-end">
         <SubmitButton pendingText="Submitting…">Submit query</SubmitButton>
       </div>
-    </form>
+    </ActionForm>
   );
 }

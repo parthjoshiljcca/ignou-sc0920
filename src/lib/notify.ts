@@ -37,6 +37,8 @@ async function push(userIds: number[], msg: Msg) {
 
 /** Store an in-app notification for each user and send a push to their devices. */
 export async function notifyUsers(userIds: number[], msg: Msg) {
+  // Local testing against the live database: never message real people.
+  if (process.env.NOTIFY_DRY_RUN === "1") return;
   const ids = [...new Set(userIds)];
   if (!ids.length) return;
   for (let i = 0; i < ids.length; i += 500) {

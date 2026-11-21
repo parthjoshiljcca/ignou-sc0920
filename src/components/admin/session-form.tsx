@@ -3,7 +3,7 @@
 import { useActionState, useState } from "react";
 import { saveSessionAction } from "@/actions/admin";
 import { Field } from "@/components/ui";
-import { FormMessage, SubmitButton } from "@/components/form-bits";
+import { FormMessage, SubmitButton, ActionForm } from "@/components/form-bits";
 
 export type SessionDefaults = {
   id?: number; programme?: string; courseCode?: string; title?: string | null; counsellor?: string | null;
@@ -14,7 +14,7 @@ export function SessionForm({ d, programmes, courses }: { d: SessionDefaults; pr
   const [state, action] = useActionState(saveSessionAction, undefined);
   const [mode, setMode] = useState(d.mode ?? "offline");
   return (
-    <form action={action} className="space-y-4">
+    <ActionForm action={action} className="space-y-4">
       {d.id && <input type="hidden" name="id" value={d.id} />}
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Course code" htmlFor="courseCode" >
@@ -55,6 +55,6 @@ export function SessionForm({ d, programmes, courses }: { d: SessionDefaults; pr
       <label className="flex items-center gap-2 text-sm"><input type="checkbox" name="notify" defaultChecked className="size-4 accent-[var(--primary)]" /> Notify students about this {d.id ? "change" : "class"}</label>
       <FormMessage state={state} />
       <div className="flex justify-end"><SubmitButton pendingText="Saving…">{d.id ? "Save changes" : "Add to schedule"}</SubmitButton></div>
-    </form>
+    </ActionForm>
   );
 }

@@ -24,9 +24,9 @@ export async function uploadAssignmentsAction(_: FormState, fd: FormData): Promi
   if (file.size > 15 * 1024 * 1024) return { error: "File is larger than 15 MB" };
 
   try {
-    const { rows, skipped } = await parseAssignmentsXlsx(await file.arrayBuffer());
+    const { rows, students, skipped } = await parseAssignmentsXlsx(await file.arrayBuffer());
     if (!rows.length) return { error: "No assignment rows found in this file." };
-    const r = await importAssignments(db, session.data, rows, status.data);
+    const r = await importAssignments(db, session.data, rows, status.data, students);
     if (fd.get("notify")) {
       const ids = await userIdsForEnrolments(db, [...new Set(rows.map((x) => x.enrollmentNo))]);
       await notifyUsers(ids, {
@@ -38,7 +38,7 @@ export async function uploadAssignmentsAction(_: FormState, fd: FormData): Promi
     revalidatePath("/admin/assignments");
     const extra = skipped.length ? ` Skipped ${skipped.length}: ${skipped.slice(0, 4).join("; ")}${skipped.length > 4 ? "…" : ""}` : "";
     return {
-      ok: `Imported ${r.rows} course submissions for ${r.students} students (${r.added} new, ${r.rows - r.added} already present). ${r.receipts} new receipts created. Marks were not read.${extra}`,
+      ok: `Imported ${r.rows} course submissions for ${r.students} students (${r.added} new, ${r.rows - r.added} already present). ${r.receipts} new receipts created. The Marks column was not read.${extra}`,
     };
   } catch (e) {
     return { error: e instanceof Error ? e.message : "Couldn't read this file" };

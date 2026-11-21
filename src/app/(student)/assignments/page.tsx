@@ -1,4 +1,10 @@
 import Link from "next/link";
+import { and, desc, eq, gte, inArray } from "drizzle-orm";
+import { db, schema } from "@/db";
+import { acceptingTerms, submissionSettings } from "@/lib/submissions";
+import { cancelRequestAction } from "@/actions/submissions";
+import { Alert, btnClass } from "@/components/ui";
+import { Hourglass, Send } from "lucide-react";
 import { ClipboardCheck, FileText } from "lucide-react";
 import { requireStudent } from "@/lib/auth";
 import { studentAssignments } from "@/lib/assignment-data";
@@ -9,19 +15,59 @@ import { AssignmentStepper } from "@/components/assignment-stepper";
 
 export const metadata = { title: "Assignments" };
 
-export default async function Assignments() {
+export default async function Assignments({ searchParams }: { searchParams: Promise<{ requested?: string }> }) {
   const u = await requireStudent();
-  const sessions = u.enrollmentNo ? await studentAssignments(u.enrollmentNo) : [];
+  const { requested } = await searchParams;
+  const [sessions, settings, open, requests] = await Promise.all([
+    u.enrollmentNo ? studentAssignments(u.enrollmentNo) : Promise.resolve([]),
+    submissionSettings(),
+    acceptingTerms(),
+    u.enrollmentNo
+      ? db.select().from(schema.assignmentRequests)
+          .where(and(eq(schema.assignmentRequests.enrollmentNo, u.enrollmentNo), inArray(schema.assignmentRequests.status, ["pending", "rejected"]),
+            gte(schema.assignmentRequests.createdAt, new Date(Date.now() - 30 * 864e5))))
+          .orderBy(desc(schema.assignmentRequests.createdAt))
+      : Promise.resolve([]),
+  ]);
+  const canSubmit = settings.enabled && open.length > 0;
 
   return (
     <>
-      <PageHeader title="My assignments" subtitle="Track your submitted assignments and download the receipt. Marks are not shown here." />
+      <PageHeader
+        title="My assignments"
+        subtitle="Track your submitted assignments and download the receipt. Marks are not shown here."
+        action={canSubmit ? <LinkButton href="/assignments/submit"><Send className="size-4" aria-hidden /> Submit assignments</LinkButton> : undefined}
+      />
+      {requested && <div className="mb-4"><Alert tone="success">Sent for approval. You&apos;ll get a notification when the coordinator approves it.</Alert></div>}
+      {requests.length > 0 && (
+        <div className="mb-5 space-y-3">
+          {requests.map((q) => (
+            <Card key={q.id} className={q.status === "pending" ? "border-warning/50 p-4" : "border-danger/40 p-4"}>
+              <div className="flex items-start gap-3">
+                <Hourglass className={`mt-0.5 size-5 shrink-0 ${q.status === "pending" ? "text-warning" : "text-danger"}`} aria-hidden />
+                <div className="min-w-0 flex-1">
+                  <p className="font-semibold">{q.status === "pending" ? "Submitted — waiting for coordinator approval" : "Not approved"}</p>
+                  <p className="text-sm text-muted">TEE {q.term} · {fmtDate(q.submittedOn)}</p>
+                  <div className="mt-2 flex flex-wrap gap-1.5">{q.courses.map((c) => <Pill key={c}>{c}</Pill>)}</div>
+                  {q.status === "rejected" && q.note && <p className="mt-2 text-sm">Reason: {q.note}</p>}
+                </div>
+                {q.status === "pending" && (
+                  <form action={cancelRequestAction}>
+                    <input type="hidden" name="id" value={q.id} />
+                    <button className={btnClass("ghost", "min-h-8 px-2 text-xs")}>Cancel</button>
+                  </form>
+                )}
+              </div>
+            </Card>
+          ))}
+        </div>
+      )}
       {sessions.length === 0 ? (
         <EmptyState
           icon={<ClipboardCheck className="size-6" />}
           title="No assignment submissions yet"
           body="Once the study centre records your submitted assignments, they'll appear here with their status and a receipt."
-          action={<LinkButton href="/tickets/new" variant="secondary">Submitted but not listed? Ask us</LinkButton>}
+          action={canSubmit ? <LinkButton href="/assignments/submit"><Send className="size-4" aria-hidden /> Submit assignments</LinkButton> : <LinkButton href="/tickets/new" variant="secondary">Submitted but not listed? Ask us</LinkButton>}
         />
       ) : (
         <div className="space-y-5">

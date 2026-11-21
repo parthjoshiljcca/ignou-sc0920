@@ -31,7 +31,7 @@ async function load(where: ReturnType<typeof eq>): Promise<ReceiptData | null> {
     db.select({ name: schema.roster.name, programme: schema.roster.programme }).from(schema.roster).where(eq(schema.roster.enrollmentNo, receipt.enrollmentNo)),
     db.select({ name: schema.users.name, programme: schema.users.programme }).from(schema.users).where(eq(schema.users.enrollmentNo, receipt.enrollmentNo)),
   ]);
-  const name = ro?.name ?? (u?.name && !u.name.startsWith("Student ") ? u.name : null);
+  const name = ro?.name ?? (u?.name && !u.name.startsWith("Student ") ? u.name : null) ?? receipt.studentName ?? null;
   return { receipt, rows, student: { name, enrollmentNo: receipt.enrollmentNo, programme: ro?.programme ?? u?.programme ?? rows[0]?.programme ?? null } };
 }
 

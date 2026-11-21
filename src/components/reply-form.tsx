@@ -2,7 +2,7 @@
 
 import { useActionState, useEffect, useRef } from "react";
 import { replyTicketAction } from "@/actions/tickets";
-import { FormMessage, SubmitButton } from "./form-bits";
+import { FormMessage, SubmitButton, ActionForm } from "./form-bits";
 
 export function ReplyForm({ ticketId, isAdmin, currentStatus, placeholder }: { ticketId: number; isAdmin?: boolean; currentStatus?: string; placeholder?: string }) {
   const [state, action] = useActionState(replyTicketAction, undefined);
@@ -12,7 +12,7 @@ export function ReplyForm({ ticketId, isAdmin, currentStatus, placeholder }: { t
   }, [state]);
 
   return (
-    <form ref={ref} action={action} className="space-y-3">
+    <ActionForm ref={ref} action={action} className="space-y-3">
       <input type="hidden" name="ticketId" value={ticketId} />
       <label htmlFor="reply" className="sr-only">Reply</label>
       <textarea id="reply" name="body" className="input" rows={4} maxLength={5000} placeholder={placeholder ?? "Write a reply…"} required />
@@ -31,6 +31,6 @@ export function ReplyForm({ ticketId, isAdmin, currentStatus, placeholder }: { t
         )}
         <SubmitButton pendingText="Sending…">Send reply</SubmitButton>
       </div>
-    </form>
+    </ActionForm>
   );
 }

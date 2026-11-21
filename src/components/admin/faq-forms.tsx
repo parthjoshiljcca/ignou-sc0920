@@ -3,7 +3,7 @@
 import { useActionState, useEffect, useRef } from "react";
 import { restoreDefaultFaqsAction, saveFaqAction } from "@/actions/faqs";
 import { Field } from "@/components/ui";
-import { FormMessage, SubmitButton } from "@/components/form-bits";
+import { FormMessage, SubmitButton, ActionForm } from "@/components/form-bits";
 
 type Faq = { id?: number; category?: string; question?: string; answer?: string; link?: string | null; sortOrder?: number };
 
@@ -14,7 +14,7 @@ export function FaqForm({ faq, categories }: { faq?: Faq; categories: string[] }
   useEffect(() => { if (state?.ok && isNew) ref.current?.reset(); }, [state, isNew]);
   const sfx = faq?.id ?? "new";
   return (
-    <form ref={ref} action={action} className="space-y-3">
+    <ActionForm ref={ref} action={action} className="space-y-3">
       {faq?.id && <input type="hidden" name="id" value={faq.id} />}
       <div className="grid gap-3 sm:grid-cols-[1fr_110px]">
         <Field label="Category" htmlFor={`cat-${sfx}`}>
@@ -36,16 +36,16 @@ export function FaqForm({ faq, categories }: { faq?: Faq; categories: string[] }
       </Field>
       <FormMessage state={state} />
       <div className="flex justify-end"><SubmitButton pendingText="Saving…">{isNew ? "Add FAQ" : "Save changes"}</SubmitButton></div>
-    </form>
+    </ActionForm>
   );
 }
 
 export function RestoreDefaults() {
   const [state, action] = useActionState(restoreDefaultFaqsAction, undefined);
   return (
-    <form action={action} className="space-y-2">
+    <ActionForm action={action} className="space-y-2">
       <SubmitButton variant="secondary" pendingText="Restoring…">Restore missing IGNOU FAQs</SubmitButton>
       <FormMessage state={state} />
-    </form>
+    </ActionForm>
   );
 }

@@ -4,7 +4,7 @@ import { useActionState } from "react";
 import { updateAssignmentStatusAction, uploadAssignmentsAction } from "@/actions/assignments";
 import { ASSIGNMENT_STATUSES, ASSIGNMENT_TERMS, TERM_RE } from "@/lib/assignment-status";
 import { Field } from "@/components/ui";
-import { FormMessage, SubmitButton } from "@/components/form-bits";
+import { FormMessage, SubmitButton, ActionForm } from "@/components/form-bits";
 
 export function AssignmentUpload({ defaultSession }: { defaultSession: string }) {
   const [state, action] = useActionState(uploadAssignmentsAction, undefined);
@@ -14,7 +14,7 @@ export function AssignmentUpload({ defaultSession }: { defaultSession: string })
   const defYear = m?.[2] ?? String(thisYear);
   const years = [thisYear - 1, thisYear, thisYear + 1].map(String);
   return (
-    <form action={action} className="space-y-3">
+    <ActionForm action={action} className="space-y-3">
       <div className="grid grid-cols-2 gap-3">
         <Field label="Term (TEE)" htmlFor="asg-term">
           <select id="asg-term" name="term" className="input" defaultValue={defTerm} required>
@@ -35,10 +35,10 @@ export function AssignmentUpload({ defaultSession }: { defaultSession: string })
       <input type="file" name="file" accept=".xlsx" required
         className="block w-full text-sm file:mr-3 file:rounded-[10px] file:border-0 file:bg-primary-soft file:px-4 file:py-2 file:font-semibold file:text-primary" />
       <label className="flex items-center gap-2 text-sm"><input type="checkbox" name="notify" defaultChecked className="size-4 accent-[var(--primary)]" /> Notify students (app users) that their receipt is ready</label>
-      <p className="text-xs text-muted">Only enrolment no., programme, course and date are read. The <b>Name</b> and <b>Marks</b> columns are ignored — marks are never stored.</p>
+      <p className="text-xs text-muted">Enrolment no., programme, course and date are read; the name is kept only for students not on the student list. The <b>Marks</b> column is ignored — marks are never stored.</p>
       <FormMessage state={state} />
       <SubmitButton pendingText="Importing…">Import assignments</SubmitButton>
-    </form>
+    </ActionForm>
   );
 }
 
@@ -47,7 +47,7 @@ export function AssignmentStatusForm({ session, current, programmes, courses }: 
   const next = ASSIGNMENT_STATUSES[Math.min(ASSIGNMENT_STATUSES.findIndex((s) => s.key === current) + 1, ASSIGNMENT_STATUSES.length - 1)].key;
   const sfx = session.replace(/\W/g, "");
   return (
-    <form action={action} className="space-y-3">
+    <ActionForm action={action} className="space-y-3">
       <input type="hidden" name="session" value={session} />
       <div className="grid gap-3 md:grid-cols-3">
         <Field label="New status" htmlFor={`st-${sfx}`}>
@@ -69,6 +69,6 @@ export function AssignmentStatusForm({ session, current, programmes, courses }: 
       <label className="flex items-center gap-2 text-sm"><input type="checkbox" name="notify" defaultChecked className="size-4 accent-[var(--primary)]" /> Notify affected students</label>
       <FormMessage state={state} />
       <SubmitButton pendingText="Updating…">Update status</SubmitButton>
-    </form>
+    </ActionForm>
   );
 }
