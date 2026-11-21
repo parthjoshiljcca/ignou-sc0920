@@ -1,0 +1,4989 @@
+{
+ "_source": "IGNOU programme pages (ignou.ac.in/schools/programme/<code>), plus course codes seen in the study centre's admission and assignment files. No personal data.",
+ "courses": [
+  {
+   "programme": "BBA",
+   "code": "BCOC-132",
+   "title": "Business Organisation and Management",
+   "credits": null,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BBA",
+   "code": "BCOE-143",
+   "title": "Fundamentals of Financial Management",
+   "credits": null,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BBA",
+   "code": "BCOE-144",
+   "title": "Office Management and Secretarial Practices",
+   "credits": 6.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BBA",
+   "code": "BCOS-183",
+   "title": "Computer Application in Business",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BBA",
+   "code": "BCOS-185",
+   "title": "Entrepreneursihp",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BBA",
+   "code": "BCOS-186",
+   "title": "Personal Selling and Salesmanship",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BBA",
+   "code": "BEGLA-136",
+   "title": "English at Work Place",
+   "credits": 6.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BBA",
+   "code": "BEVAE-181",
+   "title": "Environmental Studies",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BBA",
+   "code": "BMP-001",
+   "title": "Business Research",
+   "credits": null,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BBA",
+   "code": "BMP-003",
+   "title": "International Business Environment",
+   "credits": null,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BBA",
+   "code": "BMP-004",
+   "title": "STRATEGIC MANAGEMENT",
+   "credits": null,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BBA",
+   "code": "BMP-005",
+   "title": "ORGANISATIONAL BEHAVIOUR",
+   "credits": null,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BBA",
+   "code": "ECO-13",
+   "title": "Business Environment",
+   "credits": null,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BBA",
+   "code": "BCOC-131",
+   "title": "Financial Accounting",
+   "credits": 6.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BBA",
+   "code": "BCOC-133",
+   "title": "Business Law",
+   "credits": 6.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BBA",
+   "code": "BRL-113",
+   "title": "Business Ethics",
+   "credits": null,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BBA",
+   "code": "ECO-07",
+   "title": "Elements of Statistics",
+   "credits": null,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BBA",
+   "code": "BCOE-141",
+   "title": "Principles of Marketing",
+   "credits": null,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BBA",
+   "code": "BCOG-171",
+   "title": "Principles of Micro Economics",
+   "credits": null,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BBA",
+   "code": "BCOS-184",
+   "title": "E-Commerce",
+   "credits": 6.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BBA",
+   "code": "BRL-106",
+   "title": "Managing Human Resources",
+   "credits": null,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BBA",
+   "code": "BCOE-142",
+   "title": "MANAGEMENT ACCOUNTING",
+   "credits": 6.0,
+   "term": "Semester 5",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BBA",
+   "code": "BMP-002",
+   "title": "Operations Management",
+   "credits": null,
+   "term": "Semester 5",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BBA",
+   "code": "BHDLA-136",
+   "title": "Hindi Bhasha: Lekhan Kaushal",
+   "credits": null,
+   "term": null,
+   "source": "admission-file"
+  },
+  {
+   "programme": "BBA",
+   "code": "BRL-104",
+   "title": "Retail Management Perspectives and Communication",
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BBA",
+   "code": "BSOS-185",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BBA",
+   "code": "BSOS-186",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BBARIL",
+   "code": "BCOE-141",
+   "title": "Principles of Marketing",
+   "credits": null,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BBARIL",
+   "code": "BEGAE-182",
+   "title": "English Communication Skill",
+   "credits": null,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BBARIL",
+   "code": "BRL-101",
+   "title": "Overview of Retailing",
+   "credits": null,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BBARIL",
+   "code": "BRL-102",
+   "title": "Retail Marketing and Communication",
+   "credits": null,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BBARIL",
+   "code": "BRL-103",
+   "title": "Store Operations",
+   "credits": null,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BBARIL",
+   "code": "BRL-105",
+   "title": "Customer Service Management",
+   "credits": null,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BBARIL",
+   "code": "BRL-107",
+   "title": "Buying and Merchandising-I",
+   "credits": null,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BBARIL",
+   "code": "BRL-108",
+   "title": "Retail Operations and Store Management",
+   "credits": null,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BBARIL",
+   "code": "BRL-104",
+   "title": "Retail Management Perspectives and Communication",
+   "credits": 6.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BBARIL",
+   "code": "BRLP-101",
+   "title": "Internship,workbook and viva-voce",
+   "credits": 16.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BBARIL",
+   "code": "BEVAE-181",
+   "title": "Environmental Studies",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BBARIL",
+   "code": "BRL-106",
+   "title": "Managing Human Resources",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BBARIL",
+   "code": "BRL-109",
+   "title": "Customer Value Management",
+   "credits": 6.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BBARIL",
+   "code": "BRL-110",
+   "title": "IT Application in Retail",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BBARIL",
+   "code": "BRLP-102",
+   "title": "Internship,workbook and viva-voce",
+   "credits": 16.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BBARIL",
+   "code": "BCOS-185",
+   "title": "Entrepreneurship",
+   "credits": 4.0,
+   "term": "Semester 5",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BBARIL",
+   "code": "BRL-115",
+   "title": "Retail Supply Chain Management",
+   "credits": 6.0,
+   "term": "Semester 6",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BBARIL",
+   "code": "BCOS-184",
+   "title": "E-Commerce",
+   "credits": 4.0,
+   "term": null,
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BBARIL",
+   "code": "BRL-111",
+   "title": "Retails Consumer Behavior",
+   "credits": null,
+   "term": null,
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BBARIL",
+   "code": "BRL-112",
+   "title": "Buying and Merchandising-II",
+   "credits": null,
+   "term": null,
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BBARIL",
+   "code": "BRL-113",
+   "title": "BUSINESS ETHICS",
+   "credits": null,
+   "term": null,
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BBARIL",
+   "code": "BRL-114",
+   "title": "VISUAL MERCHANDISING & STORE",
+   "credits": null,
+   "term": null,
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCA",
+   "code": "BCS-031",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCA",
+   "code": "BCS-040",
+   "title": "Statistical Techniques",
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCA",
+   "code": "BCS-041",
+   "title": "Fundamentals of Computer Networks",
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCA",
+   "code": "BCS-051",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCA",
+   "code": "BCS-052",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCA",
+   "code": "BCS-053",
+   "title": "Web Programming",
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCA",
+   "code": "BCS-054",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCA",
+   "code": "BCS-055",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCA",
+   "code": "BCS-062",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCA",
+   "code": "BCSL-032",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCA",
+   "code": "BCSL-033",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCA",
+   "code": "BCSL-034",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCA",
+   "code": "BCSL-036",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCA",
+   "code": "BCSL-043",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCA",
+   "code": "BCSL-044",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCA",
+   "code": "BCSL-045",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCA",
+   "code": "BCSL-057",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCA",
+   "code": "BCSL-058",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCA",
+   "code": "BCSL-062",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCA",
+   "code": "BCSL-063",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCA",
+   "code": "MCS-014",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCA",
+   "code": "MCS-021",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCA",
+   "code": "MCS-022",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCA",
+   "code": "MCS-023",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCA",
+   "code": "MCS-024",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCA",
+   "code": "MCS-042",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCA",
+   "code": "MCSL-016",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCA_NEW",
+   "code": "BCS-012",
+   "title": "Basic Mathematics",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCA_NEW",
+   "code": "BCS-111",
+   "title": "Computer Basics and PC Software",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCA_NEW",
+   "code": "BCSL-013",
+   "title": "Computer Basics and PC Software Lab",
+   "credits": 2.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCA_NEW",
+   "code": "BEGLA-136",
+   "title": "English at Work Place",
+   "credits": 6.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCA_NEW",
+   "code": "BEVAE-181",
+   "title": "Environmental Studies",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCA_NEW",
+   "code": "FEG-02",
+   "title": "Foundation Course in English-2",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCA_NEW",
+   "code": "MCS-201",
+   "title": "Programming in C and Python",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCA_NEW",
+   "code": "MCS-202",
+   "title": "Computer Organisation",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCA_NEW",
+   "code": "MCS-203",
+   "title": "Operating Systems",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCA_NEW",
+   "code": "MCSL-204",
+   "title": "WINDOWS and LINUX Lab",
+   "credits": 2.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCA_NEW",
+   "code": "MCSL-205",
+   "title": "C and Python Lab",
+   "credits": 2.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCA_NEW",
+   "code": "BCS-131",
+   "title": "Programming in C++",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCA_NEW",
+   "code": "BCSL-135",
+   "title": "DBMS and C++ Lab",
+   "credits": 2.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCA_NEW",
+   "code": "MCS-207",
+   "title": "Database Management Systems",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCA_NEW",
+   "code": "MCS-208",
+   "title": "Data Structures and Algorithms",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCA_NEW",
+   "code": "MCSL-209",
+   "title": "Data Structures and Algorithms Lab",
+   "credits": 2.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCA_NEW",
+   "code": "BCOC-131",
+   "title": "Financial Accounting",
+   "credits": 6.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCA_NEW",
+   "code": "BCS-040",
+   "title": "Statistical Techniques",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCA_NEW",
+   "code": "BCS-041",
+   "title": "Fundamentals of Computer Networks",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCA_NEW",
+   "code": "BCS-042",
+   "title": "Introduction to Algorithm Design",
+   "credits": 2.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCA_NEW",
+   "code": "BCSL-146",
+   "title": "Object Oriented Programming using Java Lab",
+   "credits": 2.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCA_NEW",
+   "code": "BCSL-147",
+   "title": "Web Programming Lab",
+   "credits": 2.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCA_NEW",
+   "code": "MCS-206",
+   "title": "Object Oriented Programming using Java",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCA_NEW",
+   "code": "BCOS-184",
+   "title": "E-Commerce",
+   "credits": 4.0,
+   "term": "Semester 5",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCA_NEW",
+   "code": "BCS-053",
+   "title": "Web Programming",
+   "credits": 2.0,
+   "term": "Semester 5",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCA_NEW",
+   "code": "BCS-151",
+   "title": "Introduction to Software Engineering",
+   "credits": 4.0,
+   "term": "Semester 5",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCA_NEW",
+   "code": "BCSL-159",
+   "title": "Introduction to Algorithm Design Lab",
+   "credits": 2.0,
+   "term": "Semester 5",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCA_NEW",
+   "code": "BECS-184",
+   "title": "Data Analysis",
+   "credits": 4.0,
+   "term": "Semester 5",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCA_NEW",
+   "code": "MSEI-023",
+   "title": "Cyber Security",
+   "credits": 4.0,
+   "term": "Semester 5",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCA_NEW",
+   "code": "BCOS-185",
+   "title": "Entrepreneurship",
+   "credits": 4.0,
+   "term": "Semester 6",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCA_NEW",
+   "code": "BCSP-165",
+   "title": "Project",
+   "credits": 12.0,
+   "term": "Semester 6",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCA_NEW",
+   "code": "MSEI-027",
+   "title": "Digital Forensics",
+   "credits": 4.0,
+   "term": "Semester 6",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCA_NEW",
+   "code": "BCS-011",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCA_NEW",
+   "code": "BCS-140",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCA_NEW",
+   "code": "BCSL-041",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCA_NEW",
+   "code": "ECO-01",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCA_NEW",
+   "code": "MCS-204",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCOM",
+   "code": "BEGE-104",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCOM",
+   "code": "FEG-01",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCOM",
+   "code": "FEG-02",
+   "title": "Foundation Course in English-2",
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCOM",
+   "code": "FST-01",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCOMAPS",
+   "code": "BCOC-131",
+   "title": "Financial Accounting",
+   "credits": 6.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMAPS",
+   "code": "BCOC-132",
+   "title": "Business Organization and Management",
+   "credits": 6.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMAPS",
+   "code": "BCOC-133",
+   "title": "Business Law",
+   "credits": 6.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMAPS",
+   "code": "BEVAE-181",
+   "title": "Environmental Studies",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMAPS",
+   "code": "BCOC-134",
+   "title": "Business Mathematics and Statistics",
+   "credits": 6.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMAPS",
+   "code": "BCOC-135",
+   "title": "Company Law",
+   "credits": 6.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMAPS",
+   "code": "BCOC-136",
+   "title": "Income Tax Law & Practice",
+   "credits": 6.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMAPS",
+   "code": "BCOC-137",
+   "title": "Corporate Accounting",
+   "credits": 6.0,
+   "term": "Semester 5",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMAPS",
+   "code": "BEGAE-182",
+   "title": "English Communication Skills",
+   "credits": 4.0,
+   "term": "Semester 5",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMAPS",
+   "code": "BHDAE-182",
+   "title": "हिंदी भाषा और सम्प्रेषण",
+   "credits": 4.0,
+   "term": "Semester 5",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMAPS",
+   "code": "BSSS-183",
+   "title": "Life Skills",
+   "credits": 4.0,
+   "term": "Semester 5",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMAPS",
+   "code": "BCOC-138",
+   "title": "Cost Accounting",
+   "credits": 6.0,
+   "term": "Semester 6",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMF",
+   "code": "BCOC-132",
+   "title": "Business Organisation and Management",
+   "credits": 6.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMF",
+   "code": "BECC-101",
+   "title": "Introductory Microeconomics",
+   "credits": 6.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMF",
+   "code": "BEVAE-181",
+   "title": "Environmental Studies",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMF",
+   "code": "BHDAE-182",
+   "title": "हिंदी भाषा और सम्प्रेषण",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMF",
+   "code": "BRL-101",
+   "title": "Overview of Retailing",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMF",
+   "code": "BSKAE-182",
+   "title": "Sanskrit Sahitya",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMF",
+   "code": "BUDAE-182",
+   "title": "Study of Urdu Progressive Poetry",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMF",
+   "code": "BCOC-131",
+   "title": "Financial Accounting",
+   "credits": 6.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMF",
+   "code": "BCOS-186",
+   "title": "Personal Selling and Salesmanship",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMF",
+   "code": "BEDSV-101",
+   "title": "Value Education",
+   "credits": 6.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMF",
+   "code": "BCOC-133",
+   "title": "Business Law",
+   "credits": 6.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMF",
+   "code": "BCOC-134",
+   "title": "Business Mathematics and Statistics",
+   "credits": 6.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMF",
+   "code": "BEGAE-182",
+   "title": "English Communication Skills",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMF",
+   "code": "BPAS-184",
+   "title": "Logistics Management",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMF",
+   "code": "BCOC-136",
+   "title": "Income Tax Law and Practice",
+   "credits": 6.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMF",
+   "code": "BCOE-141",
+   "title": "Principal of Marketing",
+   "credits": 6.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMF",
+   "code": "BCOS-183",
+   "title": "Computer Application in Business",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMF",
+   "code": "BCOS-184",
+   "title": "E-Commerce",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMF",
+   "code": "BCOS-185",
+   "title": "Entrepreneursihp",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMF",
+   "code": "BCOC-135",
+   "title": "Company Law",
+   "credits": null,
+   "term": "Semester 5",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMF",
+   "code": "BCOC-137",
+   "title": "Corporate Accounting",
+   "credits": null,
+   "term": "Semester 5",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMF",
+   "code": "BCOC-138",
+   "title": "Cost Accounting",
+   "credits": null,
+   "term": "Semester 6",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMF",
+   "code": "BCOE-142",
+   "title": "Management Accounting",
+   "credits": null,
+   "term": "Semester 6",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMF",
+   "code": "BANM-163",
+   "title": "Tribal Cultures of India",
+   "credits": null,
+   "term": null,
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMF",
+   "code": "BCOC-142",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCOMF",
+   "code": "BCOC-185",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCOMF",
+   "code": "BCOS-138",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCOMF",
+   "code": "BECS-184",
+   "title": "Data Analysis",
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCOMF",
+   "code": "BEGAE-142",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCOMF",
+   "code": "BEGF-101",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCOMF",
+   "code": "BEGF-104",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCOMF",
+   "code": "BEGLA-182",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCOMF",
+   "code": "BMDG-171",
+   "title": "Disability, Society and Culture",
+   "credits": null,
+   "term": null,
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMF",
+   "code": "BMS-001",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCOMF",
+   "code": "BPAS-186",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCOMF",
+   "code": "BPCC-108",
+   "title": "Statistical Methods for Psychological Research-II",
+   "credits": null,
+   "term": null,
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMF",
+   "code": "BPCC-109",
+   "title": "Developmental Psychology",
+   "credits": null,
+   "term": null,
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMF",
+   "code": "BPCC-110",
+   "title": "Applied Social Psychology",
+   "credits": null,
+   "term": null,
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMF",
+   "code": "BPCM-161",
+   "title": "Foundations of Psychology",
+   "credits": 4.0,
+   "term": null,
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMF",
+   "code": "BPCM-163",
+   "title": "Understanding Psychological Disorders",
+   "credits": null,
+   "term": null,
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMF",
+   "code": "BPCS-184",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCOMF",
+   "code": "BPCS-186",
+   "title": "Managing Stress",
+   "credits": null,
+   "term": null,
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMF",
+   "code": "BSHF-101",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCOMF",
+   "code": "BSTM-162",
+   "title": "Elementary Probability and Probability Distributions",
+   "credits": null,
+   "term": null,
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMF",
+   "code": "CPI-102",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCOMF",
+   "code": "FEG-02",
+   "title": "Foundation Course in English-2",
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCOMG",
+   "code": "BCOC-131",
+   "title": "Financial Accounting",
+   "credits": 6.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMG",
+   "code": "BCOC-132",
+   "title": "Business Organisation and Management",
+   "credits": null,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMG",
+   "code": "BCOC-136",
+   "title": "Income Tax Law and Practice",
+   "credits": null,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMG",
+   "code": "BCOS-183",
+   "title": "Computer Application in Business",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMG",
+   "code": "BEVAE-181",
+   "title": "Environmental Studies",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMG",
+   "code": "BCOC-133",
+   "title": "Business Law",
+   "credits": 6.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMG",
+   "code": "BCOC-134",
+   "title": "Business Mathematics and Statistics",
+   "credits": 6.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMG",
+   "code": "BCOC-137",
+   "title": "CORPORATE ACCOUNTING",
+   "credits": 6.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMG",
+   "code": "BCOC-138",
+   "title": "COST ACCOUNTING",
+   "credits": 6.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMG",
+   "code": "BCOLA-138",
+   "title": "BUSINESS COMMUNICATION",
+   "credits": 6.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMG",
+   "code": "BCOS-184",
+   "title": "E-Commerce",
+   "credits": 6.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMG",
+   "code": "BCOC-135",
+   "title": "Company Law",
+   "credits": null,
+   "term": "Semester 5",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMG",
+   "code": "BCOE-141",
+   "title": "Principal of Marketing",
+   "credits": 6.0,
+   "term": "Semester 5",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMG",
+   "code": "BCOE-143",
+   "title": "Fundamentals of Financial Management",
+   "credits": null,
+   "term": "Semester 5",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMG",
+   "code": "BCOG-171",
+   "title": "Principles of Micro Economics",
+   "credits": null,
+   "term": "Semester 5",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMG",
+   "code": "BCOS-185",
+   "title": "Entrepreneursihp",
+   "credits": 4.0,
+   "term": "Semester 5",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMG",
+   "code": "BCOE-142",
+   "title": "MANAGEMENT ACCOUNTING",
+   "credits": 6.0,
+   "term": "Semester 6",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMG",
+   "code": "BCOE-144",
+   "title": "Office Management and Secretarial Practices",
+   "credits": 6.0,
+   "term": "Semester 6",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMG",
+   "code": "BCOG-172",
+   "title": "INDIAN ECONOMY",
+   "credits": 6.0,
+   "term": "Semester 6",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMG",
+   "code": "BCOS-186",
+   "title": "Personal Selling and Salesmanship",
+   "credits": 6.0,
+   "term": "Semester 6",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMG",
+   "code": "BECC-101",
+   "title": "Introductory Microeconomics",
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCOMG",
+   "code": "BEDSV-101",
+   "title": "Value Education",
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCOMG",
+   "code": "BEGLA-137",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "BCOMG",
+   "code": "BHDLA-136",
+   "title": "Hindi Bhasha: Lekhan Kaushal",
+   "credits": 6.0,
+   "term": null,
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "BCOMG",
+   "code": "BRL-101",
+   "title": "Overview of Retailing",
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "CBS",
+   "code": "BCOA-001",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "admission-file"
+  },
+  {
+   "programme": "CBS",
+   "code": "CITL-001",
+   "title": "Laboratory Course",
+   "credits": null,
+   "term": null,
+   "source": "admission-file"
+  },
+  {
+   "programme": "CBS",
+   "code": "ECO-01",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "admission-file"
+  },
+  {
+   "programme": "CBS",
+   "code": "PCO-01",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "admission-file"
+  },
+  {
+   "programme": "CCITSK",
+   "code": "BPOI-006",
+   "title": "English Communication",
+   "credits": 8.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "CCITSK",
+   "code": "BPOI-007",
+   "title": "IT Skills",
+   "credits": 8.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "CIT",
+   "code": "CIT-001",
+   "title": "Fundamentals of Computer Systems",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "CIT",
+   "code": "CIT-002",
+   "title": "Introduction to Information Technology",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "CIT",
+   "code": "CIT-003",
+   "title": "Web based Technologies and Multimedia Applications",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "CIT",
+   "code": "CITL-001",
+   "title": "Laboratory Course",
+   "credits": 6.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "CMAD",
+   "code": "BCS-091",
+   "title": "Introduction to Mobile Architecture",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "CMAD",
+   "code": "BCS-092",
+   "title": "Introduction to Databases",
+   "credits": 3.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "CMAD",
+   "code": "BCS-093",
+   "title": "Introduction to Android",
+   "credits": 2.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "CMAD",
+   "code": "BCS-094",
+   "title": "Programming using Python",
+   "credits": 2.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "CMAD",
+   "code": "BCSL-091",
+   "title": "Laboratory Course (Includes practicals of BCS-092, BCS-093, and BCS-094)",
+   "credits": 5.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPC-001",
+   "title": "Management Functions and Organisational Processes",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPC-002",
+   "title": "Human Resource Management",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPC-003",
+   "title": "Business Environment",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPC-004",
+   "title": "Accounting for Managers",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPC-005",
+   "title": "Quantitative Analysis for Managerial Applications",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPC-006",
+   "title": "Marketing Management",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPC-007",
+   "title": "Business Communication",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPF-008",
+   "title": "EQUITY DERIVATIVES",
+   "credits": null,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPF-010",
+   "title": "CURRENCY AND DEBT MARKETS",
+   "credits": null,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPC-008",
+   "title": "Information Systems for Managers",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPC-009",
+   "title": "Management of Machines and Materials",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPC-010",
+   "title": "Managerial Economics",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPC-011",
+   "title": "Social Processes and Behavioural Issues",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPC-012",
+   "title": "Strategic Management",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPC-013",
+   "title": "Business Laws",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPC-014",
+   "title": "Financial Management",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPC-015",
+   "title": "Research Methodology for Management Decisions",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPC-016",
+   "title": "International Business Management",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPF-001",
+   "title": "Working Capital Management",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPF-002",
+   "title": "Capital Investment and Financing Decisions",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPF-003",
+   "title": "Management Control Systems",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPF-006",
+   "title": "Management of Financial Services",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPH-001",
+   "title": "Organisational Theory and Design",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPH-002",
+   "title": "Human Resource Development",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPH-004",
+   "title": "Industrial and Employment Relations",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPH-007",
+   "title": "Compensation and Rewards Management",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPM-001",
+   "title": "Consumer Behaviour",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPM-002",
+   "title": "Sales Management",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPM-003",
+   "title": "Product & Brand Management",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPM-005",
+   "title": "Marketing of Services",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPO-001",
+   "title": "Operations Research",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPO-002",
+   "title": "Project Management",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPO-005",
+   "title": "Logistics and Supply Chain Management",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPO-006",
+   "title": "Materials Management",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPP-001",
+   "title": "Project Report",
+   "credits": 8.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPB-005",
+   "title": "Marketing of Financial Services",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPC-017",
+   "title": "Advanced Strategic Management",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPC-018",
+   "title": "Entrepreneurship",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPC-019",
+   "title": "Total Quality Management",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPC-020",
+   "title": "Business Ethics and CSR",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPF-004",
+   "title": "Security Analysis and Portfolio Management",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPF-005",
+   "title": "International Financial Management",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPF-007",
+   "title": "Equity Markets",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPF-011",
+   "title": "Management of Insurance Services",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPH-003",
+   "title": "Human Resource Planning",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPH-005",
+   "title": "Organisational Development and Change",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPH-006",
+   "title": "Organisational Dynamics",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPH-009",
+   "title": "International Human Resource Management",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPM-004",
+   "title": "International Marketing",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPM-006",
+   "title": "Marketing Research",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPM-007",
+   "title": "Integrated Marketing Communication",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPM-008",
+   "title": "Rural Marketing",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPM-009",
+   "title": "Retail Management",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPO-003",
+   "title": "Operations Management",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPO-004",
+   "title": "Management Information Systems",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPO-007",
+   "title": "Maintenance Management",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBA",
+   "code": "MMPO-008",
+   "title": "International Logistics and Supply Chain Management",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBACN",
+   "code": "MMPC-001",
+   "title": "Management Functions and Organisational Processes",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBACN",
+   "code": "MMPC-002",
+   "title": "Human Resource Management",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBACN",
+   "code": "MMPC-003",
+   "title": "Business Environment",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBACN",
+   "code": "MMPC-004",
+   "title": "Accounting for Managers",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBACN",
+   "code": "MMPC-005",
+   "title": "Quantitative Analysis for Managerial Applications",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBACN",
+   "code": "MMPC-006",
+   "title": "Marketing Management",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBACN",
+   "code": "MMPC-007",
+   "title": "Business Communication",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBACN",
+   "code": "MMPC-008",
+   "title": "Information Systems for Managers",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBACN",
+   "code": "MMPC-009",
+   "title": "Management of Machines and Materials",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBACN",
+   "code": "MMPC-010",
+   "title": "Managerial Economics",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBACN",
+   "code": "MMPC-011",
+   "title": "Social Processes and Behavioural Issues",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBACN",
+   "code": "MMPC-012",
+   "title": "Strategic Management",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBACN",
+   "code": "MMPC-013",
+   "title": "Business Laws",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBACN",
+   "code": "MMPC-014",
+   "title": "Financial Management",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBACN",
+   "code": "MMPC-015",
+   "title": "Research Methodology for Management Decisions",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBACN",
+   "code": "MMPC-016",
+   "title": "International Business Management",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBACN",
+   "code": "MMPL-001",
+   "title": "Principles of Engineering Management And Economics",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBACN",
+   "code": "MMPL-002",
+   "title": "Inventory and Stores Management",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBACN",
+   "code": "MMPN-001",
+   "title": "Consumer Behaviour",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBACN",
+   "code": "MMPN-002",
+   "title": "Construction management - II",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBACN",
+   "code": "MMPN-003",
+   "title": "Planning and Construction of Buildings",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBACN",
+   "code": "MMPN-006",
+   "title": "Repair and Maintenance of Building",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBACN",
+   "code": "MMPC-018",
+   "title": "Entrepreneurship",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBACN",
+   "code": "MMPC-019",
+   "title": "Total Quality Management",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBACN",
+   "code": "MMPC-020",
+   "title": "Business Ethics and CSR",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBACN",
+   "code": "MMPN-004",
+   "title": "Operation and Maintenance of Construction Equipment",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBACN",
+   "code": "MMPN-005",
+   "title": "Construction Works Supervision",
+   "credits": null,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAFM",
+   "code": "MMPC-001",
+   "title": "Management Functions and Organisational Processes",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAFM",
+   "code": "MMPC-002",
+   "title": "Human Resource Management",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAFM",
+   "code": "MMPC-003",
+   "title": "Business Environment",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAFM",
+   "code": "MMPC-004",
+   "title": "Accounting for Managers",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAFM",
+   "code": "MMPC-005",
+   "title": "Quantitative Analysis for Managerial Applications",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAFM",
+   "code": "MMPC-006",
+   "title": "Marketing Management",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAFM",
+   "code": "MMPC-007",
+   "title": "Business Communication",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAFM",
+   "code": "MMPF-008",
+   "title": "EQUITY DERIVATIVES",
+   "credits": null,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAFM",
+   "code": "MMPF-010",
+   "title": "CURRENCY AND DEBT MARKETS",
+   "credits": null,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAFM",
+   "code": "MMPC-008",
+   "title": "Information Systems for Managers",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAFM",
+   "code": "MMPC-009",
+   "title": "Management of Machines and Materials",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAFM",
+   "code": "MMPC-010",
+   "title": "Managerial Economics",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAFM",
+   "code": "MMPC-011",
+   "title": "Social Processes and Behavioural Issues",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAFM",
+   "code": "MMPC-012",
+   "title": "Strategic Management",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAFM",
+   "code": "MMPC-013",
+   "title": "Business Laws",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAFM",
+   "code": "MMPC-014",
+   "title": "Financial Management",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAFM",
+   "code": "MMPC-015",
+   "title": "Research Methodology for Management Decisions",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAFM",
+   "code": "MMPC-016",
+   "title": "International Business Management",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAFM",
+   "code": "MMPF-001",
+   "title": "Working Capital Management",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAFM",
+   "code": "MMPF-002",
+   "title": "Capital Investment and Financing Decisions",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAFM",
+   "code": "MMPF-003",
+   "title": "Management Control Systems",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAFM",
+   "code": "MMPF-006",
+   "title": "Management of Financial Services",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAFM",
+   "code": "MMPP-001",
+   "title": "Project Report",
+   "credits": 8.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAFM",
+   "code": "MMPC-018",
+   "title": "Entrepreneurship",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAFM",
+   "code": "MMPC-019",
+   "title": "Total Quality Management",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAFM",
+   "code": "MMPC-020",
+   "title": "Business Ethics and CSR",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAFM",
+   "code": "MMPF-004",
+   "title": "Security Analysis and Portfolio Management",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAFM",
+   "code": "MMPF-005",
+   "title": "International Financial Management",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAFM",
+   "code": "MMPF-007",
+   "title": "Equity Markets",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAFM",
+   "code": "MMPF-011",
+   "title": "Management of Insurance Services",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHCHM",
+   "code": "MMPC-001",
+   "title": "Management Functions and Organisational Processes",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHCHM",
+   "code": "MMPC-002",
+   "title": "Human Resource Management",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHCHM",
+   "code": "MMPC-003",
+   "title": "Business Environment",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHCHM",
+   "code": "MMPC-004",
+   "title": "Accounting for Managers",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHCHM",
+   "code": "MMPC-005",
+   "title": "Quantitative Analysis for Managerial Applications",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHCHM",
+   "code": "MMPC-006",
+   "title": "Marketing Management",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHCHM",
+   "code": "MMPC-007",
+   "title": "Business Communication",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHCHM",
+   "code": "MMPC-008",
+   "title": "Information Systems for Managers",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHCHM",
+   "code": "MMPC-009",
+   "title": "Management of Machines and Materials",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHCHM",
+   "code": "MMPC-010",
+   "title": "Managerial Economics",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHCHM",
+   "code": "MMPC-011",
+   "title": "Social Processes and Behavioural Issues",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHCHM",
+   "code": "MMPC-012",
+   "title": "Strategic Management",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHCHM",
+   "code": "MMPC-013",
+   "title": "Business Laws",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHCHM",
+   "code": "MMPC-014",
+   "title": "Financial Management",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHCHM",
+   "code": "MHH-011",
+   "title": "Hospital planning and Administration",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHCHM",
+   "code": "MHH-012",
+   "title": "Clinical and Diagnostic Services",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHCHM",
+   "code": "MHH-013",
+   "title": "Support and Utility Services",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHCHM",
+   "code": "MHH-014",
+   "title": "Health Care Delivery System -an Overview",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHCHM",
+   "code": "MHHL-020",
+   "title": "Practicum",
+   "credits": 6.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHCHM",
+   "code": "MHHP-021",
+   "title": "Project",
+   "credits": 6.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHCHM",
+   "code": "MHH-015",
+   "title": "Health Economics",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHCHM",
+   "code": "MHH-016",
+   "title": "Operations management in health care",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHCHM",
+   "code": "MHH-017",
+   "title": "Supply Chain Management",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHCHM",
+   "code": "MHH-018",
+   "title": "Legal and Ethical Aspects in Healthcare Management",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHCHM",
+   "code": "MHH-019",
+   "title": "Emerging issues in Health Care Management",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHCHM",
+   "code": "MHHT-022",
+   "title": "Internship",
+   "credits": 8.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHM",
+   "code": "MMPC-001",
+   "title": "Management Functions and Organisational Processes",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHM",
+   "code": "MMPC-002",
+   "title": "Human Resource Management",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHM",
+   "code": "MMPC-003",
+   "title": "Business Environment",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHM",
+   "code": "MMPC-004",
+   "title": "Accounting for Managers",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHM",
+   "code": "MMPC-005",
+   "title": "Quantitative Analysis for Managerial Applications",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHM",
+   "code": "MMPC-006",
+   "title": "Marketing Management",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHM",
+   "code": "MMPC-007",
+   "title": "Business Communication",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHM",
+   "code": "MMPC-008",
+   "title": "Information Systems for Managers",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHM",
+   "code": "MMPC-009",
+   "title": "Management of Machines and Materials",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHM",
+   "code": "MMPC-010",
+   "title": "Managerial Economics",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHM",
+   "code": "MMPC-011",
+   "title": "Social Processes and Behavioural Issues",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHM",
+   "code": "MMPC-012",
+   "title": "Strategic Management",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHM",
+   "code": "MMPC-013",
+   "title": "Business Laws",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHM",
+   "code": "MMPC-014",
+   "title": "Financial Management",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHM",
+   "code": "MMPC-015",
+   "title": "Research Methodology for Management Decisions",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHM",
+   "code": "MMPC-016",
+   "title": "International Business Management",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHM",
+   "code": "MMPH-001",
+   "title": "Organisational Theory and Design",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHM",
+   "code": "MMPH-002",
+   "title": "Human Resource Development",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHM",
+   "code": "MMPH-004",
+   "title": "Industrial and Employment Relations",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHM",
+   "code": "MMPH-007",
+   "title": "Compensation and Rewards Management",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHM",
+   "code": "MMPP-001",
+   "title": "Project Report",
+   "credits": 8.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHM",
+   "code": "MMPC-017",
+   "title": "Advanced Strategic Management",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHM",
+   "code": "MMPC-018",
+   "title": "Entrepreneurship",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHM",
+   "code": "MMPC-020",
+   "title": "Business Ethics and CSR",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHM",
+   "code": "MMPH-003",
+   "title": "Human Resource Planning",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHM",
+   "code": "MMPH-005",
+   "title": "Organisational Development and Change",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHM",
+   "code": "MMPH-006",
+   "title": "Organisational Dynamics",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHM",
+   "code": "MMPH-009",
+   "title": "International Human Resource Management",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAHRM",
+   "code": "MMPC-015",
+   "title": "Research Methodology for Management Decisions",
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "MBAHRM",
+   "code": "MMPC-016",
+   "title": "International Business Management",
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "MBAHRM",
+   "code": "MMPH-001",
+   "title": "Organisational Theory and Design",
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "MBAHRM",
+   "code": "MMPH-002",
+   "title": "Human Resource Development",
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "MBAHRM",
+   "code": "MMPH-004",
+   "title": "Industrial and Employment Relations",
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "MBAHRM",
+   "code": "MMPH-007",
+   "title": "Compensation and Rewards Management",
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "MBALS",
+   "code": "MMPC-001",
+   "title": "Management Functions and Organisational Processes",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBALS",
+   "code": "MMPC-002",
+   "title": "Human Resource Management",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBALS",
+   "code": "MMPC-003",
+   "title": "Business Environment",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBALS",
+   "code": "MMPC-004",
+   "title": "Accounting for Managers",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBALS",
+   "code": "MMPC-005",
+   "title": "Quantitative Analysis for Managerial Applications",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBALS",
+   "code": "MMPC-006",
+   "title": "Marketing Management",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBALS",
+   "code": "MMPC-007",
+   "title": "Business Communication",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBALS",
+   "code": "MMPC-008",
+   "title": "Information Systems for Managers",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBALS",
+   "code": "MMPC-009",
+   "title": "Management of Machines and Materials",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBALS",
+   "code": "MMPC-010",
+   "title": "Managerial Economics",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBALS",
+   "code": "MMPC-011",
+   "title": "Social Processes and Behavioural Issues",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBALS",
+   "code": "MMPC-012",
+   "title": "Strategic Management",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBALS",
+   "code": "MMPC-013",
+   "title": "Business Laws",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBALS",
+   "code": "MMPC-014",
+   "title": "Financial Management",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBALS",
+   "code": "MMPC-015",
+   "title": "Research Methodology for Management Decisions",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBALS",
+   "code": "MMPC-016",
+   "title": "International Business Management",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBALS",
+   "code": "MMPL-001",
+   "title": "Principles of Engineering Management And Economics",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBALS",
+   "code": "MMPL-002",
+   "title": "Inventory and Stores Management",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBALS",
+   "code": "MMPLP-001",
+   "title": "Project Course",
+   "credits": 8.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBALS",
+   "code": "MMPO-002",
+   "title": "Project Management",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBALS",
+   "code": "MMPO-005",
+   "title": "Logistics and Supply Chain Management",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBALS",
+   "code": "MMPC-019",
+   "title": "Total Quality Management",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBALS",
+   "code": "MMPC-020",
+   "title": "Business Ethics and CSR",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBALS",
+   "code": "MMPL-003",
+   "title": "Data Analytics And Supply Chain Management",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBALS",
+   "code": "MMPL-004",
+   "title": "Supply Chain Technology and Information Systems",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBALS",
+   "code": "MMPO-003",
+   "title": "Operations Management",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBALS",
+   "code": "MMPO-004",
+   "title": "Management Information Systems",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBALS",
+   "code": "MMPO-008",
+   "title": "International Logistics and Supply Chain Management",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAMM",
+   "code": "MMPC-001",
+   "title": "Management Functions and Organisational Processes",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAMM",
+   "code": "MMPC-002",
+   "title": "Human Resource Management",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAMM",
+   "code": "MMPC-003",
+   "title": "Business Environment",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAMM",
+   "code": "MMPC-004",
+   "title": "Accounting for Managers",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAMM",
+   "code": "MMPC-005",
+   "title": "Quantitative Analysis for Managerial Applications",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAMM",
+   "code": "MMPC-006",
+   "title": "Marketing Management",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAMM",
+   "code": "MMPC-007",
+   "title": "Business Communication",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAMM",
+   "code": "MMPC-008",
+   "title": "Information Systems for Managers",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAMM",
+   "code": "MMPC-009",
+   "title": "Management of Machines and Materials",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAMM",
+   "code": "MMPC-010",
+   "title": "Managerial Economics",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAMM",
+   "code": "MMPC-011",
+   "title": "Social Processes and Behavioural Issues",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAMM",
+   "code": "MMPC-012",
+   "title": "Strategic Management",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAMM",
+   "code": "MMPC-013",
+   "title": "Business Laws",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAMM",
+   "code": "MMPC-014",
+   "title": "Financial Management",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAMM",
+   "code": "MMPC-015",
+   "title": "Research Methodology for Management Decisions",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAMM",
+   "code": "MMPC-016",
+   "title": "International Business Management",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAMM",
+   "code": "MMPM-001",
+   "title": "Consumer Behaviour",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAMM",
+   "code": "MMPM-002",
+   "title": "Sales Management",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAMM",
+   "code": "MMPM-003",
+   "title": "Product & Brand Management",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAMM",
+   "code": "MMPM-005",
+   "title": "Marketing of Services",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAMM",
+   "code": "MMPP-001",
+   "title": "Project Report",
+   "credits": 8.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAMM",
+   "code": "MMPC-017",
+   "title": "Advanced Strategic Management",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAMM",
+   "code": "MMPC-018",
+   "title": "Entrepreneurship",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAMM",
+   "code": "MMPC-020",
+   "title": "Business Ethics and CSR",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAMM",
+   "code": "MMPM-004",
+   "title": "International Marketing",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAMM",
+   "code": "MMPM-006",
+   "title": "Marketing Research",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAMM",
+   "code": "MMPM-007",
+   "title": "Integrated Marketing Communication",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAMM",
+   "code": "MMPM-008",
+   "title": "Rural Marketing",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAMM",
+   "code": "MMPM-009",
+   "title": "Retail Management",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAOM",
+   "code": "MMPC-001",
+   "title": "Management Functions and Organisational Processes",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAOM",
+   "code": "MMPC-002",
+   "title": "Human Resource Management",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAOM",
+   "code": "MMPC-003",
+   "title": "Business Environment",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAOM",
+   "code": "MMPC-004",
+   "title": "Accounting for Managers",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAOM",
+   "code": "MMPC-005",
+   "title": "Quantitative Analysis for Managerial Applications",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAOM",
+   "code": "MMPC-006",
+   "title": "Marketing Management",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAOM",
+   "code": "MMPC-007",
+   "title": "Business Communication",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAOM",
+   "code": "MMPC-008",
+   "title": "Information Systems for Managers",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAOM",
+   "code": "MMPC-009",
+   "title": "Management of Machines and Materials",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAOM",
+   "code": "MMPC-010",
+   "title": "Managerial Economics",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAOM",
+   "code": "MMPC-011",
+   "title": "Social Processes and Behavioural Issues",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAOM",
+   "code": "MMPC-012",
+   "title": "Strategic Management",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAOM",
+   "code": "MMPC-013",
+   "title": "Business Laws",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAOM",
+   "code": "MMPC-014",
+   "title": "Financial Management",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAOM",
+   "code": "MMPC-015",
+   "title": "Research Methodology for Management Decisions",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAOM",
+   "code": "MMPC-016",
+   "title": "International Business Management",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAOM",
+   "code": "MMPO-001",
+   "title": "Operations Research",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAOM",
+   "code": "MMPO-002",
+   "title": "Project Management",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAOM",
+   "code": "MMPO-005",
+   "title": "Logistics and Supply Chain Management",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAOM",
+   "code": "MMPO-006",
+   "title": "Materials Management",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAOM",
+   "code": "MMPP-001",
+   "title": "Project Report",
+   "credits": 8.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAOM",
+   "code": "MMPC-018",
+   "title": "Entrepreneurship",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAOM",
+   "code": "MMPC-019",
+   "title": "Total Quality Management",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAOM",
+   "code": "MMPC-020",
+   "title": "Business Ethics and CSR",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAOM",
+   "code": "MMPO-003",
+   "title": "Operations Management",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAOM",
+   "code": "MMPO-004",
+   "title": "Management Information Systems",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAOM",
+   "code": "MMPO-007",
+   "title": "Maintenance Management",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MBAOM",
+   "code": "MMPO-008",
+   "title": "International Logistics and Supply Chain Management",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MCA_NEW",
+   "code": "MCS-211",
+   "title": "Design and Analysis of Algorithms",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MCA_NEW",
+   "code": "MCS-212",
+   "title": "Discrete Mathematics",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MCA_NEW",
+   "code": "MCS-213",
+   "title": "Software Engineering",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MCA_NEW",
+   "code": "MCS-214",
+   "title": "Professional Skills and Ethics",
+   "credits": 2.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MCA_NEW",
+   "code": "MCS-215",
+   "title": "Security and Cyber Laws",
+   "credits": 2.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MCA_NEW",
+   "code": "MCSL-216",
+   "title": "DAA and Web Design Lab",
+   "credits": 2.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MCA_NEW",
+   "code": "MCSL-217",
+   "title": "Software Engineering Lab",
+   "credits": 2.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MCA_NEW",
+   "code": "MCS-218",
+   "title": "Data Communication and Computer Networks",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MCA_NEW",
+   "code": "MCS-219",
+   "title": "Object Oriented Analysis and Design",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MCA_NEW",
+   "code": "MCS-220",
+   "title": "Web Technologies",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MCA_NEW",
+   "code": "MCS-221",
+   "title": "Data Warehousing and Data Mining",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MCA_NEW",
+   "code": "MCSL-222",
+   "title": "OOAD and Web Technologies Lab",
+   "credits": 2.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MCA_NEW",
+   "code": "MCSL-223",
+   "title": "Computer Networks and Data Mining Lab",
+   "credits": 2.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MCA_NEW",
+   "code": "MCS-224",
+   "title": "Artificial Intelligence and Machine Learning",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MCA_NEW",
+   "code": "MCS-225",
+   "title": "Accountancy and Financial Management",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MCA_NEW",
+   "code": "MCS-226",
+   "title": "Data Science and Big Data",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MCA_NEW",
+   "code": "MCS-227",
+   "title": "Cloud Computing and IoT",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MCA_NEW",
+   "code": "MCSL-228",
+   "title": "AI and Machine Learning Lab",
+   "credits": 2.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MCA_NEW",
+   "code": "MCSL-229",
+   "title": "Cloud and Data Science Lab",
+   "credits": 2.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MCA_NEW",
+   "code": "MCS-230",
+   "title": "Digital Image Processing and Computer Vision",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MCA_NEW",
+   "code": "MCS-231",
+   "title": "Mobile Computing",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MCA_NEW",
+   "code": "MCSP-232",
+   "title": "Project",
+   "credits": 12.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MCA_NEW",
+   "code": "MCS-201",
+   "title": "Programming in C and Python",
+   "credits": 4.0,
+   "term": "Year 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MCA_NEW",
+   "code": "MCS-208",
+   "title": "Data Structures and Algorithms",
+   "credits": 4.0,
+   "term": "Year 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MCA_NEW",
+   "code": "BCS-040",
+   "title": "Statistical Techniques",
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "MCA_NEW",
+   "code": "BCS-131",
+   "title": "Programming in C++",
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "MCA_NEW",
+   "code": "BCSL-135",
+   "title": "DBMS and C++ Lab",
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "MCA_NEW",
+   "code": "MCS-207",
+   "title": "Database Management Systems",
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "MCA_NEW",
+   "code": "MCSL-209",
+   "title": "Data Structures and Algorithms Lab",
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "MCA_NEW",
+   "code": "MCSL-214",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "MCA_NEW",
+   "code": "MCSL-215",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "MCOM",
+   "code": "MCO-01",
+   "title": "Organization Theory and Behavior",
+   "credits": 6.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MCOM",
+   "code": "MCO-04",
+   "title": "Business Environment",
+   "credits": 6.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MCOM",
+   "code": "MCO-05",
+   "title": "Accounting for Managerial Decisions",
+   "credits": 6.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MCOM",
+   "code": "MCO-21",
+   "title": "Managerial Economics",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MCOM",
+   "code": "MCO-06",
+   "title": "Marketing Management",
+   "credits": 6.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MCOM",
+   "code": "MCO-22",
+   "title": "Quantitative Analysis for Managerial Applications",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MCOM",
+   "code": "MCO-23",
+   "title": "Strategic Management",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MCOM",
+   "code": "MCO-24",
+   "title": "Business Ethics and CSR",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MCOM",
+   "code": "IBO-02",
+   "title": "International Marketing Management",
+   "credits": 6.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MCOM",
+   "code": "MCO-03",
+   "title": "Research Methodology and Statistical Analysis",
+   "credits": 6.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MCOM",
+   "code": "MCO-07",
+   "title": "Financial Management",
+   "credits": 6.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MCOM",
+   "code": "MCO-15",
+   "title": "India's Foreign Trade and Investment",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MCOM",
+   "code": "IBO-01",
+   "title": "International Business Environment",
+   "credits": 6.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MCOM",
+   "code": "IBO-06",
+   "title": "International Business Finance",
+   "credits": 6.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MCOM",
+   "code": "MCOP-001",
+   "title": "Project Course",
+   "credits": 6.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MCOM",
+   "code": "IBO-03",
+   "title": "India's Foreign Trade",
+   "credits": null,
+   "term": null,
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MCOM",
+   "code": "IBO-04",
+   "title": "Export Import Procedures and Documentation",
+   "credits": null,
+   "term": null,
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MCOM",
+   "code": "IBO-05",
+   "title": "International Marketing Logistics",
+   "credits": null,
+   "term": null,
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCAIML",
+   "code": "MCS-061",
+   "title": "Mathematical Foundations - I",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCAIML",
+   "code": "MCS-081",
+   "title": "Artificial Intelligence",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCAIML",
+   "code": "MCS-082",
+   "title": "Programming Using Python",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCAIML",
+   "code": "MCS-208",
+   "title": "Data Structures and Algorithms",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCAIML",
+   "code": "MCSL-083",
+   "title": "Programming & AI Lab",
+   "credits": 2.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCAIML",
+   "code": "MCSL-209",
+   "title": "Data Structures and Algorithms Lab",
+   "credits": 2.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCAIML",
+   "code": "MCS-066",
+   "title": "Mathematical Foundations - II",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCAIML",
+   "code": "MCS-084",
+   "title": "Machine Learning",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCAIML",
+   "code": "MCS-085",
+   "title": "Pattern Recognition",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCAIML",
+   "code": "MCS-207",
+   "title": "Database Management Systems",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCAIML",
+   "code": "MCSL-086",
+   "title": "Machine Learning and Pattern Recognition Lab",
+   "credits": 2.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCAIML",
+   "code": "MCSL-087",
+   "title": "Database Management Systems Lab",
+   "credits": 2.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCAIML",
+   "code": "MCS-072",
+   "title": "Deep Learning",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCAIML",
+   "code": "MCS-077",
+   "title": "Natural Language Processing",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCAIML",
+   "code": "MCS-227",
+   "title": "Cloud Computing & IOT",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCAIML",
+   "code": "MCS-230",
+   "title": "Digital Image Processing and Computer Vision",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCAIML",
+   "code": "MCSL-076",
+   "title": "Deep Learning Lab",
+   "credits": 2.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCAIML",
+   "code": "MCSL-088",
+   "title": "Digital Image Processing and Computer Vision Lab",
+   "credits": 2.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCAIML",
+   "code": "MCS-073",
+   "title": "Soft Computing",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCAIML",
+   "code": "MCS-089",
+   "title": "Reinforcement Learning",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCAIML",
+   "code": "MCSP-090",
+   "title": "Project Work",
+   "credits": 12.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCAIML",
+   "code": "MCSL-208",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "MSCDSA",
+   "code": "MCS-061",
+   "title": "Mathematical Foundations - I",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCDSA",
+   "code": "MCS-062",
+   "title": "Introduction to Data Science",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCDSA",
+   "code": "MCS-063",
+   "title": "Data Structures using Python",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCDSA",
+   "code": "MCS-207",
+   "title": "Database Management Systems",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCDSA",
+   "code": "MCSL-064",
+   "title": "Database Management Systems",
+   "credits": 2.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCDSA",
+   "code": "MCSL-065",
+   "title": "Data Science Lab",
+   "credits": 2.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCDSA",
+   "code": "MCS-066",
+   "title": "Mathematical Foundations - II",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCDSA",
+   "code": "MCS-067",
+   "title": "Data Wrangling and Visualization",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCDSA",
+   "code": "MCS-068",
+   "title": "Predictive Data Analysis",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCDSA",
+   "code": "MCS-224",
+   "title": "Artificial Intelligence and Machine Learning",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCDSA",
+   "code": "MCSL-069",
+   "title": "Artificial Intelligence and Machine Learning Lab",
+   "credits": 2.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCDSA",
+   "code": "MCSL-070",
+   "title": "Data Analysis Lab",
+   "credits": 2.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCDSA",
+   "code": "MCS-071",
+   "title": "Big Data Analytics",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCDSA",
+   "code": "MCS-072",
+   "title": "Deep Learning",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCDSA",
+   "code": "MCS-073",
+   "title": "Soft Computing",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCDSA",
+   "code": "MCS-074",
+   "title": "Cloud Computing",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCDSA",
+   "code": "MCSL-075",
+   "title": "Big Data Analytics Lab",
+   "credits": 2.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCDSA",
+   "code": "MCSL-076",
+   "title": "Deep Learning Lab",
+   "credits": 2.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCDSA",
+   "code": "MCS-077",
+   "title": "Natural Language Processing",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCDSA",
+   "code": "MCS-078",
+   "title": "Data Security",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCDSA",
+   "code": "MCSP-079",
+   "title": "Project Work",
+   "credits": 12.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCIS",
+   "code": "MSE-024",
+   "title": "Policy, Standards and Laws",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCIS",
+   "code": "MSEI-021",
+   "title": "Introduction to Information Security",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCIS",
+   "code": "MSEI-022",
+   "title": "Network Security",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCIS",
+   "code": "MSEI-023",
+   "title": "Cyber Security",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCIS",
+   "code": "MSEI-025",
+   "title": "Application and Business Security Developments",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCIS",
+   "code": "MSEI-026",
+   "title": "BCP, DR Planning Audit",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCIS",
+   "code": "MSEI-027",
+   "title": "Digital Forensics",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCIS",
+   "code": "MSEP-028",
+   "title": "Project-I",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCIS",
+   "code": "MCS-226",
+   "title": "Data Science and Big Data",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCIS",
+   "code": "MSE-029",
+   "title": "Cyber Attack: Use of Technology in Cyberspace",
+   "credits": 2.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCIS",
+   "code": "MSE-030",
+   "title": "Cloud and Infrastructure Security",
+   "credits": 2.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCIS",
+   "code": "MSE-031",
+   "title": "Cyber Security using Python",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCIS",
+   "code": "MSEL-032",
+   "title": "Practical (Cyber Attacks, Cloud Security and Data Recovery etc.)",
+   "credits": 4.0,
+   "term": "Semester 3",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCIS",
+   "code": "MSE-033",
+   "title": "Web Application Testing and Audit",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCIS",
+   "code": "MSE-034",
+   "title": "E-commerce and Cyberspace",
+   "credits": 2.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCIS",
+   "code": "MSE-035",
+   "title": "IoT Security",
+   "credits": 2.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCIS",
+   "code": "MSE-036",
+   "title": "Latest Trends in Information and Cyber Security",
+   "credits": 2.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCIS",
+   "code": "MSEL-037",
+   "title": "Practical (Web Application, Audits, e-commerce security and IoT)",
+   "credits": 4.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "MSCIS",
+   "code": "MSEP-038",
+   "title": "Project-II",
+   "credits": 2.0,
+   "term": "Semester 4",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "PGCCL",
+   "code": "MIR-111",
+   "title": "Cyberspace Technology and Social Issues",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "PGCCL",
+   "code": "MIR-112",
+   "title": "Regulation of Cyberspace",
+   "credits": 6.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "PGCCL",
+   "code": "MIR-113",
+   "title": "Commerce and Cyberspace",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "PGCCL",
+   "code": "MIR-114",
+   "title": "Privacy and Data Protection",
+   "credits": 6.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "PGDCA_NEW",
+   "code": "MCS-201",
+   "title": "Programming in C and Python",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "PGDCA_NEW",
+   "code": "MCS-202",
+   "title": "Computer Organisation",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "PGDCA_NEW",
+   "code": "MCS-203",
+   "title": "Operating Systems",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "PGDCA_NEW",
+   "code": "MCSL-204",
+   "title": "WINDOWS and LINUX Lab",
+   "credits": 2.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "PGDCA_NEW",
+   "code": "MCSL-205",
+   "title": "C and Python Lab",
+   "credits": 2.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "PGDCA_NEW",
+   "code": "MCS-206",
+   "title": "Object Oriented Programming using Java",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "PGDCA_NEW",
+   "code": "MCS-207",
+   "title": "Database Management Systems",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "PGDCA_NEW",
+   "code": "MCS-208",
+   "title": "Data Structures and Algorithms",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "PGDCA_NEW",
+   "code": "MCSL-209",
+   "title": "Data Structures and Algorithms Lab",
+   "credits": 2.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "PGDCA_NEW",
+   "code": "MCSL-210",
+   "title": "DBMS and Java Lab",
+   "credits": 2.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "PGDCA_NEW",
+   "code": "BCS-012",
+   "title": "Basic Mathematics",
+   "credits": null,
+   "term": null,
+   "source": "admission-file"
+  },
+  {
+   "programme": "PGDCA_NEW",
+   "code": "BCS-102",
+   "title": null,
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "PGDIBO",
+   "code": "IBO-01",
+   "title": "International Business Environment",
+   "credits": 6.0,
+   "term": null,
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "PGDIBO",
+   "code": "IBO-02",
+   "title": "International Marketing Management",
+   "credits": 6.0,
+   "term": null,
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "PGDIBO",
+   "code": "IBO-03",
+   "title": "India's Foreign Trade",
+   "credits": null,
+   "term": null,
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "PGDIBO",
+   "code": "IBO-04",
+   "title": "Export Import Procedures and Documentation",
+   "credits": null,
+   "term": null,
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "PGDIBO",
+   "code": "IBO-05",
+   "title": "International Marketing Logistics",
+   "credits": null,
+   "term": null,
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "PGDIBO",
+   "code": "IBO-06",
+   "title": "International Business Finance",
+   "credits": 6.0,
+   "term": null,
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "PGDIHRM",
+   "code": "MMPC-001",
+   "title": "Management Functions and Organisational Processes",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "PGDIHRM",
+   "code": "MMPC-011",
+   "title": "Social Processes and Behavioural Issues",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "PGDIHRM",
+   "code": "MMPH-001",
+   "title": "Organisational Theory and Design",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "PGDIHRM",
+   "code": "MMPH-002",
+   "title": "Human Resource Development",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "PGDIHRM",
+   "code": "MMPH-004",
+   "title": "Industrial and Employment Relations",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "PGDIHRM",
+   "code": "MMPH-009",
+   "title": "International Human Resource Management",
+   "credits": 4.0,
+   "term": "Semester 1",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "PGDIHRM",
+   "code": "MMPH-003",
+   "title": "Human Resource Planning",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "PGDIHRM",
+   "code": "MMPH-005",
+   "title": "Organisational Development and Change",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "PGDIHRM",
+   "code": "MMPH-006",
+   "title": "Organisational Dynamics",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "PGDIHRM",
+   "code": "MMPH-007",
+   "title": "Compensation and Rewards Management",
+   "credits": 4.0,
+   "term": "Semester 2",
+   "source": "ignou.ac.in"
+  },
+  {
+   "programme": "PGDIHRM",
+   "code": "MMPC-002",
+   "title": "Human Resource Management",
+   "credits": null,
+   "term": null,
+   "source": "admission-file"
+  },
+  {
+   "programme": "PGIHRM",
+   "code": "MMPC-002",
+   "title": "Human Resource Management",
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "PGIHRM",
+   "code": "MMPC-011",
+   "title": "Social Processes and Behavioural Issues",
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "PGIHRM",
+   "code": "MMPH-001",
+   "title": "Organisational Theory and Design",
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "PGIHRM",
+   "code": "MMPH-002",
+   "title": "Human Resource Development",
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  },
+  {
+   "programme": "PGIHRM",
+   "code": "MMPH-007",
+   "title": "Compensation and Rewards Management",
+   "credits": null,
+   "term": null,
+   "source": "assignment-sheet"
+  }
+ ]
+}

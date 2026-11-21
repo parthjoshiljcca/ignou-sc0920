@@ -7,8 +7,9 @@ import { Field } from "@/components/ui";
 import { FormMessage, SubmitButton, ActionForm } from "@/components/form-bits";
 import { CoursePicker } from "@/components/course-picker";
 
-export function StudentSubmitForm({ terms, alreadyByTerm, suggestions, allCodes, today }: {
-  terms: string[]; alreadyByTerm: Record<string, string[]>; suggestions: string[]; allCodes: string[]; today: string;
+export function StudentSubmitForm({ terms, alreadyByTerm, suggestions, allCodes, titles, semesters, today }: {
+  terms: string[]; alreadyByTerm: Record<string, string[]>; suggestions: string[]; allCodes: string[];
+  titles: Record<string, string>; semesters: Record<string, string>; today: string;
 }) {
   const [state, action] = useActionState(createSubmissionRequestAction, undefined);
   const [term, setTerm] = useState(terms[0]);
@@ -21,7 +22,7 @@ export function StudentSubmitForm({ terms, alreadyByTerm, suggestions, allCodes,
       </Field>
       <div>
         <p className="mb-1.5 text-sm font-medium">Courses you are submitting</p>
-        <CoursePicker key={term} suggestions={suggestions} allCodes={allCodes} already={alreadyByTerm[term] ?? []} />
+        <CoursePicker key={term} suggestions={suggestions} allCodes={allCodes} titles={titles} terms={semesters} already={alreadyByTerm[term] ?? []} />
       </div>
       <p className="text-sm text-muted">Submission date: <b className="text-text">{today}</b></p>
       <Field label="Submission PIN" htmlFor="pin" hint="Ask the coordinator at the study centre when you hand in your assignments.">

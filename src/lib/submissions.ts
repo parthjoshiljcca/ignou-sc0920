@@ -5,6 +5,7 @@ import { db, schema } from "@/db";
 import { ensureReceipts } from "./assignments";
 import { TERM_RE } from "./assignment-status";
 import { isPlaceholderName } from "./text";
+import { canonicalCourse, knownCourseMap } from "./course-codes";
 
 /* ------------------------------ settings ------------------------------ */
 
@@ -49,19 +50,13 @@ export async function acceptingTerms() {
 
 /* ------------------------------- courses ------------------------------ */
 
-/** "mcs 211" / "MCS211" / "mcs-211" → "MCS-211"; returns null if it isn't a course code. */
-export function normalizeCourse(raw: string) {
-  const s = raw.trim().toUpperCase().replace(/\s+/g, "");
-  const m = s.match(/^([A-Z]{2,8})-?(\d{1,4}[A-Z]{0,2})$/);
-  return m ? `${m[1]}-${m[2]}` : null;
-}
-
-export function parseCourses(raw: string) {
+/** Split typed courses (comma/semicolon/new line) and convert each to its canonical code. */
+export function parseCourses(raw: string, known?: Map<string, string>) {
   const parts = raw.split(/[,;\n]+/).map((p) => p.trim()).filter(Boolean);
   const ok: string[] = [];
   const bad: string[] = [];
   for (const p of parts) {
-    const c = normalizeCourse(p);
+    const c = canonicalCourse(p, known);
     if (c) {
       if (!ok.includes(c)) ok.push(c);
     } else bad.push(p);
@@ -69,13 +64,37 @@ export function parseCourses(raw: string) {
   return { ok, bad };
 }
 
-/** Course codes seen for a programme (for suggestions), most common first. */
+const sameProgramme = (col: ReturnType<typeof sql>, programme: string) =>
+  sql`(${col} = ${programme} or replace(${col}, '_', '') = replace(${programme}, '_', ''))`;
+
+/** A programme's courses for suggestions: official list in semester order, then codes seen in the centre's data. */
 export async function courseSuggestions(programme: string | null) {
+  if (!programme) return (await allCourseCodes()).slice(0, 60);
   const res = await db.execute<{ c: string }>(sql`
-    select s.course_code c from assignment_submissions s left join roster r on r.enrollment_no = s.enrollment_no
-    where ${programme ? sql`coalesce(r.programme, s.programme) = ${programme} or replace(coalesce(r.programme, ''), '_', '') = replace(${programme}, '_', '') or s.programme = replace(${programme}, '_', '')` : sql`true`}
-    group by s.course_code order by count(*) desc, s.course_code limit 60`);
+    with official as (
+      select course_code c, min(coalesce(term, 'zz')) t from programme_courses where ${sameProgramme(sql`programme`, programme)} group by 1
+    ), seen as (
+      select s.course_code c, count(*) n from assignment_submissions s left join roster r on r.enrollment_no = s.enrollment_no
+      where ${sameProgramme(sql`coalesce(r.programme, s.programme)`, programme)} group by 1
+    )
+    select coalesce(o.c, s.c) c from official o full join seen s on s.c = o.c
+    order by (o.c is null), o.t, s.n desc nulls last, 1`);
   return res.rows.map((r) => r.c);
+}
+
+/** Titles of every known course, and the semester of each course within one programme. */
+export async function courseCatalog(programme?: string | null) {
+  const res = await db.execute<{ c: string; title: string | null; term: string | null }>(sql`
+    select course_code c, max(title) title,
+           ${programme ? sql`min(term) filter (where ${sameProgramme(sql`programme`, programme)})` : sql`null`} term
+    from programme_courses group by 1`);
+  const titles: Record<string, string> = {};
+  const terms: Record<string, string> = {};
+  for (const r of res.rows) {
+    if (r.title) titles[r.c] = r.title;
+    if (r.term) terms[r.c] = r.term;
+  }
+  return { titles, terms };
 }
 
 /* ------------------------------- students ----------------------------- */
@@ -158,8 +177,17 @@ export async function pendingRequests() {
     where q.status = 'pending' order by q.created_at`);
 }
 
-/** Every course code the centre has seen, most common first (for type-ahead). */
+/** Every known course code (programme lists + the centre's data), most used first — for type-ahead. */
 export async function allCourseCodes() {
-  const res = await db.execute<{ c: string }>(sql`select course_code c from assignment_submissions group by course_code order by count(*) desc, course_code`);
+  const res = await db.execute<{ c: string }>(sql`
+    select c from (
+      select course_code c, count(*) n from assignment_submissions group by 1
+      union all
+      select course_code c, 0 n from programme_courses
+    ) x group by c order by sum(n) desc, c`);
   return res.rows.map((r) => r.c);
+}
+
+export async function knownCourses() {
+  return knownCourseMap(await allCourseCodes());
 }

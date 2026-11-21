@@ -9,9 +9,10 @@ import { CoursePicker } from "@/components/course-picker";
 
 type Lookup = Awaited<ReturnType<typeof lookupStudentAction>>;
 
-export function RecordSubmissionForm({ terms, defaultTerm, today, programmes, suggestionsByProgramme, allCourses }: {
+export function RecordSubmissionForm({ terms, defaultTerm, today, programmes, suggestionsByProgramme, termsByProgramme, titles, allCourses }: {
   terms: { name: string; accepting: boolean }[]; defaultTerm: string; today: string; programmes: string[];
-  suggestionsByProgramme: Record<string, string[]>; allCourses: string[];
+  suggestionsByProgramme: Record<string, string[]>; termsByProgramme: Record<string, Record<string, string>>;
+  titles: Record<string, string>; allCourses: string[];
 }) {
   const [state, action] = useActionState(recordSubmissionAction, undefined);
   const [enrol, setEnrol] = useState("");
@@ -23,7 +24,9 @@ export function RecordSubmissionForm({ terms, defaultTerm, today, programmes, su
   const fetchStudent = (e = enrol, t = term) => start(async () => setInfo(await lookupStudentAction(e, t)));
   const ok = info && !("error" in info);
   const programme = ok ? (info.found ? info.programme : newProg || info.programmeHint || "") : "";
-  const sugg = (programme && (suggestionsByProgramme[programme] ?? suggestionsByProgramme[programme.replace(/_/g, "")])) || allCourses.slice(0, 60);
+  const progKey = programme && (suggestionsByProgramme[programme] ? programme : programme.replace(/_/g, ""));
+  const sugg = (progKey && suggestionsByProgramme[progKey]) || allCourses.slice(0, 60);
+  const semesters = (progKey && termsByProgramme[progKey]) || {};
 
   return (
     <ActionForm action={action} className="space-y-5">
@@ -83,7 +86,7 @@ export function RecordSubmissionForm({ terms, defaultTerm, today, programmes, su
           </Field>
           <div>
             <p className="mb-1.5 text-sm font-medium">Courses submitted *</p>
-            <CoursePicker key={`${info.enrollmentNo}-${term}`} suggestions={sugg} allCodes={allCourses} already={info.already} />
+            <CoursePicker key={`${info.enrollmentNo}-${term}`} suggestions={sugg} allCodes={allCourses} titles={titles} terms={semesters} already={info.already} />
           </div>
           <FormMessage state={state} />
           <SubmitButton className="w-full min-h-11" pendingText="Saving…">Save &amp; create receipt</SubmitButton>

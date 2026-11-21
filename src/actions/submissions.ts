@@ -9,7 +9,7 @@ import { requireAdmin, requireStudent } from "@/lib/auth";
 import { ASSIGNMENT_TERMS, TERM_RE } from "@/lib/assignment-status";
 import { notifyAdmins, notifyUsers } from "@/lib/notify";
 import {
-  acceptingTerms, checkPin, existingCourses, lookupStudent, parseCourses, pinBlocked, recordSubmissions,
+  acceptingTerms, checkPin, existingCourses, knownCourses, lookupStudent, parseCourses, pinBlocked, recordSubmissions,
   setSetting, submissionSettings, termSortKey,
 } from "@/lib/submissions";
 import type { FormState } from "./auth";
@@ -88,7 +88,7 @@ export async function recordSubmissionAction(_: FormState, fd: FormData): Promis
   if (d.submittedOn > today()) return { error: "Submission date can't be in the future" };
   const [term] = await db.select().from(schema.assignmentTerms).where(eq(schema.assignmentTerms.name, d.term));
   if (!term) return { error: "Unknown term" };
-  const { ok: courses, bad } = parseCourses(d.courses);
+  const { ok: courses, bad } = parseCourses(d.courses, await knownCourses());
   if (bad.length) return { error: `Not a course code: ${bad.join(", ")} (use e.g. MCS-211)` };
   if (!courses.length) return { error: "Add at least one course" };
   if (courses.length > 15) return { error: "At most 15 courses at a time" };
@@ -178,7 +178,7 @@ export async function createSubmissionRequestAction(_: FormState, fd: FormData):
   const open = await acceptingTerms();
   if (!open.some((t) => t.name === term)) return { error: "Choose a term that is open for submission" };
 
-  const { ok: courses, bad } = parseCourses(String(fd.get("courses") ?? ""));
+  const { ok: courses, bad } = parseCourses(String(fd.get("courses") ?? ""), await knownCourses());
   if (bad.length) return { error: `Not a course code: ${bad.join(", ")} (write like MCS-211)` };
   if (!courses.length) return { error: "Add the course codes of the assignments you are submitting" };
   if (courses.length > 15) return { error: "At most 15 courses at a time" };

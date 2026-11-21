@@ -4,7 +4,7 @@ import { sql } from "drizzle-orm";
 import { db } from "@/db";
 import { requireAdmin } from "@/lib/auth";
 import { getProgrammes } from "@/lib/programmes";
-import { listTerms } from "@/lib/submissions";
+import { allCourseCodes, courseCatalog, listTerms } from "@/lib/submissions";
 import { Card, PageHeader } from "@/components/ui";
 import { RecordSubmissionForm } from "@/components/admin/record-submission";
 
@@ -12,19 +12,25 @@ export const metadata = { title: "Record submission" };
 
 export default async function RecordSubmissionPage() {
   await requireAdmin();
-  const [terms, programmes, byProg] = await Promise.all([
+  const [terms, programmes, byProg, allCourses, catalog] = await Promise.all([
     listTerms(),
     getProgrammes(),
-    db.execute<{ p: string; c: string; n: number }>(sql`
-      select coalesce(r.programme, s.programme) p, s.course_code c, count(*)::int n
-      from assignment_submissions s left join roster r on r.enrollment_no = s.enrollment_no
-      group by 1, 2 order by 1, 3 desc, 2`),
+    db.execute<{ p: string; c: string; t: string | null }>(sql`
+      select p, c, min(t) t from (
+        select programme p, course_code c, coalesce(term, 'zz') t from programme_courses
+        union all
+        select coalesce(r.programme, s.programme) p, s.course_code c, 'zz' t
+        from assignment_submissions s left join roster r on r.enrollment_no = s.enrollment_no
+      ) x where p is not null group by 1, 2 order by 1, 3, 2`),
+    allCourseCodes(),
+    courseCatalog(),
   ]);
   const suggestionsByProgramme: Record<string, string[]> = {};
-  for (const r of byProg.rows) (suggestionsByProgramme[r.p] ??= []).push(r.c);
-  const totals = new Map<string, number>();
-  for (const r of byProg.rows) totals.set(r.c, (totals.get(r.c) ?? 0) + r.n);
-  const allCourses = [...totals.entries()].sort((a, b) => b[1] - a[1]).map(([c]) => c);
+  const termsByProgramme: Record<string, Record<string, string>> = {};
+  for (const r of byProg.rows) {
+    (suggestionsByProgramme[r.p] ??= []).push(r.c);
+    if (r.t && r.t !== "zz") (termsByProgramme[r.p] ??= {})[r.c] = r.t;
+  }
   const open = terms.filter((t) => t.accepting);
   const defaultTerm = (open.sort((a, b) => a.sortKey - b.sortKey)[0] ?? terms[0])?.name ?? "";
   const today = new Date(Date.now() + 5.5 * 3600 * 1000).toISOString().slice(0, 10);
@@ -35,7 +41,7 @@ export default async function RecordSubmissionPage() {
       <Card className="p-4 sm:p-6">
         {terms.length ? (
           <RecordSubmissionForm terms={terms.map((t) => ({ name: t.name, accepting: t.accepting }))} defaultTerm={defaultTerm} today={today}
-            programmes={programmes} suggestionsByProgramme={suggestionsByProgramme} allCourses={allCourses} />
+            programmes={programmes} suggestionsByProgramme={suggestionsByProgramme} termsByProgramme={termsByProgramme} titles={catalog.titles} allCourses={allCourses} />
         ) : (
           <p className="text-sm text-muted">Add a term first in <Link href="/admin/assignments/settings" className="font-semibold text-primary">Submission settings</Link>.</p>
         )}

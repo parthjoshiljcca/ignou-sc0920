@@ -10,6 +10,7 @@ import {
   index,
   uniqueIndex,
   date,
+  real,
 } from "drizzle-orm/pg-core";
 
 export const roleEnum = pgEnum("role", ["student", "admin"]);
@@ -253,6 +254,21 @@ export const pinFailures = pgTable(
     at: timestamp("at", { withTimezone: true }).notNull().defaultNow(),
   },
   (t) => [index("pin_failures_user_idx").on(t.userId, t.at)],
+);
+
+/** Courses of each programme (from IGNOU programme pages and the centre's own files) — used for suggestions. */
+export const programmeCourses = pgTable(
+  "programme_courses",
+  {
+    id: serial("id").primaryKey(),
+    programme: varchar("programme", { length: 40 }).notNull(),
+    courseCode: varchar("course_code", { length: 20 }).notNull(),
+    title: text("title"),
+    credits: real("credits"),
+    term: varchar("term", { length: 20 }),
+    source: varchar("source", { length: 30 }).notNull(),
+  },
+  (t) => [uniqueIndex("programme_courses_uq").on(t.programme, t.courseCode), index("programme_courses_code_idx").on(t.courseCode)],
 );
 
 export const pushSubscriptions = pgTable(
