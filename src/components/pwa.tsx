@@ -153,40 +153,93 @@ export function ServiceWorkerRegister() {
 }
 
 /**
- * Keeps the open app up to date in real time: refreshes the page when a push arrives
- * (message from the service worker) and polls the unread count while the tab is visible.
+ * Keeps the open app up to date in real time, without the user refreshing:
+ * - when a push notification arrives (message from the service worker), and
+ * - by polling a small fingerprint of everything the user can see (/api/live) and
+ *   soft-refreshing the page when it changes.
+ * Polling is gentle on the free database: every 8 s while the app is on screen and in use,
+ * every 45 s after 3 idle minutes, and not at all while the app is in the background.
  */
-export function LiveUpdates({ unread }: { unread: number }) {
+export function LiveUpdates({ rendered }: { rendered: string }) {
   const router = useRouter();
-  const last = useRef(unread);
+  // Fingerprint of the data currently on screen (updates when a refresh lands).
+  const shown = useRef(rendered);
   useEffect(() => {
-    last.current = unread;
-  }, [unread]);
+    shown.current = rendered;
+  }, [rendered]);
 
   useEffect(() => {
-    const onMsg = (e: MessageEvent) => {
-      if (e.data?.type === "push") router.refresh();
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    let lastActivity = Date.now();
+    let lastRefresh = 0;
+    let stopped = false;
+    let inFlight = false;
+
+    const refresh = () => {
+      lastRefresh = Date.now();
+      router.refresh();
     };
-    navigator.serviceWorker?.addEventListener("message", onMsg);
 
     const check = async () => {
-      if (document.visibilityState !== "visible") return;
+      if (stopped || inFlight || document.visibilityState !== "visible") return;
+      inFlight = true;
       try {
-        const r = await fetch("/api/notifications/unread", { cache: "no-store" });
-        if (!r.ok) return;
-        const { count } = (await r.json()) as { count: number };
-        if (count !== last.current) {
-          last.current = count;
-          router.refresh();
+        const r = await fetch("/api/live", { cache: "no-store" });
+        if (r.ok) {
+          const { v } = (await r.json()) as { v: string };
+          // Self-healing: if a refresh was dropped, the next check still sees a mismatch and retries.
+          if (v && v !== shown.current && Date.now() - lastRefresh > 2500) refresh();
         }
-      } catch {}
+      } catch {
+        // offline or a deploy in progress — try again next tick
+      } finally {
+        inFlight = false;
+      }
     };
-    const id = setInterval(check, 20000);
-    document.addEventListener("visibilitychange", check);
+
+    const schedule = () => {
+      clearTimeout(timer);
+      if (stopped || document.visibilityState !== "visible") return;
+      const idle = Date.now() - lastActivity > 3 * 60 * 1000;
+      timer = setTimeout(async () => {
+        await check();
+        schedule();
+      }, idle ? 45000 : 8000);
+    };
+
+    const onActivity = () => {
+      const wasIdle = Date.now() - lastActivity > 3 * 60 * 1000;
+      lastActivity = Date.now();
+      if (wasIdle) {
+        check();
+        schedule();
+      }
+    };
+    const onVisible = () => {
+      if (document.visibilityState === "visible") {
+        lastActivity = Date.now();
+        check();
+        schedule();
+      } else clearTimeout(timer);
+    };
+    const onMsg = (e: MessageEvent) => {
+      if (e.data?.type === "push") refresh();
+    };
+
+    schedule();
+    document.addEventListener("visibilitychange", onVisible);
+    window.addEventListener("focus", onVisible);
+    window.addEventListener("online", onVisible);
+    for (const ev of ["pointerdown", "keydown", "scroll", "touchstart"]) window.addEventListener(ev, onActivity, { passive: true });
+    navigator.serviceWorker?.addEventListener("message", onMsg);
     return () => {
+      stopped = true;
+      clearTimeout(timer);
+      document.removeEventListener("visibilitychange", onVisible);
+      window.removeEventListener("focus", onVisible);
+      window.removeEventListener("online", onVisible);
+      for (const ev of ["pointerdown", "keydown", "scroll", "touchstart"]) window.removeEventListener(ev, onActivity);
       navigator.serviceWorker?.removeEventListener("message", onMsg);
-      clearInterval(id);
-      document.removeEventListener("visibilitychange", check);
     };
   }, [router]);
   return null;

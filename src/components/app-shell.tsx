@@ -9,19 +9,20 @@ import { BottomNav, SideNav, type NavItem } from "./nav-links";
 import { AppSetupSheet, LiveUpdates } from "./pwa";
 import { Credit, Logo } from "./logo";
 import { CENTRE } from "@/lib/constants";
+import { liveFingerprint } from "@/lib/live";
 import { properName } from "@/lib/format";
 
 export async function AppShell({ user, children }: { user: User; children: ReactNode }) {
   const isAdmin = user.role === "admin";
   // One round trip for both badges.
-  const [counts] = await db
+  const [[counts], live] = await Promise.all([db
     .select({
       unread: sql<number>`(select count(*) from ${schema.notifications} where ${schema.notifications.userId} = ${user.id} and ${schema.notifications.isRead} = false)`.mapWith(Number),
       openTickets: isAdmin
         ? sql<number>`(select count(*) from ${schema.tickets} where ${schema.tickets.status} = 'open')`.mapWith(Number)
         : sql<number>`0`.mapWith(Number),
     })
-    .from(sql`(select 1) as one`);
+    .from(sql`(select 1) as one`), liveFingerprint(user.id, user.role)]);
   const { unread, openTickets } = counts;
 
   const notifHref = isAdmin ? "/admin/notifications" : "/notifications";
@@ -96,7 +97,7 @@ export async function AppShell({ user, children }: { user: User; children: React
         </main>
       </div>
       <BottomNav items={items} />
-      <LiveUpdates unread={unread} />
+      <LiveUpdates rendered={live} />
       <AppSetupSheet />
     </div>
   );

@@ -44,7 +44,7 @@ export default async function AdminTicket({ params }: { params: Promise<{ id: st
           </div>
           <TicketThread ticketId={t.id} viewerId={admin.id} />
           <Card className="mt-6 p-4">
-            <ReplyForm key={t.status} ticketId={t.id} isAdmin currentStatus={t.status} placeholder={`Reply to ${properName(s.name)}…`} />
+            <ReplyForm ticketId={t.id} isAdmin currentStatus={t.status} placeholder={`Reply to ${properName(s.name)}…`} />
           </Card>
         </div>
         <aside className="space-y-4 lg:sticky lg:top-8 lg:self-start">

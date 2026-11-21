@@ -21,7 +21,7 @@ export function ReplyForm({ ticketId, isAdmin, currentStatus, placeholder }: { t
         {isAdmin && (
           <label className="flex items-center gap-2 text-sm text-muted">
             Set status
-            <select name="status" className="input w-auto py-1.5" defaultValue={currentStatus === "open" ? "in_progress" : currentStatus}>
+            <select key={currentStatus} name="status" className="input w-auto py-1.5" defaultValue={currentStatus === "open" ? "in_progress" : currentStatus}>
               <option value="open">Open</option>
               <option value="in_progress">In progress</option>
               <option value="resolved">Resolved</option>
