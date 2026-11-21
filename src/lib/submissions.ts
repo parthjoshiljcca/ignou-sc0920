@@ -130,13 +130,13 @@ export async function existingCourses(term: string, enrollmentNo: string) {
  * Record submissions as received (coordinator entry or an approved student request).
  * Skips courses already recorded for the term. Creates the receipt if needed.
  */
-export async function recordSubmissions(opts: { term: string; enrollmentNo: string; programme: string | null; courses: string[]; submittedOn: string }) {
+export async function recordSubmissions(opts: { term: string; enrollmentNo: string; programme: string | null; courses: string[]; submittedOn: string; submittedAt?: Date | null }) {
   const already = new Set(await existingCourses(opts.term, opts.enrollmentNo));
   const add = opts.courses.filter((c) => !already.has(c));
   if (add.length) {
     await db
       .insert(schema.assignmentSubmissions)
-      .values(add.map((c) => ({ session: opts.term, enrollmentNo: opts.enrollmentNo, programme: opts.programme?.replace(/_/g, "") ?? null, courseCode: c, submittedOn: opts.submittedOn, status: "received" as const })))
+      .values(add.map((c) => ({ session: opts.term, enrollmentNo: opts.enrollmentNo, programme: opts.programme?.replace(/_/g, "") ?? null, courseCode: c, submittedOn: opts.submittedOn, submittedAt: opts.submittedAt ?? null, status: "received" as const })))
       .onConflictDoNothing();
   }
   await ensureReceipts(db, opts.term);

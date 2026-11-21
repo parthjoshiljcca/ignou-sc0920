@@ -171,6 +171,8 @@ export const assignmentSubmissions = pgTable(
     programme: varchar("programme", { length: 40 }),
     courseCode: varchar("course_code", { length: 20 }).notNull(),
     submittedOn: date("submitted_on").notNull(),
+    /** Exact time of a hand-in recorded in the app (null for imported sheets and back-dated entries). */
+    submittedAt: timestamp("submitted_at", { withTimezone: true }),
     status: assignmentStatusEnum("status").notNull().default("received"),
     statusUpdatedAt: timestamp("status_updated_at", { withTimezone: true }).notNull().defaultNow(),
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),

@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { Credit, FullLogo } from "@/components/logo";
 import { CENTRE } from "@/lib/constants";
+import { WarmUp } from "@/components/pwa";
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-dvh lg:grid lg:grid-cols-[1fr_1.1fr]">
+      <WarmUp />
       <section className="relative hidden overflow-hidden p-12 text-white lg:flex lg:flex-col" style={{ background: "#0066b2" }}>
         <Link href="/" className="relative z-10 flex flex-col items-start gap-4">
           <FullLogo className="h-20" />

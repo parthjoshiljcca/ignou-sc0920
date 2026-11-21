@@ -11,8 +11,9 @@ import { Card, PageHeader, Pill } from "@/components/ui";
 import { ResetPassword, RosterUpload } from "@/components/admin/student-tools";
 
 export const metadata = { title: "Students" };
+const PAGE = 100;
 
-export default async function Students({ searchParams }: { searchParams: Promise<{ q?: string; programme?: string; show?: string }> }) {
+export default async function Students({ searchParams }: { searchParams: Promise<{ q?: string; programme?: string; show?: string; all?: string }> }) {
   await requireAdmin();
   const sp = await searchParams;
   const r = schema.roster, u = schema.users;
@@ -26,13 +27,15 @@ export default async function Students({ searchParams }: { searchParams: Promise
   const [rows, [{ total }], [{ activated }], programmes] = await Promise.all([
     db.select({ r, user: { id: u.id, isActive: u.isActive, createdAt: u.createdAt, mustChange: u.mustChangePassword } }).from(r)
       .leftJoin(u, eq(u.enrollmentNo, r.enrollmentNo))
-      .where(conds.length ? and(...conds) : undefined).orderBy(asc(r.programme), asc(r.name)).limit(2000),
+      .where(conds.length ? and(...conds) : undefined).orderBy(asc(r.programme), asc(r.name)).limit(sp.all ? 2000 : PAGE + 1),
     db.select({ total: count() }).from(r),
     db.select({ activated: count() }).from(u).where(eq(u.role, "student")),
     getProgrammes(),
   ]);
 
   const pct = total ? Math.round((activated / total) * 100) : 0;
+  const more = !sp.all && rows.length > PAGE;
+  const shown = more ? rows.slice(0, PAGE) : rows;
   return (
     <>
       <PageHeader title="Students" subtitle="Admission roster for SC 0920 and who has activated the app." />
@@ -67,9 +70,12 @@ export default async function Students({ searchParams }: { searchParams: Promise
         <button className="rounded-[10px] border border-border bg-surface px-4 text-sm font-semibold hover:bg-surface-2">Filter</button>
       </form>
 
-      <p className="mb-2 text-sm text-muted">{rows.length} student{rows.length === 1 ? "" : "s"}{rows.length === 2000 ? " (first 2000)" : ""}</p>
+      <p className="mb-2 text-sm text-muted">
+        {more ? `Showing the first ${PAGE} — search above, or ` : `${shown.length} student${shown.length === 1 ? "" : "s"}`}
+        {more && <Link href={`/admin/students?${new URLSearchParams({ ...(q ? { q } : {}), ...(sp.programme ? { programme: sp.programme } : {}), ...(sp.show ? { show: sp.show } : {}), all: "1" })}`} className="font-semibold text-primary hover:underline">show all</Link>}
+      </p>
       <Card className="divide-y divide-border overflow-hidden">
-        {rows.map(({ r: s, user }) => (
+        {shown.map(({ r: s, user }) => (
           <div key={s.enrollmentNo} className="flex flex-wrap items-center gap-x-4 gap-y-2 px-4 py-3">
             <div className="min-w-0 flex-1 basis-60">
               <p className="truncate font-semibold">{s.name ? properName(s.name) : <span className="font-medium text-muted italic">Name not given yet</span>}</p>

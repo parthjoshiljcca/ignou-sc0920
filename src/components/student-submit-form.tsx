@@ -24,7 +24,7 @@ export function StudentSubmitForm({ terms, alreadyByTerm, suggestions, allCodes,
         <p className="mb-1.5 text-sm font-medium">Courses you are submitting</p>
         <CoursePicker key={term} suggestions={suggestions} allCodes={allCodes} titles={titles} terms={semesters} already={alreadyByTerm[term] ?? []} />
       </div>
-      <p className="text-sm text-muted">Submission date: <b className="text-text">{today}</b></p>
+      <p className="text-sm text-muted">Submission date &amp; time: <b className="text-text">recorded automatically</b> ({today})</p>
       <Field label="Submission PIN" htmlFor="pin" hint="Ask the coordinator at the study centre when you hand in your assignments.">
         <div className="relative">
           <KeyRound className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted" aria-hidden />

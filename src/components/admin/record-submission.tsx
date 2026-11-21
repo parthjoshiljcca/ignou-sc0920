@@ -19,6 +19,7 @@ export function RecordSubmissionForm({ terms, defaultTerm, today, programmes, su
   const [term, setTerm] = useState(defaultTerm);
   const [info, setInfo] = useState<Lookup | null>(null);
   const [newProg, setNewProg] = useState("");
+  const [backdated, setBackdated] = useState(false);
   const [pending, start] = useTransition();
 
   const fetchStudent = (e = enrol, t = term) => start(async () => setInfo(await lookupStudentAction(e, t)));
@@ -81,9 +82,19 @@ export function RecordSubmissionForm({ terms, defaultTerm, today, programmes, su
 
       {ok && (
         <>
-          <Field label="Submission date" htmlFor="submittedOn">
-            <input id="submittedOn" name="submittedOn" type="date" max={today} defaultValue={today} className="input" required />
-          </Field>
+          <div className="rounded-xl border border-border p-3.5">
+            {!backdated ? (
+              <p className="text-sm">Submitted: <b>now</b> <span className="text-muted">— date &amp; time are recorded automatically</span></p>
+            ) : (
+              <Field label="Date the assignments were handed in" htmlFor="submittedOn">
+                <input id="submittedOn" name="submittedOn" type="date" max={today} defaultValue={today} className="input" required />
+              </Field>
+            )}
+            <label className="mt-2.5 flex items-center gap-2 text-sm">
+              <input type="checkbox" name="backdated" checked={backdated} onChange={(e) => setBackdated(e.target.checked)} className="size-4 accent-[var(--primary-fill)]" />
+              Back-dated entry (handed in on an earlier date)
+            </label>
+          </div>
           <div>
             <p className="mb-1.5 text-sm font-medium">Courses submitted *</p>
             <CoursePicker key={`${info.enrollmentNo}-${term}`} suggestions={sugg} allCodes={allCourses} titles={titles} terms={semesters} already={info.already} />

@@ -21,8 +21,6 @@ export async function liveFingerprint(uid: number, role: "student" | "admin"): P
       ? sql`
     (select count(*) || ':' || coalesce(max(updated_at)::text, '') from tickets),
     (select coalesce(max(id), 0)::text from ticket_messages),
-    (select count(*) || ':' || count(*) filter (where not must_change_password) || ':' || count(*) filter (where is_active) from users where role = 'student'),
-    (select count(*)::text from roster),
     (select count(*) || ':' || coalesce(max(status_updated_at)::text, '') from assignment_submissions),
     (select count(*) || ':' || coalesce(max(id), 0) || ':' || count(*) filter (where status = 'pending') from assignment_requests),
     (select coalesce(string_agg(key || '=' || value, ',' order by key), '') from app_settings where key <> 'submission_pin'),

@@ -53,7 +53,7 @@ export function AssignmentReceipt({ data, verifyUrl, qr }: { data: ReceiptData; 
             <tr key={r.id}>
               <td className="border border-[#d9dee8] px-2 py-1.5">{i + 1}</td>
               <td className="border border-[#d9dee8] px-2 py-1.5 font-semibold">{r.courseCode}</td>
-              <td className="border border-[#d9dee8] px-2 py-1.5">{fmtDate(r.submittedOn)}</td>
+              <td className="border border-[#d9dee8] px-2 py-1.5">{r.submittedAt ? fmtDateTime(r.submittedAt) : fmtDate(r.submittedOn)}</td>
               <td className="border border-[#d9dee8] px-2 py-1.5">{statusLabel(r.status)}</td>
             </tr>
           ))}

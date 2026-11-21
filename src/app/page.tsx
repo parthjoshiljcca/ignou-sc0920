@@ -2,6 +2,7 @@ import { CalendarDays, LifeBuoy, Megaphone, Smartphone } from "lucide-react";
 import { Credit, FullLogo } from "@/components/logo";
 import { LinkButton } from "@/components/ui";
 import { CENTRE } from "@/lib/constants";
+import { WarmUp } from "@/components/pwa";
 
 const features = [
   { icon: LifeBuoy, title: "Help Desk", body: "Raise a query about admission, assignments, exams or results and get a reply from the coordinator." },
@@ -13,6 +14,7 @@ const features = [
 export default function Landing() {
   return (
     <div className="min-h-dvh">
+      <WarmUp />
       <header className="mx-auto flex max-w-5xl items-center gap-3 px-4 py-4 sm:px-6">
         <FullLogo className="h-14 px-3 py-2" />
         <span className="hidden flex-1 font-bold sm:block">Study Centre {CENTRE.code}</span>

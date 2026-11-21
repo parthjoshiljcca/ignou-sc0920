@@ -9,7 +9,7 @@ import { ClipboardCheck, FileText } from "lucide-react";
 import { requireStudent } from "@/lib/auth";
 import { studentAssignments } from "@/lib/assignment-data";
 import { overallStatus, statusDetail, statusLabel } from "@/lib/assignment-status";
-import { fmtDate } from "@/lib/format";
+import { fmtDate, fmtDateTime } from "@/lib/format";
 import { Card, EmptyState, LinkButton, PageHeader, Pill } from "@/components/ui";
 import { AssignmentStepper } from "@/components/assignment-stepper";
 
@@ -99,7 +99,7 @@ export default async function Assignments({ searchParams }: { searchParams: Prom
                     {rows.map((r) => (
                       <li key={r.id} className="rounded-xl border border-border bg-bg/40 px-3 py-2">
                         <p className="font-semibold whitespace-nowrap">{r.courseCode}</p>
-                        <p className="text-xs text-muted">{fmtDate(r.submittedOn)}</p>
+                        <p className="text-xs text-muted">{r.submittedAt ? fmtDateTime(r.submittedAt) : fmtDate(r.submittedOn)}</p>
                         {r.status !== overall && <div className="mt-1"><Pill tone="primary">{statusLabel(r.status)}</Pill></div>}
                       </li>
                     ))}

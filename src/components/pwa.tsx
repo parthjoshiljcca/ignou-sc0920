@@ -421,3 +421,13 @@ export function PushToggle() {
     </div>
   );
 }
+
+/* ----------------------- Database warm-up ----------------------- */
+
+/** Fire-and-forget request that wakes the database while the user is still reading or typing. */
+export function WarmUp() {
+  useEffect(() => {
+    fetch("/api/warm", { cache: "no-store" }).catch(() => {});
+  }, []);
+  return null;
+}

@@ -72,7 +72,8 @@ export async function lookupStudentAction(enrollmentNo: string, term: string) {
 const Entry = z.object({
   enrollmentNo: z.string().transform((v) => v.replace(/\D/g, "")).pipe(z.string().regex(/^\d{9,10}$/, "Enter a 9 or 10 digit enrolment number")),
   term: z.string().regex(TERM_RE, "Choose the term"),
-  submittedOn: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Choose the submission date"),
+  submittedOn: z.string().optional(),
+  backdated: z.string().optional(),
   courses: z.string().min(1, "Add at least one course"),
   name: z.string().trim().max(120).optional(),
   programme: z.string().trim().max(40).optional(),
@@ -85,7 +86,16 @@ export async function recordSubmissionAction(_: FormState, fd: FormData): Promis
   const p = Entry.safeParse(Object.fromEntries(fd));
   if (!p.success) return { error: p.error.issues[0].message };
   const d = p.data;
-  if (d.submittedOn > today()) return { error: "Submission date can't be in the future" };
+  // Default: the moment it is recorded. Only a back-dated entry takes a date from the form.
+  const backdated = d.backdated === "on";
+  let submittedOn = today();
+  let submittedAt: Date | null = new Date();
+  if (backdated) {
+    if (!d.submittedOn || !/^\d{4}-\d{2}-\d{2}$/.test(d.submittedOn)) return { error: "Choose the date the assignments were handed in" };
+    if (d.submittedOn > today()) return { error: "Submission date can't be in the future" };
+    submittedOn = d.submittedOn;
+    submittedAt = null;
+  }
   const [term] = await db.select().from(schema.assignmentTerms).where(eq(schema.assignmentTerms.name, d.term));
   if (!term) return { error: "Unknown term" };
   const { ok: courses, bad } = parseCourses(d.courses, await knownCourses());
@@ -111,7 +121,7 @@ export async function recordSubmissionAction(_: FormState, fd: FormData): Promis
     programme = prog;
   }
 
-  const r = await recordSubmissions({ term: d.term, enrollmentNo: d.enrollmentNo, programme, courses, submittedOn: d.submittedOn });
+  const r = await recordSubmissions({ term: d.term, enrollmentNo: d.enrollmentNo, programme, courses, submittedOn, submittedAt });
   if (!r.added.length) return { error: `All these courses are already recorded for ${d.term}: ${r.skipped.join(", ")}` };
 
   const [u] = await db.select({ id: schema.users.id }).from(schema.users).where(eq(schema.users.enrollmentNo, d.enrollmentNo));
@@ -132,7 +142,7 @@ export async function approveRequestAction(fd: FormData) {
   const [q] = await db.select().from(schema.assignmentRequests).where(and(eq(schema.assignmentRequests.id, id), eq(schema.assignmentRequests.status, "pending")));
   if (!q) return;
   const s = await lookupStudent(q.enrollmentNo);
-  const r = await recordSubmissions({ term: q.term, enrollmentNo: q.enrollmentNo, programme: s.found ? s.programme : null, courses: q.courses, submittedOn: q.submittedOn });
+  const r = await recordSubmissions({ term: q.term, enrollmentNo: q.enrollmentNo, programme: s.found ? s.programme : null, courses: q.courses, submittedOn: q.submittedOn, submittedAt: q.createdAt });
   await db
     .update(schema.assignmentRequests)
     .set({ status: "approved", decidedBy: admin.id, decidedAt: new Date(), note: r.skipped.length ? `Already recorded: ${r.skipped.join(", ")}` : null })

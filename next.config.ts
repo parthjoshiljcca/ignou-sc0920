@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  experimental: { serverActions: { bodySizeLimit: "16mb" } },
+  experimental: {
+    serverActions: { bodySizeLimit: "16mb" },
+  },
   serverExternalPackages: ["exceljs"],
   async headers() {
     return [
