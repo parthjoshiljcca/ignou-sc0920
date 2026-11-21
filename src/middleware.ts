@@ -1,7 +1,8 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { SESSION_COOKIE, verifySession } from "@/lib/session";
 
-const STUDENT = ["/dashboard", "/tickets", "/schedule", "/notices", "/notifications", "/profile", "/faqs"];
+const STUDENT = ["/dashboard", "/tickets", "/schedule", "/notices", "/notifications", "/profile", "/faqs", "/assignments"];
+const ANY_SIGNED_IN = ["/receipt"];
 const SET_PASSWORD = "/set-password";
 
 export async function middleware(req: NextRequest) {
@@ -10,8 +11,9 @@ export async function middleware(req: NextRequest) {
   const isAdminPath = pathname.startsWith("/admin");
   const isStudentPath = STUDENT.some((p) => pathname === p || pathname.startsWith(p + "/"));
   const isAuthPath = pathname === "/login" || pathname === "/";
+  const needsLogin = ANY_SIGNED_IN.some((p) => pathname === p || pathname.startsWith(p + "/"));
 
-  if ((isAdminPath || isStudentPath || pathname === SET_PASSWORD) && !s) {
+  if ((isAdminPath || isStudentPath || needsLogin || pathname === SET_PASSWORD) && !s) {
     const url = new URL("/login", req.url);
     if (pathname !== SET_PASSWORD) url.searchParams.set("next", pathname);
     return NextResponse.redirect(url);

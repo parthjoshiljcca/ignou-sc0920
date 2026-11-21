@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { sql } from "drizzle-orm";
-import { Bell, LogOut } from "lucide-react";
+import { Bell, LogOut, UserRound } from "lucide-react";
 import type { ReactNode } from "react";
 import { db, schema } from "@/db";
 import type { User } from "@/db/schema";
@@ -31,20 +31,20 @@ export async function AppShell({ user, children }: { user: User; children: React
         { href: "/admin", label: "Overview", icon: "LayoutDashboard", exact: true },
         { href: "/admin/tickets", label: "Queries", icon: "Inbox", badge: openTickets },
         { href: "/admin/schedule", label: "Schedule", icon: "CalendarDays" },
+        { href: "/admin/assignments", label: "Assignments", icon: "ClipboardCheck" },
         { href: "/admin/notices", label: "Notices", icon: "Megaphone" },
         { href: "/admin/students", label: "Students", icon: "Users" },
-        { href: "/admin/faqs", label: "FAQs", icon: "CircleHelp" },
       ]
     : [
         { href: "/dashboard", label: "Home", icon: "Home" },
         { href: "/tickets", label: "Help Desk", icon: "LifeBuoy" },
         { href: "/schedule", label: "Classes", icon: "CalendarDays" },
+        { href: "/assignments", label: "Assignments", icon: "ClipboardCheck" },
         { href: "/notices", label: "Notices", icon: "Megaphone" },
-        { href: "/profile", label: "Profile", icon: "User" },
       ];
   const sideItems: NavItem[] = isAdmin
-    ? [...items, { href: notifHref, label: "Notifications", icon: "Bell", badge: unread }, { href: "/profile", label: "My account", icon: "User" }]
-    : [...items.slice(0, 2), { href: "/faqs", label: "FAQs", icon: "CircleHelp" }, ...items.slice(2, 4), { href: notifHref, label: "Notifications", icon: "Bell", badge: unread }, items[4]];
+    ? [...items, { href: "/admin/faqs", label: "FAQs", icon: "CircleHelp" }, { href: notifHref, label: "Notifications", icon: "Bell", badge: unread }, { href: "/profile", label: "My account", icon: "User" }]
+    : [...items.slice(0, 2), { href: "/faqs", label: "FAQs", icon: "CircleHelp" }, ...items.slice(2), { href: notifHref, label: "Notifications", icon: "Bell", badge: unread }, { href: "/profile", label: "Profile", icon: "User" }];
 
   return (
     <div className="min-h-dvh lg:grid lg:grid-cols-[256px_1fr]">
@@ -81,6 +81,9 @@ export async function AppShell({ user, children }: { user: User; children: React
                 {unread > 9 ? "9+" : unread}
               </span>
             )}
+          </Link>
+          <Link href="/profile" aria-label="Profile" className="rounded-full p-2 text-muted hover:text-text">
+            <UserRound className="size-5" />
           </Link>
           {isAdmin && (
             <form action={logoutAction}>

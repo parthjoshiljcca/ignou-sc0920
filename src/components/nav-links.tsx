@@ -4,10 +4,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
 import {
-  Home, LifeBuoy, CalendarDays, Megaphone, Bell, User, LayoutDashboard, Inbox, Users, CircleHelp,
+  Home, LifeBuoy, CalendarDays, Megaphone, Bell, User, LayoutDashboard, Inbox, Users, CircleHelp, ClipboardCheck,
 } from "lucide-react";
 
-const ICONS = { Home, LifeBuoy, CalendarDays, Megaphone, Bell, User, LayoutDashboard, Inbox, Users, CircleHelp };
+const ICONS = { Home, LifeBuoy, CalendarDays, Megaphone, Bell, User, LayoutDashboard, Inbox, Users, CircleHelp, ClipboardCheck };
 export type NavItem = { href: string; label: string; icon: keyof typeof ICONS; badge?: number; exact?: boolean };
 
 function useActive() {

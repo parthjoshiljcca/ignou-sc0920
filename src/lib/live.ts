@@ -22,12 +22,14 @@ export async function liveFingerprint(uid: number, role: "student" | "admin"): P
     (select count(*) || ':' || coalesce(max(updated_at)::text, '') from tickets),
     (select coalesce(max(id), 0)::text from ticket_messages),
     (select count(*) || ':' || count(*) filter (where not must_change_password) || ':' || count(*) filter (where is_active) from users where role = 'student'),
-    (select count(*)::text from roster)`
+    (select count(*)::text from roster),
+    (select count(*) || ':' || coalesce(max(status_updated_at)::text, '') from assignment_submissions)`
       : sql`
     (select count(*) || ':' || coalesce(max(updated_at)::text, '') from tickets where student_id = ${uid}),
     (select coalesce(max(m.id), 0)::text from ticket_messages m join tickets t on t.id = m.ticket_id where t.student_id = ${uid}),
     (select programme from users where id = ${uid}),
-    ''`;
+    (select count(*) || ':' || coalesce(max(status_updated_at)::text, '') from assignment_submissions
+       where enrollment_no = (select enrollment_no from users where id = ${uid}))`;
 
   const r = await db.execute<{ v: string }>(sql`select md5(concat_ws('#', ${shared}, ${personal})) as v`);
   return r.rows[0]?.v ?? "";

@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { and, desc, eq, inArray, or } from "drizzle-orm";
 import { sessionsForStudent } from "@/lib/queries";
-import { CalendarDays, CircleHelp, LifeBuoy, Megaphone, Plus, ChevronRight } from "lucide-react";
+import { CalendarDays, CircleHelp, ClipboardCheck, LifeBuoy, Megaphone, Plus, ChevronRight } from "lucide-react";
+import { studentAssignments } from "@/lib/assignment-data";
+import { overallStatus, statusLabel } from "@/lib/assignment-status";
 import { db, schema } from "@/db";
 import { requireStudent } from "@/lib/auth";
 import { fmtDay, properName, timeAgo } from "@/lib/format";
@@ -16,7 +18,7 @@ export default async function Dashboard() {
   const u = await requireStudent();
   const prog = u.programme ?? "Other";
 
-  const [sessions, notices, tickets] = await Promise.all([
+  const [sessions, notices, tickets, assignments] = await Promise.all([
     sessionsForStudent(u, { upcoming: true, limit: 3 }),
     db.select().from(schema.announcements)
       .where(or(eq(schema.announcements.audience, "ALL"), eq(schema.announcements.audience, prog)))
@@ -24,7 +26,10 @@ export default async function Dashboard() {
     db.select().from(schema.tickets)
       .where(and(eq(schema.tickets.studentId, u.id), inArray(schema.tickets.status, ["open", "in_progress", "resolved"])))
       .orderBy(desc(schema.tickets.updatedAt)).limit(3),
+    u.enrollmentNo ? studentAssignments(u.enrollmentNo) : Promise.resolve([]),
   ]);
+  const latestAsg = assignments[0];
+  const asgStatus = latestAsg ? overallStatus(latestAsg.rows.map((r) => r.status)) : null;
 
   return (
     <>
@@ -49,6 +54,16 @@ export default async function Dashboard() {
         </div>
         <ChevronRight className="size-5 opacity-80" aria-hidden />
       </Link>
+      {latestAsg && asgStatus && (
+        <Link href="/assignments" className="mb-3 flex items-center gap-3 rounded-2xl border border-border bg-surface px-4 py-3 hover:bg-surface-2">
+          <ClipboardCheck className="size-5 shrink-0 text-primary" aria-hidden />
+          <span className="min-w-0 flex-1 text-sm">
+            <b>Assignments {latestAsg.receipt.session}</b>
+            <span className="block text-muted">{latestAsg.rows.length} courses · Status: <b className="text-primary">{statusLabel(asgStatus)}</b></span>
+          </span>
+          <span className="shrink-0 text-xs font-semibold text-primary">Receipt →</span>
+        </Link>
+      )}
       <Link href="/faqs" className="mb-6 flex items-center gap-3 rounded-2xl border border-border bg-surface px-4 py-3 text-sm hover:bg-surface-2">
         <CircleHelp className="size-5 shrink-0 text-accent" aria-hidden />
         <span className="flex-1"><b>FAQs</b> <span className="text-muted">— hall ticket, re-registration, results, refunds…</span></span>

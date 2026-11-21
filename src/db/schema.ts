@@ -9,6 +9,7 @@ import {
   boolean,
   index,
   uniqueIndex,
+  date,
 } from "drizzle-orm/pg-core";
 
 export const roleEnum = pgEnum("role", ["student", "admin"]);
@@ -147,6 +148,57 @@ export const faqs = pgTable(
   (t) => [index("faqs_category_idx").on(t.category, t.sortOrder)],
 );
 
+export const assignmentStatusEnum = pgEnum("assignment_status", [
+  "received",
+  "processed",
+  "under_evaluation",
+  "evaluated",
+  "award_list_generated",
+  "sent_to_hq",
+]);
+
+/**
+ * One row per student per course per assignment session. Marks are deliberately NOT stored:
+ * the import never reads the marks column.
+ */
+export const assignmentSubmissions = pgTable(
+  "assignment_submissions",
+  {
+    id: serial("id").primaryKey(),
+    session: varchar("session", { length: 60 }).notNull(),
+    enrollmentNo: varchar("enrollment_no", { length: 20 }).notNull(),
+    programme: varchar("programme", { length: 40 }),
+    courseCode: varchar("course_code", { length: 20 }).notNull(),
+    submittedOn: date("submitted_on").notNull(),
+    status: assignmentStatusEnum("status").notNull().default("received"),
+    statusUpdatedAt: timestamp("status_updated_at", { withTimezone: true }).notNull().defaultNow(),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => [
+    uniqueIndex("asg_session_student_course_uq").on(t.session, t.enrollmentNo, t.courseCode),
+    index("asg_enrollment_idx").on(t.enrollmentNo),
+    index("asg_session_idx").on(t.session, t.status),
+  ],
+);
+
+/** One acknowledgement receipt per student per assignment session. */
+export const assignmentReceipts = pgTable(
+  "assignment_receipts",
+  {
+    id: serial("id").primaryKey(),
+    session: varchar("session", { length: 60 }).notNull(),
+    enrollmentNo: varchar("enrollment_no", { length: 20 }).notNull(),
+    receiptNo: varchar("receipt_no", { length: 40 }).notNull(),
+    verifyCode: varchar("verify_code", { length: 24 }).notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => [
+    uniqueIndex("asg_receipt_session_student_uq").on(t.session, t.enrollmentNo),
+    uniqueIndex("asg_receipt_no_uq").on(t.receiptNo),
+    uniqueIndex("asg_receipt_verify_uq").on(t.verifyCode),
+  ],
+);
+
 export const pushSubscriptions = pgTable(
   "push_subscriptions",
   {
@@ -162,6 +214,8 @@ export const pushSubscriptions = pgTable(
   (t) => [uniqueIndex("push_endpoint_uq").on(t.endpoint)],
 );
 
+export type AssignmentSubmission = typeof assignmentSubmissions.$inferSelect;
+export type AssignmentReceipt = typeof assignmentReceipts.$inferSelect;
 export type Faq = typeof faqs.$inferSelect;
 export type RosterEntry = typeof roster.$inferSelect;
 export type User = typeof users.$inferSelect;

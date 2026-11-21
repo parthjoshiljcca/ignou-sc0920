@@ -141,3 +141,12 @@ textarea.input { resize: vertical; min-height: 7rem; }
 
 .pb-safe { padding-bottom: env(safe-area-inset-bottom); }
 .prose-msg { white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere; }
+
+/* Receipts print on white A4 with no app chrome. */
+@media print {
+  @page { size: A4; margin: 12mm; }
+  html, body { background: #fff !important; }
+  .no-print { display: none !important; }
+  .receipt { border: 0 !important; border-radius: 0 !important; padding: 0 !important; max-width: none !important; }
+  .receipt * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}

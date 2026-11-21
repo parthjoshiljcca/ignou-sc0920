@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { and, asc, count, desc, eq, gte, inArray, sql } from "drizzle-orm";
-import { CalendarPlus, Inbox, Megaphone, Upload } from "lucide-react";
+import { CalendarPlus, CircleHelp, ClipboardCheck, Inbox, Megaphone, Upload } from "lucide-react";
 import { db, schema } from "@/db";
 import { requireAdmin } from "@/lib/auth";
 import { fmtDay, properName } from "@/lib/format";
@@ -52,6 +52,8 @@ export default async function AdminHome() {
         <LinkButton href="/admin/schedule/new" variant="secondary"><CalendarPlus className="size-4" aria-hidden /> Schedule class</LinkButton>
         <LinkButton href="/admin/notices" variant="secondary"><Megaphone className="size-4" aria-hidden /> Post notice</LinkButton>
         <LinkButton href="/admin/students#upload" variant="secondary"><Upload className="size-4" aria-hidden /> Upload roster</LinkButton>
+        <LinkButton href="/admin/assignments" variant="secondary"><ClipboardCheck className="size-4" aria-hidden /> Assignments</LinkButton>
+        <LinkButton href="/admin/faqs" variant="secondary"><CircleHelp className="size-4" aria-hidden /> Manage FAQs</LinkButton>
       </div>
       <div className="grid gap-6 lg:grid-cols-[1.3fr_1fr]">
         <section>
