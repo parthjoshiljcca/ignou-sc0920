@@ -13,7 +13,8 @@
     "vapid": "web-push generate-vapid-keys",
     "roster:import": "tsx scripts/import-roster.ts",
     "admin:reset": "tsx scripts/seed.ts --reset-admin",
-    "assignments:import": "tsx scripts/import-asg.ts"
+    "assignments:import": "tsx scripts/import-asg.ts",
+    "db:uppercase": "tsx scripts/db-uppercase.ts"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.0.1",

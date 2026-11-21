@@ -64,10 +64,10 @@ export function RecordSubmissionForm({ terms, defaultTerm, today, programmes, su
       {ok && !info.found && (
         <div className="space-y-3 rounded-xl border border-warning/40 bg-warning-soft p-3.5">
           <p className="text-sm font-semibold text-warning">Not in the student list — enter details. The student will be added and can sign in with this mobile number.</p>
-          <Field label="Full name *" htmlFor="name"><input id="name" name="name" className="input" required /></Field>
+          <Field label="Full name *" htmlFor="name"><input id="name" autoCapitalize="characters" name="name" className="input uppercase" required /></Field>
           <div className="grid gap-3 sm:grid-cols-2">
             <Field label="Programme *" htmlFor="programme">
-              <input id="programme" name="programme" list="programmes" className="input uppercase" defaultValue={info.programmeHint ?? ""} onChange={(e) => setNewProg(e.target.value.toUpperCase())} required />
+              <input id="programme" autoCapitalize="characters" name="programme" list="programmes" className="input uppercase" defaultValue={info.programmeHint ?? ""} onChange={(e) => setNewProg(e.target.value.toUpperCase())} required />
               <datalist id="programmes">{programmes.map((p) => <option key={p} value={p} />)}</datalist>
             </Field>
             <Field label="Mobile *" htmlFor="mobile"><input id="mobile" name="mobile" type="tel" inputMode="numeric" maxLength={10} className="input" required /></Field>

@@ -41,6 +41,8 @@ cp .env.example .env.local          # then fill in the values
 npm run vapid                       # paste the two keys into .env.local
 npm run db:push                     # create tables in Neon
 npm run db:seed                     # coordinator account from ADMIN_* vars + default FAQs
+npm run db:uppercase                # database triggers that store names, addresses, programmes,
+                                    # course codes and class details in CAPITALS (run once; safe to repeat)
 npm run roster:import -- path/to/admission-export.xlsx   # or upload from Admin → Students
 npm run dev
 ```

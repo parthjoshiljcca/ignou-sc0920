@@ -7,6 +7,7 @@ import { redirect } from "next/navigation";
 import { db, schema } from "@/db";
 import { createSession, destroySession, requireUser } from "@/lib/auth";
 import { anyMissing, missingProfileFields } from "@/lib/profile";
+import { placeholderName, upper } from "@/lib/text";
 
 export type FormState = { error?: string; ok?: string } | undefined;
 
@@ -26,7 +27,7 @@ async function firstLoginFromRoster(enrollmentNo: string, password: string) {
   const [u] = await db
     .insert(schema.users)
     .values({
-      name: r.name ?? `Student ${r.enrollmentNo}`,
+      name: r.name ?? placeholderName(r.enrollmentNo),
       enrollmentNo: r.enrollmentNo,
       programme: r.programme,
       email,
@@ -130,7 +131,7 @@ export async function setFirstPasswordAction(_: FormState, fd: FormData): Promis
       .update(schema.roster)
       .set({
         ...(need.name ? { name: fullName.toUpperCase() } : {}),
-        ...(need.address ? { address } : {}),
+        ...(need.address ? { address: upper(address) } : {}),
         ...(need.email ? { email } : {}),
       })
       .where(eq(schema.roster.enrollmentNo, u.enrollmentNo));
@@ -156,7 +157,7 @@ export async function updateProfileAction(_: FormState, fd: FormData): Promise<F
   await db
     .update(schema.users)
     .set({
-      name: parsed.data.name,
+      name: upper(parsed.data.name)!,
       phone: parsed.data.phone || null,
     })
     .where(eq(schema.users.id, u.id));

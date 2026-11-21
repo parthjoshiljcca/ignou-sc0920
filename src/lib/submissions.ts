@@ -4,6 +4,7 @@ import { timingSafeEqual } from "node:crypto";
 import { db, schema } from "@/db";
 import { ensureReceipts } from "./assignments";
 import { TERM_RE } from "./assignment-status";
+import { isPlaceholderName } from "./text";
 
 /* ------------------------------ settings ------------------------------ */
 
@@ -89,7 +90,7 @@ export async function lookupStudent(enrollmentNo: string) {
   if (!r) return { found: false as const, programmeHint: prog };
   return {
     found: true as const,
-    name: r.name ?? (u?.name && !u.name.startsWith("Student ") ? u.name : null),
+    name: r.name ?? (u?.name && !isPlaceholderName(u.name) ? u.name : null),
     programme: r.programme,
     mobile: r.mobile,
     email: r.email,

@@ -18,7 +18,7 @@ export function SessionForm({ d, programmes, courses }: { d: SessionDefaults; pr
       {d.id && <input type="hidden" name="id" value={d.id} />}
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Course code" htmlFor="courseCode" >
-          <input id="courseCode" name="courseCode" list="course-codes" defaultValue={d.courseCode} className="input uppercase" placeholder="e.g. MCS211" required />
+          <input id="courseCode" autoCapitalize="characters" name="courseCode" list="course-codes" defaultValue={d.courseCode} className="input uppercase" placeholder="e.g. MCS211" required />
           <datalist id="course-codes">{courses.map((c) => <option key={c} value={c} />)}</datalist>
         </Field>
         <Field label="Programme" htmlFor="programme" hint="Students of this programme see the class">
@@ -28,8 +28,8 @@ export function SessionForm({ d, programmes, courses }: { d: SessionDefaults; pr
           </select>
         </Field>
       </div>
-      <Field label="Topic (optional)" htmlFor="title"><input id="title" name="title" defaultValue={d.title ?? ""} className="input" placeholder="e.g. Block 2 – Data Structures" /></Field>
-      <Field label="Counsellor (optional)" htmlFor="counsellor"><input id="counsellor" name="counsellor" defaultValue={d.counsellor ?? ""} className="input" /></Field>
+      <Field label="Topic (optional)" htmlFor="title"><input id="title" autoCapitalize="characters" name="title" defaultValue={d.title ?? ""} className="input uppercase" placeholder="e.g. Block 2 – Data Structures" /></Field>
+      <Field label="Counsellor (optional)" htmlFor="counsellor"><input id="counsellor" autoCapitalize="characters" name="counsellor" defaultValue={d.counsellor ?? ""} className="input uppercase" /></Field>
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
         <div className="col-span-2 sm:col-span-1"><Field label="Date" htmlFor="date"><input id="date" name="date" type="date" defaultValue={d.date} className="input" required /></Field></div>
         <Field label="Starts" htmlFor="start"><input id="start" name="start" type="time" defaultValue={d.start ?? "10:00"} className="input" required /></Field>
@@ -47,7 +47,7 @@ export function SessionForm({ d, programmes, courses }: { d: SessionDefaults; pr
         </div>
       </fieldset>
       {mode === "offline" ? (
-        <Field label="Venue" htmlFor="venue"><input id="venue" name="venue" defaultValue={d.venue ?? ""} className="input" placeholder="e.g. Room 12, Study Centre 0920" /></Field>
+        <Field label="Venue" htmlFor="venue"><input id="venue" autoCapitalize="characters" name="venue" defaultValue={d.venue ?? ""} className="input uppercase" placeholder="e.g. Room 12, Study Centre 0920" /></Field>
       ) : (
         <Field label="Meeting link" htmlFor="meetingLink"><input id="meetingLink" name="meetingLink" type="url" defaultValue={d.meetingLink ?? ""} className="input" placeholder="https://meet.google.com/…" /></Field>
       )}

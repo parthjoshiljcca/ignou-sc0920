@@ -17,7 +17,7 @@ export function SetPasswordForm({ need = { name: false, address: false, email: f
       )}
       {need.name && (
         <Field label="Full name *" htmlFor="fullName" hint="Exactly as on your IGNOU identity card">
-          <input id="fullName" name="fullName" className="input" autoComplete="name" minLength={3} maxLength={120} required autoFocus />
+          <input id="fullName" autoCapitalize="characters" name="fullName" className="input uppercase" autoComplete="name" minLength={3} maxLength={120} required autoFocus />
         </Field>
       )}
       {need.email && (
@@ -27,7 +27,7 @@ export function SetPasswordForm({ need = { name: false, address: false, email: f
       )}
       {need.address && (
         <Field label="Postal address *" htmlFor="address" hint="House / street, area, city, district, PIN code">
-          <textarea id="address" name="address" className="input min-h-0" rows={3} minLength={10} maxLength={500} autoComplete="street-address" required />
+          <textarea id="address" autoCapitalize="characters" name="address" className="input min-h-0 uppercase" rows={3} minLength={10} maxLength={500} autoComplete="street-address" required />
         </Field>
       )}
       <Field label={anyMissing ? "New password *" : "New password"} htmlFor="password" hint="At least 8 characters. Don't use your mobile number.">

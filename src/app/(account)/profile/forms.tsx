@@ -9,7 +9,7 @@ export function ProfileForm({ name, phone, email }: { name: string; phone: strin
   const [state, action] = useActionState(updateProfileAction, undefined);
   return (
     <ActionForm action={action} className="space-y-4">
-      <Field label="Name" htmlFor="name"><input id="name" name="name" defaultValue={name} className="input" required /></Field>
+      <Field label="Name" htmlFor="name"><input id="name" autoCapitalize="characters" name="name" defaultValue={name} className="input uppercase" required /></Field>
       <Field label="Mobile" htmlFor="phone"><input id="phone" name="phone" type="tel" inputMode="numeric" maxLength={10} defaultValue={phone} className="input" /></Field>
       {!email.endsWith(".local") && <Field label="Email (login)" htmlFor="email"><input id="email" value={email} disabled className="input opacity-70" /></Field>}
       <FormMessage state={state} />

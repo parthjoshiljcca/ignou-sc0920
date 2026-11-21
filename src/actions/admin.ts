@@ -8,6 +8,7 @@ import { db, schema } from "@/db";
 import { requireAdmin } from "@/lib/auth";
 import { fmtDay, fmtTime, istInputToDate } from "@/lib/format";
 import { notifyStudents } from "@/lib/notify";
+import { upper } from "@/lib/text";
 import type { FormState } from "./auth";
 
 const SessionSchema = z
@@ -36,12 +37,12 @@ export async function saveSessionAction(_: FormState, fd: FormData): Promise<For
   const values = {
     programme: d.programme,
     courseCode: d.courseCode,
-    title: d.title || null,
-    counsellor: d.counsellor || null,
+    title: upper(d.title),
+    counsellor: upper(d.counsellor),
     startsAt: istInputToDate(`${d.date}T${d.start}`),
     endsAt: istInputToDate(`${d.date}T${d.end}`),
     mode: d.mode,
-    venue: d.venue || null,
+    venue: upper(d.venue),
     meetingLink: d.meetingLink || null,
     notes: d.notes || null,
   };

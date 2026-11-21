@@ -85,7 +85,7 @@ export async function parseRosterXlsx(buf: ArrayBuffer | Buffer) {
       if (i === 1) return;
       const get = (col?: number) => (col ? row.getCell(col).value : null);
       const enrollmentNo = cellText(get(c.enrol)).replace(/\D/g, "");
-      const name = cellText(get(opt.name)).trim().replace(/\s+/g, " ") || null;
+      const name = cellText(get(opt.name)).trim().replace(/\s+/g, " ").toUpperCase() || null;
       if (!enrollmentNo && !name) return;
       if (opt.status) {
         const st = cellText(get(opt.status)).toLowerCase();
@@ -106,7 +106,7 @@ export async function parseRosterXlsx(buf: ArrayBuffer | Buffer) {
         const t = cellText(get(col)).trim().replace(/\s+/g, " ").replace(/^,+|,+$/g, "").trim();
         if (t && !parts.some((p) => p.toLowerCase() === t.toLowerCase())) parts.push(t);
       }
-      const address = parts.join(", ") || null;
+      const address = parts.join(", ").toUpperCase() || null;
       const mobile = cellText(get(c.mobile)).replace(/\D/g, "").slice(-10) || null;
       if (!mobile) return skipped.push(`${where} ${i}: missing mobile number (needed for first login)`);
       const email = cellText(get(opt.email)).trim().toLowerCase() || null;
