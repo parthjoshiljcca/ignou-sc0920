@@ -39,7 +39,7 @@ export function SessionForm({ d, programmes, courses }: { d: SessionDefaults; pr
         <legend className="mb-1.5 text-sm font-medium">Mode</legend>
         <div className="inline-flex rounded-xl border border-border bg-surface p-1 text-sm font-semibold">
           {(["offline", "online"] as const).map((m) => (
-            <label key={m} className={`cursor-pointer rounded-lg px-4 py-1.5 ${mode === m ? "bg-primary text-on-primary" : "text-muted"}`}>
+            <label key={m} className={`cursor-pointer rounded-lg px-4 py-1.5 ${mode === m ? "bg-primary-fill text-on-primary" : "text-muted"}`}>
               <input type="radio" name="mode" value={m} checked={mode === m} onChange={() => setMode(m)} className="sr-only" />
               {m === "offline" ? "At centre" : "Online"}
             </label>

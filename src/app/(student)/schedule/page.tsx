@@ -33,7 +33,7 @@ export default async function Schedule({ searchParams }: { searchParams: Promise
           const active = (label === "Past") === past;
           return (
             <Link key={label} href={`/schedule${q}`} role="tab" aria-selected={active}
-              className={clsx("rounded-lg px-4 py-1.5", active ? "bg-primary text-on-primary" : "text-muted hover:text-text")}>
+              className={clsx("rounded-lg px-4 py-1.5", active ? "bg-primary-fill text-on-primary" : "text-muted hover:text-text")}>
               {label}
             </Link>
           );

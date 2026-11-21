@@ -8,6 +8,7 @@
   --text: #121826;
   --muted: #5b6478;
   --primary: #0066b2;
+  --primary-fill: #0066b2;
   --primary-hover: #00569a;
   --primary-soft: #e3effa;
   --on-primary: #ffffff;
@@ -34,9 +35,10 @@
     --text: #e8ecf5;
     --muted: #97a1b8;
     --primary: #5aa9e6;
-    --primary-hover: #7bbcef;
+    --primary-fill: #1f6fb5;
+    --primary-hover: #2a7cc4;
     --primary-soft: #12304d;
-    --on-primary: #0c111c;
+    --on-primary: #ffffff;
     --accent: #f5a742;
     --accent-soft: #3a2a12;
     --success: #4ade80;
@@ -59,9 +61,10 @@
   --text: #e8ecf5;
   --muted: #97a1b8;
   --primary: #5aa9e6;
-  --primary-hover: #7bbcef;
+  --primary-fill: #1f6fb5;
+  --primary-hover: #2a7cc4;
   --primary-soft: #12304d;
-  --on-primary: #0c111c;
+  --on-primary: #ffffff;
   --accent: #f5a742;
   --accent-soft: #3a2a12;
   --success: #4ade80;
@@ -84,6 +87,7 @@
   --color-text: var(--text);
   --color-muted: var(--muted);
   --color-primary: var(--primary);
+  --color-primary-fill: var(--primary-fill);
   --color-primary-hover: var(--primary-hover);
   --color-primary-soft: var(--primary-soft);
   --color-on-primary: var(--on-primary);

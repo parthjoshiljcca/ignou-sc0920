@@ -356,7 +356,7 @@ export function AppSetupSheet({ force = false }: { force?: boolean }) {
 function Step({ n, done, skipped, title, body, children }: { n: number; done: boolean; skipped?: boolean; title: string; body: React.ReactNode; children?: React.ReactNode }) {
   return (
     <li className={clsx("flex gap-3 rounded-2xl border p-3.5", done ? "border-success/30 bg-success-soft" : "border-border")}>
-      <span className={clsx("grid size-7 shrink-0 place-items-center rounded-full text-sm font-bold", done ? "bg-success text-white" : skipped ? "bg-surface-2 text-muted" : "bg-primary text-on-primary")}>
+      <span className={clsx("grid size-7 shrink-0 place-items-center rounded-full text-sm font-bold", done ? "bg-success text-white" : skipped ? "bg-surface-2 text-muted" : "bg-primary-fill text-on-primary")}>
         {done ? <Check className="size-4" aria-hidden /> : n}
       </span>
       <div className="min-w-0 flex-1">

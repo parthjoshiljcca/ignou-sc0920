@@ -44,7 +44,7 @@ export default async function Dashboard() {
         </div>
       </div>
 
-      <Link href="/tickets/new" className="mb-3 flex items-center gap-4 rounded-2xl bg-primary p-5 text-on-primary">
+      <Link href="/tickets/new" className="mb-3 flex items-center gap-4 rounded-2xl bg-primary-fill p-5 text-on-primary">
         <div className="grid size-11 shrink-0 place-items-center rounded-xl bg-white/15">
           <Plus className="size-6" aria-hidden />
         </div>
@@ -56,12 +56,15 @@ export default async function Dashboard() {
       </Link>
       {latestAsg && asgStatus && (
         <Link href="/assignments" className="mb-3 flex items-center gap-3 rounded-2xl border border-border bg-surface px-4 py-3 hover:bg-surface-2">
-          <ClipboardCheck className="size-5 shrink-0 text-primary" aria-hidden />
-          <span className="min-w-0 flex-1 text-sm">
-            <b>Assignments {latestAsg.receipt.session}</b>
-            <span className="block text-muted">{latestAsg.rows.length} courses · Status: <b className="text-primary">{statusLabel(asgStatus)}</b></span>
+          <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-primary-soft text-primary">
+            <ClipboardCheck className="size-5" aria-hidden />
           </span>
-          <span className="shrink-0 text-xs font-semibold text-primary">Receipt →</span>
+          <span className="min-w-0 flex-1">
+            <span className="block font-semibold">My assignments</span>
+            <span className="block truncate text-xs text-muted">{latestAsg.receipt.session} · {latestAsg.rows.length} courses</span>
+            <span className="mt-1 inline-flex rounded-full bg-primary-soft px-2 py-0.5 text-xs font-semibold text-primary">{statusLabel(asgStatus)}</span>
+          </span>
+          <ChevronRight className="size-5 shrink-0 text-muted" aria-hidden />
         </Link>
       )}
       <Link href="/faqs" className="mb-6 flex items-center gap-3 rounded-2xl border border-border bg-surface px-4 py-3 text-sm hover:bg-surface-2">

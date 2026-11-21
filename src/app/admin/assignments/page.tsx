@@ -46,30 +46,27 @@ export default async function AdminAssignments({ searchParams }: { searchParams:
     <>
       <PageHeader title="Assignments" subtitle="Submission status and receipts for students. Marks are never stored or shown." />
 
-      <div className="grid gap-6 lg:grid-cols-[1fr_1.3fr]">
-        <Card className="p-4 sm:p-6 lg:self-start">
-          <h2 className="mb-4 font-bold">Upload assignment list</h2>
-          <AssignmentUpload defaultSession={sessions.rows[0]?.session ?? "September 2026-27"} />
-        </Card>
-
-        <div className="space-y-4">
-          {sessions.rows.length === 0 && <Card className="p-5 text-sm text-muted">No assignment lists uploaded yet.</Card>}
-          {sessions.rows.map((s) => (
-            <Card key={s.session} className="p-4 sm:p-6">
-              <div className="flex flex-wrap items-baseline justify-between gap-2">
-                <h2 className="text-lg font-bold">{s.session}</h2>
-                <p className="text-sm text-muted">{s.students} students · {s.rows} course submissions · {s.app_students} on the app</p>
-              </div>
-              <ul className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3">
-                {statusRows(s.session).map((r) => (
-                  <li key={r.key} className={`rounded-xl border px-3 py-2 ${r.n ? "border-primary/40 bg-primary-soft" : "border-border"}`}>
-                    <p className="text-lg font-bold tabular-nums">{r.n}</p>
-                    <p className="text-xs text-muted">{r.label}</p>
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-5 border-t border-border pt-4">
-                <h3 className="mb-3 text-sm font-semibold">Move to the next step</h3>
+      <div className="space-y-4">
+        {sessions.rows.length === 0 && <Card className="p-5 text-sm text-muted">No assignment lists uploaded yet. Upload one below.</Card>}
+        {sessions.rows.map((s) => (
+          <Card key={s.session} className="p-4 sm:p-6">
+            <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+              <h2 className="text-lg font-bold">{s.session}</h2>
+              <p className="text-xs text-muted">{s.students} students · {s.rows} courses · {s.app_students} on the app</p>
+            </div>
+            <ul className="mt-3 grid grid-cols-3 gap-2 sm:grid-cols-6">
+              {statusRows(s.session).map((r, i) => (
+                <li key={r.key} className={`rounded-xl border px-2.5 py-2 ${r.n ? "border-primary/50 bg-primary-soft" : "border-border"}`}>
+                  <p className={`text-lg leading-none font-bold tabular-nums ${r.n ? "text-primary" : "text-muted"}`}>{r.n}</p>
+                  <p className="mt-1 text-[11px] leading-tight text-muted"><span className="font-semibold">{i + 1}.</span> {r.label}</p>
+                </li>
+              ))}
+            </ul>
+            <details className="group mt-4 rounded-xl border border-border" open>
+              <summary className="cursor-pointer list-none px-3.5 py-2.5 text-sm font-semibold [&::-webkit-details-marker]:hidden">
+                Change status <span className="font-normal text-muted">— move students to the next step</span>
+              </summary>
+              <div className="border-t border-border p-3.5">
                 <AssignmentStatusForm
                   session={s.session}
                   current={leading(s.session)}
@@ -77,9 +74,20 @@ export default async function AdminAssignments({ searchParams }: { searchParams:
                   courses={courses.rows.filter((c) => c.session === s.session).map((c) => c.course_code)}
                 />
               </div>
-            </Card>
-          ))}
-        </div>
+            </details>
+          </Card>
+        ))}
+
+        <Card className="overflow-hidden">
+          <details open={sessions.rows.length === 0}>
+            <summary className="cursor-pointer list-none p-4 font-bold sm:px-6 [&::-webkit-details-marker]:hidden">
+              Upload an assignment list <span className="font-normal text-sm text-muted">— new session or more submissions</span>
+            </summary>
+            <div className="border-t border-border p-4 sm:p-6">
+              <AssignmentUpload defaultSession={sessions.rows[0]?.session ?? "September 2026-27"} />
+            </div>
+          </details>
+        </Card>
       </div>
 
       <section className="mt-8">

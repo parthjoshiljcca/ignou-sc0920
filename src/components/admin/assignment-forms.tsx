@@ -35,7 +35,7 @@ export function AssignmentStatusForm({ session, current, programmes, courses }: 
   return (
     <form action={action} className="space-y-3">
       <input type="hidden" name="session" value={session} />
-      <div className="grid gap-3 sm:grid-cols-3">
+      <div className="grid gap-3 md:grid-cols-3">
         <Field label="New status" htmlFor={`st-${sfx}`}>
           <select id={`st-${sfx}`} name="status" className="input" defaultValue={next}>
             {ASSIGNMENT_STATUSES.map((s) => <option key={s.key} value={s.key}>{s.label}</option>)}

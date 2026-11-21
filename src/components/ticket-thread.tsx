@@ -33,7 +33,7 @@ export async function TicketThread({ ticketId, viewerId }: { ticketId: number; v
               <div
                 className={clsx(
                   "prose-msg rounded-2xl px-4 py-3 text-[15px] leading-relaxed",
-                  mine ? "rounded-tr-md bg-primary text-on-primary" : staff ? "rounded-tl-md border border-border bg-accent-soft" : "rounded-tl-md border border-border bg-surface",
+                  mine ? "rounded-tr-md bg-primary-fill text-on-primary" : staff ? "rounded-tl-md border border-border bg-accent-soft" : "rounded-tl-md border border-border bg-surface",
                 )}
               >
                 {m.body}

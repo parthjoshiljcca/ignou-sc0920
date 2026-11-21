@@ -47,7 +47,7 @@ export function FaqBrowser({ faqs, categories }: { faqs: FaqItem[]; categories: 
             aria-pressed={cat === c}
             className={clsx(
               "shrink-0 rounded-full border px-3 py-1.5 text-xs font-semibold whitespace-nowrap transition-colors",
-              cat === c ? "border-primary bg-primary text-on-primary" : "border-border bg-surface text-muted hover:text-text",
+              cat === c ? "border-primary bg-primary-fill text-on-primary" : "border-border bg-surface text-muted hover:text-text",
             )}
           >
             {c ?? "All"}

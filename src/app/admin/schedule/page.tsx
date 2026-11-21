@@ -30,7 +30,7 @@ export default async function AdminSchedule({ searchParams }: { searchParams: Pr
       {sp.saved && <div className="mb-4"><Alert tone="success">Schedule saved.</Alert></div>}
       <div className="mb-5 inline-flex rounded-xl border border-border bg-surface p-1 text-sm font-semibold">
         {[["Upcoming", ""], ["Past", "?view=past"]].map(([label, q]) => (
-          <Link key={label} href={`/admin/schedule${q}`} className={clsx("rounded-lg px-4 py-1.5", (label === "Past") === past ? "bg-primary text-on-primary" : "text-muted hover:text-text")}>{label}</Link>
+          <Link key={label} href={`/admin/schedule${q}`} className={clsx("rounded-lg px-4 py-1.5", (label === "Past") === past ? "bg-primary-fill text-on-primary" : "text-muted hover:text-text")}>{label}</Link>
         ))}
       </div>
       {rows.length === 0 ? (

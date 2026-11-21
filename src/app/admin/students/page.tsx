@@ -41,7 +41,7 @@ export default async function Students({ searchParams }: { searchParams: Promise
           <p className="text-sm text-muted">Students signed in</p>
           <p className="mt-1 text-3xl font-bold tabular-nums">{activated}<span className="text-lg text-muted"> / {total}</span></p>
           <div className="mt-3 h-2 overflow-hidden rounded-full bg-surface-2" role="progressbar" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100}>
-            <div className="h-full rounded-full bg-primary" style={{ width: `${pct}%` }} />
+            <div className="h-full rounded-full bg-primary-fill" style={{ width: `${pct}%` }} />
           </div>
           <p className="mt-2 text-xs text-muted">Students sign in the first time with enrolment number + registered mobile number, then set their own password.</p>
         </Card>

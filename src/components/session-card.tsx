@@ -33,7 +33,7 @@ export function SessionCard({ s, actions }: { s: CounsellingSession; actions?: R
       {(s.meetingLink || actions) && (
         <div className="mt-3 flex flex-wrap gap-2">
           {s.mode === "online" && s.meetingLink && (
-            <a href={s.meetingLink} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-9 items-center gap-2 rounded-[10px] bg-primary px-3 text-sm font-semibold text-on-primary">
+            <a href={s.meetingLink} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-9 items-center gap-2 rounded-[10px] bg-primary-fill px-3 text-sm font-semibold text-on-primary">
               <Video className="size-4" aria-hidden /> Join class
             </a>
           )}

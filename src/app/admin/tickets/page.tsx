@@ -44,7 +44,7 @@ export default async function AdminTickets({ searchParams }: { searchParams: Pro
       <div className="-mx-4 mb-4 overflow-x-auto px-4">
         <div className="inline-flex gap-1 rounded-xl border border-border bg-surface p-1 text-sm font-semibold">
           {TABS.map((s) => (
-            <Link key={s} href={href({ status: s })} className={clsx("rounded-lg px-3 py-1.5 whitespace-nowrap", s === status ? "bg-primary text-on-primary" : "text-muted hover:text-text")}>
+            <Link key={s} href={href({ status: s })} className={clsx("rounded-lg px-3 py-1.5 whitespace-nowrap", s === status ? "bg-primary-fill text-on-primary" : "text-muted hover:text-text")}>
               {s === "active" ? "Needs action" : s === "all" ? "All" : STATUS_LABEL[s]}
             </Link>
           ))}
