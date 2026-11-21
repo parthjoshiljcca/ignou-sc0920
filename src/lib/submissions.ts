@@ -156,3 +156,9 @@ export async function pendingRequests() {
     from assignment_requests q left join roster r on r.enrollment_no = q.enrollment_no
     where q.status = 'pending' order by q.created_at`);
 }
+
+/** Every course code the centre has seen, most common first (for type-ahead). */
+export async function allCourseCodes() {
+  const res = await db.execute<{ c: string }>(sql`select course_code c from assignment_submissions group by course_code order by count(*) desc, course_code`);
+  return res.rows.map((r) => r.c);
+}

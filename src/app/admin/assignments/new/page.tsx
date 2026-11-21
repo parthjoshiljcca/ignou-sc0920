@@ -22,7 +22,9 @@ export default async function RecordSubmissionPage() {
   ]);
   const suggestionsByProgramme: Record<string, string[]> = {};
   for (const r of byProg.rows) (suggestionsByProgramme[r.p] ??= []).push(r.c);
-  const allCourses = [...new Set(byProg.rows.sort((a, b) => b.n - a.n).map((r) => r.c))].slice(0, 60);
+  const totals = new Map<string, number>();
+  for (const r of byProg.rows) totals.set(r.c, (totals.get(r.c) ?? 0) + r.n);
+  const allCourses = [...totals.entries()].sort((a, b) => b[1] - a[1]).map(([c]) => c);
   const open = terms.filter((t) => t.accepting);
   const defaultTerm = (open.sort((a, b) => a.sortKey - b.sortKey)[0] ?? terms[0])?.name ?? "";
   const today = new Date(Date.now() + 5.5 * 3600 * 1000).toISOString().slice(0, 10);

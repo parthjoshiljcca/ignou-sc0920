@@ -23,7 +23,7 @@ export function RecordSubmissionForm({ terms, defaultTerm, today, programmes, su
   const fetchStudent = (e = enrol, t = term) => start(async () => setInfo(await lookupStudentAction(e, t)));
   const ok = info && !("error" in info);
   const programme = ok ? (info.found ? info.programme : newProg || info.programmeHint || "") : "";
-  const sugg = (programme && (suggestionsByProgramme[programme] ?? suggestionsByProgramme[programme.replace(/_/g, "")])) || allCourses;
+  const sugg = (programme && (suggestionsByProgramme[programme] ?? suggestionsByProgramme[programme.replace(/_/g, "")])) || allCourses.slice(0, 60);
 
   return (
     <ActionForm action={action} className="space-y-5">
@@ -83,7 +83,7 @@ export function RecordSubmissionForm({ terms, defaultTerm, today, programmes, su
           </Field>
           <div>
             <p className="mb-1.5 text-sm font-medium">Courses submitted *</p>
-            <CoursePicker key={`${info.enrollmentNo}-${term}`} suggestions={sugg} already={info.already} />
+            <CoursePicker key={`${info.enrollmentNo}-${term}`} suggestions={sugg} allCodes={allCourses} already={info.already} />
           </div>
           <FormMessage state={state} />
           <SubmitButton className="w-full min-h-11" pendingText="Saving…">Save &amp; create receipt</SubmitButton>
