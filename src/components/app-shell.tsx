@@ -89,7 +89,7 @@ export async function AppShell({ user, children }: { user: User; children: React
             </form>
           )}
         </header>
-        <main className="mx-auto w-full max-w-5xl px-4 pt-5 pb-28 sm:px-6 lg:px-8 lg:pt-8 lg:pb-12">
+        <main className="mx-auto w-full max-w-5xl overflow-x-clip px-4 pt-5 pb-28 sm:px-6 lg:px-8 lg:pt-8 lg:pb-12">
           {children}
           <p className="mt-12 text-center text-xs lg:hidden"><Link href="/about" className="font-medium text-primary">About this app</Link></p>
           <Credit className="mt-1 text-center lg:hidden" />

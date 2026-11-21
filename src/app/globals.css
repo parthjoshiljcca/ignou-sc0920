@@ -133,5 +133,11 @@ select.input {
 textarea.input { resize: vertical; min-height: 7rem; }
 }
 
+/* A grid track's default minimum is its content width, so one long unbroken line (e.g. a query subject)
+   would stretch the whole page sideways on phones. Let grid items shrink; text then truncates instead. */
+@layer components {
+  .grid > * { min-width: 0; }
+}
+
 .pb-safe { padding-bottom: env(safe-area-inset-bottom); }
 .prose-msg { white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere; }
