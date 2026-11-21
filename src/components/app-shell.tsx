@@ -28,9 +28,9 @@ export async function AppShell({ user, children }: { user: User; children: React
   const notifHref = isAdmin ? "/admin/notifications" : "/notifications";
   const items: NavItem[] = isAdmin
     ? [
-        { href: "/admin", label: "Overview", icon: "LayoutDashboard", exact: true },
+        { href: "/admin", label: "Overview", short: "Home", icon: "LayoutDashboard", exact: true },
         { href: "/admin/tickets", label: "Queries", icon: "Inbox", badge: openTickets },
-        { href: "/admin/schedule", label: "Schedule", icon: "CalendarDays" },
+        { href: "/admin/schedule", label: "Schedule", short: "Classes", icon: "CalendarDays" },
         { href: "/admin/assignments", label: "Assignments", icon: "ClipboardCheck" },
         { href: "/admin/notices", label: "Notices", icon: "Megaphone" },
         { href: "/admin/students", label: "Students", icon: "Users" },

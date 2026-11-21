@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 
 const ICONS = { Home, LifeBuoy, CalendarDays, Megaphone, Bell, User, LayoutDashboard, Inbox, Users, CircleHelp, ClipboardCheck };
-export type NavItem = { href: string; label: string; icon: keyof typeof ICONS; badge?: number; exact?: boolean };
+export type NavItem = { href: string; label: string; short?: string; icon: keyof typeof ICONS; badge?: number; exact?: boolean };
 
 function useActive() {
   const path = usePathname();
@@ -61,14 +61,15 @@ export function BottomNav({ items }: { items: NavItem[] }) {
                 href={i.href}
                 aria-current={active ? "page" : undefined}
                 className={clsx(
-                  "relative flex min-h-[60px] flex-col items-center justify-center gap-1 text-[11px] font-semibold",
+                  "relative flex min-h-[60px] min-w-0 flex-col items-center justify-center gap-1 font-semibold",
+                  items.length > 5 ? "px-0 text-[10px] tracking-[-0.03em]" : "px-0.5 text-[11px] tracking-tight",
                   active ? "text-primary" : "text-muted",
                 )}
               >
                 <span className={clsx("grid h-7 w-12 place-items-center rounded-full", active && "bg-primary-soft")}>
                   <Icon className="size-5" aria-hidden />
                 </span>
-                {i.label}
+                <span className="block w-full truncate text-center">{i.short ?? i.label}</span>
                 {!!i.badge && (
                   <span className="absolute top-1.5 left-1/2 ml-3 rounded-full bg-accent px-1.5 text-[10px] font-bold leading-4 text-white">
                     {i.badge}
