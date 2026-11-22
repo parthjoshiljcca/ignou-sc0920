@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SearchForm } from "@/components/search-form";
 import clsx from "clsx";
 import { and, desc, eq, ilike, or, sql, type SQL } from "drizzle-orm";
 import { Inbox, Search } from "lucide-react";
@@ -50,7 +51,7 @@ export default async function AdminTickets({ searchParams }: { searchParams: Pro
           ))}
         </div>
       </div>
-      <form className="mb-4 flex flex-wrap gap-2" action="/admin/tickets">
+      <SearchForm className="mb-4 flex flex-wrap gap-2" action="/admin/tickets">
         <input type="hidden" name="status" value={status} />
         <div className="relative min-w-0 flex-1 basis-56">
           <Search className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted" aria-hidden />
@@ -61,7 +62,7 @@ export default async function AdminTickets({ searchParams }: { searchParams: Pro
           {TICKET_CATEGORIES.map((c) => <option key={c}>{c}</option>)}
         </select>
         <button className="rounded-[10px] border border-border bg-surface px-4 text-sm font-semibold hover:bg-surface-2">Filter</button>
-      </form>
+      </SearchForm>
       {rows.length === 0 ? (
         <EmptyState icon={<Inbox className="size-6" />} title="No queries here" body="Try another filter." />
       ) : (

@@ -55,6 +55,8 @@ export function FaqBrowser({ faqs, categories }: { faqs: FaqItem[]; categories: 
         ))}
       </div>
 
+      {/* Keep the page tall while filtering, so a shorter result list doesn't make the page jump up. */}
+      <div className="min-h-[80dvh]">
       {grouped.length === 0 ? (
         <p className="rounded-2xl border border-border bg-surface p-5 text-sm text-muted">
           No matching questions. Try other words, or raise a query and the coordinator will help.
@@ -86,6 +88,7 @@ export function FaqBrowser({ faqs, categories }: { faqs: FaqItem[]; categories: 
           ))}
         </div>
       )}
+      </div>
     </div>
   );
 }

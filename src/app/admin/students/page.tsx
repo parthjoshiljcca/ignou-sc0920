@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SearchForm } from "@/components/search-form";
 import clsx from "clsx";
 import { and, asc, count, eq, ilike, isNull, or, sql, type SQL } from "drizzle-orm";
 import { Search } from "lucide-react";
@@ -55,7 +56,7 @@ export default async function Students({ searchParams }: { searchParams: Promise
         </Card>
       </div>
 
-      <form className="mb-4 flex flex-wrap gap-2" action="/admin/students">
+      <SearchForm className="mb-4 flex flex-wrap gap-2" action="/admin/students">
         <div className="relative min-w-0 flex-1 basis-56">
           <Search className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted" aria-hidden />
           <input name="q" defaultValue={q} placeholder="Name, enrolment or mobile" className="input pl-9" aria-label="Search students" />
@@ -68,7 +69,7 @@ export default async function Students({ searchParams }: { searchParams: Promise
           <option value="">Everyone</option><option value="active">Signed in</option><option value="pending">Not signed in yet</option>
         </select>
         <button className="rounded-[10px] border border-border bg-surface px-4 text-sm font-semibold hover:bg-surface-2">Filter</button>
-      </form>
+      </SearchForm>
 
       <p className="mb-2 text-sm text-muted">
         {more ? `Showing the first ${PAGE} — search above, or ` : `${shown.length} student${shown.length === 1 ? "" : "s"}`}

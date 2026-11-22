@@ -1,7 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { markSeenAction } from "@/actions/notifications";
 import { Bell, BellOff, BellRing, Check, Download, Share, SquarePlus, X } from "lucide-react";
 import clsx from "clsx";
 import { btnClass } from "./ui";
@@ -429,5 +430,39 @@ export function WarmUp() {
   useEffect(() => {
     fetch("/api/warm", { cache: "no-store" }).catch(() => {});
   }, []);
+  return null;
+}
+
+/* ----------------------- Notifications seen ----------------------- */
+
+/**
+ * When a page opens, mark the notifications that point to it as read (all of them on the
+ * notifications page), clear its alerts from the phone's notification tray, and keep the
+ * app-icon badge in step. Refreshes once so the bell badge updates.
+ */
+export function NotificationSeen({ unread }: { unread: number }) {
+  const pathname = usePathname();
+  const router = useRouter();
+  useEffect(() => {
+    try {
+      const nav = navigator as Navigator & { setAppBadge?: (n?: number) => Promise<void>; clearAppBadge?: () => Promise<void> };
+      if (unread > 0) nav.setAppBadge?.(unread).catch(() => {});
+      else nav.clearAppBadge?.().catch(() => {});
+    } catch {}
+  }, [unread]);
+  useEffect(() => {
+    const all = pathname === "/notifications" || pathname === "/admin/notifications";
+    // Close this page's alerts still sitting in the notification tray.
+    navigator.serviceWorker?.getRegistration().then((reg) =>
+      reg?.getNotifications(all ? undefined : { tag: pathname }).then((ns) => ns.forEach((n) => n.close())),
+    ).catch(() => {});
+    // The notifications page marks everything read itself, once its list has loaded.
+    if (unread <= 0 || all) return;
+    let cancelled = false;
+    markSeenAction(pathname)
+      .then((n) => { if (n > 0 && !cancelled) router.refresh(); })
+      .catch(() => {});
+    return () => { cancelled = true; };
+  }, [pathname, unread, router]);
   return null;
 }

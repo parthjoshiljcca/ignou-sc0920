@@ -6,7 +6,7 @@ import { db, schema } from "@/db";
 import type { User } from "@/db/schema";
 import { logoutAction } from "@/actions/auth";
 import { BottomNav, SideNav, type NavItem } from "./nav-links";
-import { AppSetupSheet, LiveUpdates } from "./pwa";
+import { AppSetupSheet, LiveUpdates, NotificationSeen } from "./pwa";
 import { Credit, Logo } from "./logo";
 import { CENTRE } from "@/lib/constants";
 import { liveFingerprint } from "@/lib/live";
@@ -104,6 +104,7 @@ export async function AppShell({ user, children }: { user: User; children: React
       </div>
       <BottomNav items={items} />
       <LiveUpdates rendered={live} />
+      <NotificationSeen unread={unread} />
       <AppSetupSheet />
     </div>
   );

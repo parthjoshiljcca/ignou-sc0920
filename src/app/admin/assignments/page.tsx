@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SearchForm } from "@/components/search-form";
 import { sql } from "drizzle-orm";
 import { Check, Download, FileText, PenLine, Search, Settings2 } from "lucide-react";
 import { db, schema } from "@/db";
@@ -135,13 +136,13 @@ export default async function AdminAssignments({ searchParams }: { searchParams:
 
       <section className="mt-8">
         <h2 className="mb-3 font-bold">Find a student&apos;s receipt</h2>
-        <form className="mb-4 flex gap-2" action="/admin/assignments">
+        <SearchForm className="mb-4 flex gap-2" action="/admin/assignments">
           <div className="relative min-w-0 flex-1">
             <Search className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted" aria-hidden />
             <input name="q" defaultValue={q} placeholder="Enrolment no., name or receipt no." className="input pl-9" aria-label="Search receipts" />
           </div>
           <button className="rounded-[10px] border border-border bg-surface px-4 text-sm font-semibold hover:bg-surface-2">Search</button>
-        </form>
+        </SearchForm>
         {q && (
           <Card className="divide-y divide-border overflow-hidden">
             {found.rows.length === 0 && <p className="p-5 text-sm text-muted">No receipts match “{q}”.</p>}
